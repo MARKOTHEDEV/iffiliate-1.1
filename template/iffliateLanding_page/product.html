@@ -1,0 +1,129 @@
+{% extends './base.html' %}
+{% load static %}
+
+
+{% block title %}
+	product
+{% endblock title %}
+	
+
+{% block content %}
+
+	<div class="hero-wrapper">
+		<div class="curve-container">
+			<div class="curve-top"></div>
+			<div class="curve-bottom"></div>
+		</div><!--//curve-container-->
+
+		{% include './partials/nav.html' %}
+
+
+		<section class="product-header page-header over-curve py-3 py-md-5">
+			<div class="container text-center">	
+				<div class="single-col-max mx-auto">	   
+					<h1 class="page-headline mb-3">Build Your Business Site</h1>
+					<div class="page-tagline mb-4">IFFILIATE is a platform perfect for advertising your products. It helps to advertise your products with a bang and grow exponentially.</div>
+					<div class="cta-btn mb-lg-3 mb-4">
+						<a class="video-play-trigger btn btn-gradient mb-3" href="assets/video/WhatsApp Video 2021-02-13 at 9.05.35 PM.mp4" href="">Watch Demo</a>
+					</div> 
+					
+				</div><!--//single-col-max-->
+			</div>
+		</section><!--//product-header-->
+		
+	</div><!--//hero-wrapper-->
+	
+	<section class="features-section pt-5">
+		<div class="container py-5">
+			<div class="row">
+				
+
+				<div class="item col-12 col-lg-4">
+					<div class="item-inner p-5 shadow rounded">
+						<div class="icon-holder shadow-sm">
+							<div class="icon dripicons-duplicate"></div>
+						</div><!--//icon-holder-->
+						<h4 class="item-title">Built as an affiliate and e-commerce website.</h4>
+						<div class="mb-2">Iffiliate strives to make life better for every individual, as a platform that was built solely on trust we assist you in the process of making money right where you are, with little or no stress involved. 
+							Iffiliate also has a store that allows you to get any product you desire with a built in E-wallet so you don’t have to always pay using your card.
+								In summary, we help you to make money through logical investments on our part and we also allow you to spend money at your own comfort by making life easier with our online store.
+							</div>
+					</div><!--//item-inner-->
+				</div><!--//item-->
+				<div class="item col-12 col-lg-4">
+					<div class="item-inner p-5 shadow rounded">
+						<div class="icon-holder shadow-sm">
+							<div class="icon dripicons-user"></div>
+						</div><!--//icon-holder-->
+						<h4 class="item-title">Iffiliate as an affiliate website</h4>
+						<div class="mb-2">         Iffiliate has an affiliate part that aids in your money making processes. 
+							Firstly, on iffiliate we have different packages that help you earn at different rates. How do you earn? ,  you might want to ask. On iffiliate we invest in a lot of sectors that aid in massive returns which we all benefit from.
+							The packages come with different benefits that will be explained on our homepage (we can make this a link to the homepage).
+							
+							Secondly, there are tasks you need to perform as a user that will allow you to grow your initial investment with us. Such tasks include: Daily login, sharing of sponsored posts and reading of news. All of which can be done at the comfort of your home or anywhere.
+
+							Join us today to earn!!!!!!!
+
+						</div>
+					</div><!--//item-inner-->
+				</div><!--//item-->
+				<div class="item col-12 col-lg-4">
+					<div class="item-inner p-5 shadow rounded">
+						<div class="icon-holder shadow-sm">
+							<div class="icon dripicons-card"></div>
+						</div><!--//icon-holder-->
+						<h4 class="item-title">Iffiliate as an E-commerce website</h4>
+						<div class="mb-2">Iffiliate also has an E-commerce website that helps to make your day-to-day activities easier and more doable by providing you the best products at the best rates and quality. Some features of the E-commerce store are listed below:
+							-	E-wallet: We have a safe and secure E-wallet personally for the e-commerce store to save your money so as to make payment easier and faster.
+							-	Discounted products: We give discounts for similar products… i.e. if you buy a mobile device from iffiliate stores you get a similar product at a discount.
+							-	Fast deliveries: On iffiliate customer satisfaction is paramount, all goods and services ordered will be delivered within a range of 7-14 days and will be to the customers satisfaction.
+							
+							All these, and many more to come. 
+							Shop with us today and be satisfied beyond expectation. 
+							</div>
+					</div><!--//item-inner-->
+				</div><!--//item-->
+			</div><!--//row-->
+		</div><!--//container-->
+	</section><!--//features-section-->
+
+	
+	
+	<section class="cta-section py-5 text-center">
+		<div class="container">
+			<div class="py-5 theme-bg-gradient position-relative rounded">
+				<div class="curve-container">
+					<div class="curve-top curve-top-sm"></div>
+					<div class="curve-bottom curve-bottom-sm"></div>
+				</div><!--//curve-container-->
+				<div class="container">
+					<h3 class="mb-2 text-white mb-3">Ready To Grow Your Business?</h3>
+					<div class="section-intro text-white mb-3 single-col-max mx-auto">
+						Advertise with Iffiliate today to boost your business and get new customers
+					</div>
+					<div class="pt-3 text-center">
+						<a class="btn btn-inverse mr-lg-2 mb-3" href="signup.html">GET STARTED</a>
+						<br class="d-block d-lg-none">
+						<a class="btn btn-inverse mb-3" href="product.html">Watch Demo</a>
+					</div>
+				</div>
+			</div>
+		</div><!--//container-->
+	</section><!--//cta-section--> 
+	
+	
+	{% endblock content %}
+		
+{% block Javascript %}
+
+<script src="{% static '/iffliateLanding_page/assets/plugins/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static '/iffliateLanding_page/assets/plugins/popper.min.js' %}"></script>
+<script src="{% static '/iffliateLanding_page/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>  
+
+<!-- Page Specific JS -->
+<script src="{% static '/iffliateLanding_page/assets/js/video.js' %}"></script> 
+<script src="{% static 'iffliateLanding_page/assets/plugins/tiny-slider/min/tiny-slider.js' %}"></script> 
+<script src="{% static '/iffliateLanding_page/assets/js/tinyslider-custom.js' %}"></script> 
+	
+{% endblock Javascript %}
+	

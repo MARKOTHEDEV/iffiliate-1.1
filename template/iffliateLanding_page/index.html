@@ -1,0 +1,227 @@
+{% extends './base.html' %}
+{% load static %}
+
+
+{% block title %}
+	Home
+{% endblock title %}
+	
+
+
+{% block content %}
+<h1>{{ user }}</h1>
+<div class="hero-wrapper">
+	<div class="curve-container">
+		<div class="curve-top"></div>
+		<div class="curve-bottom"></div>
+	</div><!--//curve-container-->
+
+	{% include './partials/nav.html' %}
+
+	
+	<section class="hero-section over-curve pt-5 py-md-5">
+		<div class="container">
+			<div class="hero-content-holder z-index-10 position-relative">
+				<h1 class="site-headline mb-3">IFFILIATE - The real destination of earning easily</h1>
+				<div class="site-tagline mb-4">Iffiliate is the perfect platform for earning and marketing it's also a platform where you can place advertisments.</div>
+				<div class="cta-btns mb-lg-3">
+					<a class="btn btn-gradient mr-2 mb-3" href="{% url 'signup' %}">Get Started</a>
+				</div>
+				
+			</div><!--//hero-content-holder-->
+		</div><!--//container-->
+		<div class="hero-figure-holder">
+			<img src="{% static '/iffliateLanding_page/assets/images/product/product-hero-1.png' %}" alt="product">
+		</div><!--//hero-figure-holder-->
+	</section><!--//hero-section-->
+	
+	
+	
+</div><!--//hero-wrapper-->
+
+
+
+
+<section class="benefits-section py-5">
+	<div class="container">
+		<h3 class="mb-lg-5 text-center section-title single-col-max mx-auto">What IFFILIATE Can Do For You</h3>
+		<div class="item py-5">
+			<div class="row">
+				<div class="item-content col-12 col-lg-7 col-xl-6 pr-lg-5">
+					<div class="title-note mb-1">Advertisement</div>
+					<h4 class="title mb-3">Advertise your Brand or Product</h4>
+					<div class="desc">
+						Advertising is not an exact science but rather an art of suggestion, inculcation, and hypnosis. The terms itself come from the Latin word “reklamare,” which means 
+						scream, outcry and shout loudly. However, you won’t push sell your product by crying out its name and advantages.Almost any primitive advertising contains three 
+						keywords: new, cheap, and practical. Surprisingly, these words haven’t lost relevance after many centuries. The current high level of competence pushes marketers 
+						and advertisers to have something special, unique, and original. But here at Iffliate we stand out of the crowd and we are much better than the analogs. We also have
+						fundamental ways of getting the attention of our customers.
+												</div><!--//desc--> 
+					<ul class="column-list list-unstyled pt-4">
+						<li><span class="theme-check-icon icon dripicons-checkmark mr-2"></span> Repeatability of advertising.</li>
+						<li><span class="theme-check-icon icon dripicons-checkmark mr-2"></span>Contrast.</li>
+						<li><span class="theme-check-icon icon dripicons-checkmark mr-2"></span> Intensity.</li>
+						<li><span class="theme-check-icon icon dripicons-checkmark mr-2"></span> Dynamism.</li>
+						
+						
+					</ul><!--//item-list-->
+				</div><!--//item-content-->
+				<div class="item-figure col-12 col-lg-5 pt-5 col-xl-6">
+					<img class="img-fluid shadow rounded" src="{% static '/iffliateLanding_page/assets/images/product/product-1.png' %}" alt="">   
+				</div><!--//item-figure-->
+			</div><!--//row-->
+		</div><!--//item-->
+		<div class="item py-5">
+			<div class="row">
+				<div class="item-content col-12 col-lg-7 col-xl-6 order-lg-1 pl-lg-5">
+					<div class="title-note mb-1">Earn</div>
+					<h4 class="title mb-3">Earn by reading news and sharing sponsored posts</h4>
+					
+					<div class="desc mb-3">
+						Based on the package that you register with as a user, you carn earn by reading the news allocated to you, you can alos earn by sharing sponsored posts and you get 
+						paid for daily login.
+					</div><!--//desc--> 
+					
+				</div><!--//item-content-->
+				<div class="item-figure col-12 col-lg-5 col-xl-6 pt-5 order-lg-0">
+					<img class="img-fluid shadow rounded" src="{% static '/iffliateLanding_page/assets/images/product/product-2.png' %}" alt="">   
+				</div><!--//item-figure-->
+			</div><!--//row-->
+		</div><!--//item-->
+	</div><!--//container-->
+</><!--//benefits-section-->
+
+<section class="why-section py-5">
+	<div class="container">
+		<h3 class="mb-4 text-center section-title single-col-max mx-auto">More Than Just A plaform</h3>
+		<div class="row">
+			<div class="item col-12 col-md-6">
+				<div class="item-inner p-3 p-lg-5">
+					<div class="media flex-column flex-md-row">
+						<div class="icon-holder mr-3 mr-lg-5 mb-3">
+							<div class="icon dripicons-rocket"></div>
+						</div><!--//icon-holder-->
+						<div class="media-body">
+							<h4>Easy way of earning</h4>
+							<div class="desc mb-2">This platform is created to generate income for the public and taking advantage of it would yeild such great benefits.
+							</div><!--//desc-->
+						</div><!--//media-body-->
+					</div><!--//media-->
+				</div><!--//item-inner-->
+			</div><!--//item-->
+			<div class="item col-12 col-md-6">
+				<div class="item-inner p-3 p-lg-5">
+					<div class="media flex-column flex-md-row">
+						<div class="icon-holder mr-3 mr-lg-5 mb-3">
+							<div class="icon dripicons-user-group"></div>
+						</div><!--//icon-holder-->
+						<div class="media-body">
+							<h4>E-commerce </h4>
+							<div class="desc mb-2">Here on Iffiliate has one of the best online stores you could come across to make your day to day shopping easier and faster.
+							</div><!--//desc-->
+						</div><!--//media-body-->
+					</div><!--//media-->
+				</div><!--//item-inner-->
+			</div><!--//item-->
+			<div class="item col-12 col-md-6">
+				<div class="item-inner p-3 p-lg-5">
+					<div class="media flex-column flex-md-row">
+						<div class="icon-holder mr-3 mr-lg-5 mb-3">
+							<div class="icon dripicons-broadcast"></div>
+						</div><!--//icon-holder-->
+						<div class="media-body">
+							<h4>Advertisement</h4>
+							<div class="desc mb-2">Here at Iffliate we stand out of the crowd and we are much better than the analogs. We also have fundamental ways of getting the attention 
+								of our customers.
+							</div><!--//desc-->
+						</div><!--//media-body-->
+					</div><!--//media-->
+				</div><!--//item-inner-->
+			</div><!--//item-->
+			<div class="item col-12 col-md-6">
+				<div class="item-inner p-3 p-lg-5">
+					<div class="media flex-column flex-md-row">
+						<div class="icon-holder mr-3 mr-lg-5 mb-3">
+							<div class="icon dripicons-graph-line"></div>
+						</div><!--//icon-holder-->
+						<div class="media-body">
+							<h4>E-wallet</h4>
+							<div class="desc mb-2">This platform provides the oppourtunity for our users to be able to save their monthly earnings with an interest being rewarded to them at the point of 
+								withdrawal.
+							</div><!--//desc-->
+						</div><!--//media-body-->
+					</div><!--//media-->
+				</div><!--//item-inner-->
+			</div><!--//item-->
+			
+		</div><!--//row-->
+	</div><!--//container-->
+</section><!--//why-section-->
+
+<section class="cta-section text-center py-5 theme-bg-gradient position-relative">
+	<div class="curve-containers">
+		<div class="curve-top"></div>
+		<div class="curve-bottom"></div>
+	</div><!--//curve-container-->
+	<div class="container py-4">
+		
+		<h3 class="section-title text-white mb-3">Join the community</h3>
+		<div class="section-intro mb-5 text-white single-col-max mx-auto">Now is the time to join Iffiliate and build a future for yourself. </div>
+		
+		<div class="data-box mb-3">
+			<!-----
+				<div class="row">
+				<div class="item col-6 col-lg-3">
+					<div class="item-inner p-3 text-white">
+						<div class="icon dripicons-meter"></div>
+						<div class="number">10X</div>
+						<div class="desc">Faster</div>
+					</div>
+				</div>
+				<div class="item col-6 col-lg-3">
+					<div class="item-inner p-3 text-white">
+						<div class="icon dripicons-graph-line"></div>
+						<div class="number">20%</div>
+						<div class="desc">Growth</div>
+					</div>
+				</div>
+				<div class="item col-6 col-lg-3">
+					<div class="p-3 text-white">
+						<div class="icon dripicons-user-group"></div>
+						<div class="number">300,000+</div>
+						<div class="desc">Users</div>
+					</div>
+				</div>
+				<div class="item col-6 col-lg-3">
+					<div class="item-inner p-3 text-white">
+						<div class="icon dripicons-store"></div>
+						<div class="number">1,000+</div>
+						<div class="desc">Communities</div>
+					</div>
+				</div>
+				
+			</div>
+			-->
+			
+		</div><!--//data-box-->
+		<div class="pt-3 text-center">
+			<a class="btn btn-inverse" href="{% url 'signup' %}">Get started</a>
+		</div>
+	</div>
+</section><!--//cta-section-->
+
+
+{% endblock content %}
+
+
+{% block Javascript %}
+<script src="{% static '/iffliateLanding_page/assets/plugins/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static '/iffliateLanding_page/assets/plugins/popper.min.js' %}"></script>
+<script src="{% static '/iffliateLanding_page/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>  
+
+<!-- Page Specific JS -->
+<script src="{% static 'iffliateLanding_page/assets/plugins/tiny-slider/min/tiny-slider.js' %}"></script> 
+<script src="{% static '/iffliateLanding_page/assets/js/tinyslider-custom.js' %}"></script> 
+
+{% endblock Javascript %}
+	

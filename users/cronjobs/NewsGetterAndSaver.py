@@ -1,0 +1,1 @@
+# this module create news and delete it 

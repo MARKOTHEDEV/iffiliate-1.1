@@ -1,0 +1,132 @@
+{% extends './base.html' %}
+{% load static %}
+
+
+{% block title %}
+	Team
+{% endblock title %}
+	
+
+{% block content %}   
+	<div class="hero-wrapper">
+		<div class="curve-container">
+			<div class="curve-top"></div>
+			<div class="curve-bottom"></div>
+		</div><!--//curve-container-->
+
+		{% include './partials/nav.html' %}
+
+		
+		<section class="team-header page-header over-curve py-4 py-md-5">
+			<div class="container text-center">	
+				<div class="single-col-max mx-auto">
+					<h1 class="page-headline mb-3">Our Team</h1>
+					<div class="page-tagline mb-3">
+					<div class="cta-btn mb-lg-3"> We are a team that is formed to achieve and maintain the standards at Ifiliate and most importantly we are here to serve you everyday.</div>
+						<a class="btn btn-gradient mb-3" href="{% url 'contact-us' %}" >Join Our Team</a>
+					</div> 
+				</div><!--//single-col-max-->
+				<section class="team-section py-5 z-index-10 position-relative">
+					<div class="row">
+						<div class="col-12 col-lg-4 pt-5 mb-5">
+							<div class="member shadow text-center rounded">
+								<div class="member-profile">
+									<img class="rounded-circle shadow-sm" src="{% static '/iffliateLanding_page/assets/images/team/th.jpeg' %}" alt="">
+								</div><!--//member-profile-->
+								<div class="member-info p-4 p-lg-5">
+									<div class="member-name">Eze Brown</div>
+									<div class="member-title mb-3">CEO, IFFILIATE</div>
+									<ul class="social-list list-unstyled mb-2">
+										<li class="list-inline-item mr-0"><a href="#"><i class="fab fa-instagram fa-fw"></i></a></li>
+									</ul><!--//social-list-->
+									<div class="member-bio mb-2">
+										A chief executive officer, chief administrator, or just chief executive, is one of a number of corporate executives in charge of managing an organization – especially an independent legal entity such as a company or nonprofit institution.  </div>
+								</div><!--//member-info-->
+							</div><!--//member-profile-->
+						</div><!--//col-->
+						<div class="col-12 col-lg-4 pt-5 mb-5">
+							<div class="member shadow text-center rounded">
+								<div class="member-profile">
+									<img class="rounded-circle shadow-sm" src="{% static '/iffliateLanding_page/assets/images/team/th.jpeg' %}" alt="">
+								</div><!--//member-profile-->
+								<div class="member-info p-4 p-lg-5">
+									<div class="member-name">Dawodu Raphael</div>
+									<div class="member-title mb-3">CTO, IFFILIATE</div>
+									<ul class="social-list list-unstyled mb-2">
+										<li class="list-inline-item mr-2"><a href="https://github.com/Raphael-Dawodu" target="_blank"><i class="fab fa-github fa-fw"></i></a></li> 
+										<li class="list-inline-item mr-2"><a href="https://twitter.com/dawodu_raphael?s=08" target="_blank"><i class="fab fa-twitter fa-fw"></i></a></li>
+										<li class="list-inline-item mr-0"><a href="https://www.instagram.com/theraphaeldawodu/?hl=en" target="_blank"><i class="fab fa-instagram fa-fw"></i></a></li>
+									</ul><!--//social-list-->
+									<div class="member-bio mb-2">A chief technical officer (CTO), sometimes known as a chief technology officer or chief technologist, is an executive-level position in a company or other entity whose occupation is focused on the scientific and technological issues within an organization. </div>
+								</div><!--//member-info-->
+							</div><!--//member-profile-->
+						</div><!--//col-->
+						<div class="col-12 col-lg-4 pt-5 mb-5">
+							<div class="member shadow text-center rounded">
+								<div class="member-profile">
+									<img class="rounded-circle shadow-sm" src="{% static '/iffliateLanding_page/assets/images/team/th.jpeg' %}" alt="">
+								</div><!--//member-profile-->
+								<div class="member-info p-4 p-lg-5">
+									<div class="member-name">Akamo Malik</div>
+									<div class="member-title mb-3">HEAD OF DESIGNS, IFFILIATE</div>
+									<ul class="social-list list-unstyled mb-2">
+										<li class="list-inline-item mr-2"><a href="#"><i class="fab fa-instagram fa-fw"></i></a></li>
+										<li class="list-inline-item mr-0"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
+									</ul><!--//social-list-->
+									<div class="member-bio mb-2">The CDO is typically responsible for overseeing all design and innovation aspects of a company's products and services, including product design, architectural design, computational design, graphic design, user experience design, industrial design, and package design. </div>
+								</div><!--//member-info-->
+							</div><!--//member-profile-->
+						</div><!--//col-->
+						<div class="col-12 col-lg-4 pt-5 mb-5">
+							<div class="member shadow text-center rounded">
+								<div class="member-profile">
+									<img class="rounded-circle shadow-sm" src="{% static '/iffliateLanding_page/assets/images/team/th.jpeg' %}" alt="">
+								</div><!--//member-profile-->
+								<div class="member-info p-4 p-lg-5">
+									<div class="member-name">Esan Mayowa</div>
+									<div class="member-title mb-3">MARKETING DEPARTMENT, IFFILIATE</div>
+									<ul class="social-list list-unstyled mb-2">
+										<li class="list-inline-item mr-2"><a href="#"><i class="fab fa-facebook-ffa-fw"></i></a></li>
+										<li class="list-inline-item mr-0"><a href="#"><i class="fab fa-whatsapp fa-fw"></i></a></li>
+									</ul><!--//social-list-->
+									<div class="member-bio mb-2">The Marketing Department plays a vital role in promoting the business and mission of an organization. It serves as the face of your company, coordinating and producing all materials representing the business. </div>
+								</div><!--//member-info-->
+							</div><!--//member-profile-->
+						</div><!--//col-->
+						<div class="col-12 col-lg-4 pt-5 mb-5">
+							<div class="member shadow text-center rounded">
+								<div class="member-profile">
+									<img class="rounded-circle shadow-sm" src="{% static '/iffliateLanding_page/assets/images/team/th.jpeg' %}" alt="">
+								</div><!--//member-profile-->
+								<div class="member-info p-4 p-lg-5">
+									<div class="member-name">Nwokolo Matthew</div>
+									<div class="member-title mb-3">SENIOR DEVELOPER, IFFILIATE</div>
+									<ul class="social-list list-unstyled mb-2">
+										<li class="list-inline-item mr-2"><a href="#"><i class="fab fa-github fa-fw"></i></a></li>
+										<li class="list-inline-item mr-0"><a href="#"><i class="fab fa-whatsapp fa-fw"></i></a></li>
+									</ul><!--//social-list-->
+									<div class="member-bio mb-2">A software developer is a person concerned with facets of the software development process. In short, developers "make software for the world to use." Their work includes researching, designing, implementing, and testing software. </div>
+								</div><!--//member-info-->
+							</div><!--//member-profile-->
+						</div><!--//col-->
+					</div><!--//row-->
+				</section><!--//team-section-->
+			</div><!--//container-->
+		</section><!--//team-header-->
+	</div><!--//hero-wrapper-->     
+
+	
+		
+	{% endblock content %}
+		
+
+{% block Javascript %}
+	<!-- Javascript -->          
+	<script src="{% static '/iffliateLanding_page/assets/plugins/jquery-3.4.1.min.js' %}"></script>
+	<script src="{% static '/iffliateLanding_page/assets/plugins/popper.min.js' %}"></script>
+	<script src="{% static '/iffliateLanding_page/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>  
+
+	
+
+{% endblock Javascript %}
+	

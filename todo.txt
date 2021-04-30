@@ -1,0 +1,78 @@
+
+
+first create an app called iffliate landing page
+work on it statc files
+create it template 
+    index -- DONE
+    product -- DONE
+    pricing -- DONE
+    about us -- WHEN DONE DO THE LINKING --DONE
+        :team --DONE
+        sorport --DONE
+        dashboard
+        contact--half_DONE
+        blog  -- done AT BLOG 
+            NOT DONE SEARCH FOR ATICLE -- done
+            BLOG DETAIL page -- done
+
+    sign up:
+            WHEN USER FIRES THIS VIEW WE CREATE THE USER AND RUN THE SUBSCRIPTION LOGIC GIVING THE USER FREE SUBSCRIPTION  --done
+            currenttly at signals -- done
+    sign in:
+        check user sub and log them in --done
+
+    PAYMENTPAGE  -- depending on what plan free or paid give them access to the page
+        ALLOW payment to work with paystack -- done
+        when payment is made change the actuall userMembership to free -- done
+        create User model -DONE
+LET USER: -- container-fluid is the replaceable class --done
+FIX CREATEING USER IN THE ADMIN -- done
+
+
+DONT ALLOW USERS TO PAY AGAIN IF THEY HAVE SUB -- done
+FIX ALLOW USER TO PAY ONES SO IF THEY HAVE A SUB THEN DON ALLOW THEM TO PAY --done
+
+    dashboard WORK:
+            done dashboard home page and some other config
+            not done:
+                other dashboard pages :
+                            transaction SHOULD consit of 
+                                    shop payment -- done
+                                    userMembership payment --done
+                                    user request payment --done
+
+                                    CSS CLASS FOR TABLE STYLYING:
+                                        btn-outline-success = for complted payment - done
+                                        btn-outline-warning = for pending payment  -- done
+                                        ==STOPED AD PAGINATION IN transactionS AND DROP DOWN
+                need a django mixin to prevent free users--done
+                retrict user from some pages if the are on free mode--done
+                not added read pay funtionality -- done
+                filter number of news depending on the sub -- done
+                create a function that limits the user if he is above his pay ---done found in the user app
+
+
+PRELOADER -- for logining -not done
+not added transaction page --done
+    
+
+
+let user read news and get paid depending on thier plan --done
+after the read and get paid scheme is working it will now lead us to doing CronJob
+
+SO I NEED A CRON DUB TO ---:
+            create a function that get about 50 news -- we need a web crawler so i will create
+            and delete the news database clean after 24hrs
+            CHECK USER SUB STATUS so we can disqualify them like check every night
+
+
+
+
+create user dashboard:
+    make template work
+    onread of new pay them accordingly
+    load money on the index page
+    load transaction show user all his payment and paid
+
+
+allow user to request for payment

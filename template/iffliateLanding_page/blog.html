@@ -1,0 +1,203 @@
+{% extends './base.html' %}
+{% load static %}
+
+
+{% block title %}
+	Blog
+{% endblock title %}
+	
+
+{% block content %}
+  
+	<div class="hero-wrapper">
+		<div class="curve-container">
+			<div class="curve-top"></div>
+			<div class="curve-bottom"></div>
+		</div><!--//curve-container-->
+		
+		{% include './partials/nav.html' %}
+
+		
+		<section class="blog-header page-header py-3 py-md-5 over-curve">
+			<div class="container">	 
+				<h1 class="page-headline text-center mb-5">Blog</h1>
+				<div class="featured-blog-posts">
+					<div class="slider-container text-center">
+						<div class="featured-slider tiny-slider">
+					
+							
+							{% for news in recentNews %}
+									<div class="item">
+										<a class="item-link d-block" href="{% url 'blog-detail' news.id %}">
+											<div class="row">
+												<div class="col-12 col-lg-6 order-lg-1">
+													<div class="figure-holder figure-holder-1" style="background: none;">  
+														<img src="{{ news.contentImage.url }}" alt="" width="100%" height="100%"> 
+													</div><!--//figure-holder-->
+												</div><!--//col-12-->
+												<div class="col-12 col-lg-6 order-lg-0">
+													<div class="content-box p-5 text-left">
+														<div class="post-type mb-2"><span class="font-weight-bold text-primary">Customer</span><span class="px-2">|</span><span>4 min read</span></div><!--//post-type-->
+														<h4 class="post-title mb-3">{{ news.title }}</h4>
+														<div class="post-excerpt mb-3">{{ news.introContent }}</div>
+														<div class="post-author">
+															<div class="row">
+																<div class="col-12 col-lg-2">
+																	<div class="profile mb-3"><img class="profile-image img-fluid" src="{{ user.userPics.url }}" alt="" style="height: 50px;width:50px;border-radius:50px;"></div>
+																</div><!--col-12-->
+																<div class="col-12 col-lg-10 pt-1">
+																	<div class="name font-weight-bold">{{ news.author }}</div>
+																	<div class="meta">MARKETING DEPARTMENT, Launch</div>
+																</div><!--//col-12-->
+															</div><!--//row-->
+														</div><!--//post-author-->
+													</div><!--//content-box-->
+												</div><!--//col-->
+											</div><!--//row-->
+										</a><!--//item-link-->
+									</div><!--//item-->
+										
+							{% endfor %}
+								
+
+						</div><!--//featured-slider-->
+						<div class="slider-custom-controls d-none d-md-block">
+							<div class="prev" data-controls="prev">
+								<i class="fas fa-chevron-left"></i>
+							</div>
+							<div class="next" data-controls="next">
+								<i class="fas fa-chevron-right"></i>         
+							</div>
+						</div><!--//slider-custom-controls-->
+					</div><!--slider-container-->
+				</div><!--//featured-blog-posts-->
+			</div><!--//container-->
+		</section><!--//blog-header-->
+	</div><!--//hero-wrapper-->
+	
+
+
+
+	<div class="search-form-section text-center pt-5">
+		<div class="container">
+			<div class="search-form-wrapper mx-auto d-inline-block">
+				<form class="form-inline search-form" action="#" method="get">
+					<input type="text" placeholder="Search blog post" name="search" class="form-control search-input mr-2">
+					<button type="submit" class="btn btn-gradient" value="Search"><i class="fa fa-search"></i></button>
+				</form><!--//search-form-->   
+			</div><!--//mx-auto-->
+		</div><!--//container-->
+	</div><!--//search-form-wrapper-->
+	
+
+	<section class="blog-list-section py-5">
+		<div class="container">
+			<div class="row">
+			
+			{% for news in Allnews %}				
+				<div class="col-12 col-lg-4 mb-5">
+					<div class="post-item shadow">
+						<a class="post-link" href="{% url 'blog-detail' news.id %}">
+							<div class="post-thumb-holder">
+								<img class="img-fluid" src="{{ news.contentImage.url }}" alt="">
+							</div><!--//post-thumb-holder-->
+							<div class="post-content-holder p-4">
+								<div class="post-type mb-2"><span class="font-weight-bold text-primary">Product</span><span class="px-2">|</span><span>6 min read</span></div><!--//post-type-->
+								<h4 class="post-title">{{news.title}}</h4>
+								<div class="post-excerpt mb-3">
+									{{ news.introContent }}
+								</div><!--//post-excerpt-->
+								<div class="post-author">
+									<div class="row">
+										<div class="col-12 col-lg-3">
+											<div class="profile mb-3"><img class="profile-image img-fluid" src="{{ user.userPics.url }}"  style="height: 50px;width:50px;border-radius:50px;" alt=""></div>
+										</div><!--col-12-->
+										<div class="col-12 col-lg-9 pt-1">
+											<div class="name font-weight-bold">Adam Doe</div>
+											<div class="meta">Developer, Launch</div>
+										</div><!--//col-12-->
+									</div><!--//row-->
+								</div><!--//post-author-->
+							</div><!--//post-excerpt-->
+						</a><!--//post-link-->
+					</div><!--//item-->
+				</div><!--//col-->
+			{% endfor %}
+
+			</div><!--//row-->
+
+
+
+
+
+			<nav class="pagination-container text-center">
+				<ul class="pagination justify-content-center">
+
+
+
+
+
+
+					{% if page_obj.has_other_pages %}
+					<ul class="pagination">
+					  {% if page_obj.has_previous %}
+						<!-- <li class="page-item"><a href="?page={{ users.previous_page_number }}">&laquo;</a></li> -->
+							<li class="page-item ">
+							  <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+								  <span aria-hidden="true">&laquo;</span>
+							  </a>
+						  </li>
+				  
+					  {% else %}
+						<!-- <li class="disabled"><span>&laquo;</span></li> -->
+					  {% endif %}
+					  {% for i in page_obj.paginator.page_range %}
+						{% if page_obj.number == i %}
+						  <!-- <li class="page-item active" aria-current="page"><span>{{ i }} <span class="sr-only">(current)</span></span></li> -->
+						  <li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ i }}</a></li>
+						
+						  {% else %}
+						  <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+						{% endif %}
+					  {% endfor %}
+					  {% if page_obj.has_next %}
+						<!-- <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li> -->
+						<li class="page-item">
+						  <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+							  <span aria-hidden="true">&raquo;</span>
+						  </a>
+					  </li>
+					  {% else %}
+						<!-- <li class="disabled"><span>&raquo;</span></li> -->
+					  {% endif %}
+					</ul>
+				  {% endif %}
+				  
+				  
+
+
+
+				</ul>
+			</nav>
+		</div><!--//container-->
+	</section><!--//blog-list-section-->
+	
+
+
+
+	{% endblock content %}
+
+
+{% block Javascript %}
+		<!-- Javascript -->          
+	
+	<script src="{% static '/iffliateLanding_page/assets/plugins/jquery-3.4.1.min.js' %}"></script>
+	<script src="{% static '/iffliateLanding_page/assets/plugins/popper.min.js' %}"></script>
+	<script src="{% static '/iffliateLanding_page/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>    
+		
+		<!-- Page Specific JS -->
+		<script src="{% static '/iffliateLanding_page/assets/plugins/tiny-slider/min/tiny-slider.js' %}"></script> 
+		<script src="{% static '/iffliateLanding_page/assets/js/tinyslider-custom.js' %}"></script> 
+	
+{% endblock Javascript %}
+	
