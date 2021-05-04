@@ -15,6 +15,7 @@ today:2021-05-01
 """
 
 class UserStatusChecker:
+    'this class helps the application remove expired paid plan...'
 
     def __init__(self):
         self.freemembership =  models.Membership.objects.get(slug='Free') 

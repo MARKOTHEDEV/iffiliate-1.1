@@ -61,10 +61,12 @@ let user read news and get paid depending on thier plan --done
 after the read and get paid scheme is working it will now lead us to doing CronJob
 
 SO I NEED A CRON DUB TO ---:
-            create a function that get about 50 news -- we need a web crawler so i will create
-            and delete the news database clean after 24hrs
-            CHECK USER SUB STATUS so we can disqualify them like check every night
+            create a function that get about 50 news -- we need a web crawler so i will create --done 20 news
+                    :we neeed a helper function to check if our db is up to 50
+            and delete the news database clean after 24hrs --done not tested
+            CHECK USER SUB STATUS so we can disqualify them like check every night -- done i set the hours to be every 23 hours
 
+find a logic to pay the user when they  request for payment
 
 
 
