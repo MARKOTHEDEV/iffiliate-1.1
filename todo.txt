@@ -66,9 +66,29 @@ SO I NEED A CRON DUB TO ---:
             and delete the news database clean after 24hrs --done not tested
             CHECK USER SUB STATUS so we can disqualify them like check every night -- done i set the hours to be every 23 hours
 
-find a logic to pay the user when they  request for payment
 
 
+
+
+find a logic to pay the user when they  request for payment:
+    so when user request for payment we check his amount if it above a specific amount and if the payment date is due:
+        begin
+            if it true we accept then we create a instance of a model called UserRequestPayment
+
+            UserRequestPayment:
+                is going to contain 
+                user name
+                amount
+                ispaid
+
+
+            in the admin we going to sperate the paid and not paid show the admin what we havent paid
+            so when they click pay -- there will be two ways to it
+                Is either the Admin pays all users that are thier Ispaid is false
+                OR 
+                hand pick them and send them to the back end...
+
+        end
 
 create user dashboard:
     make template work
@@ -76,5 +96,3 @@ create user dashboard:
     load money on the index page
     load transaction show user all his payment and paid
 
-
-allow user to request for payment
