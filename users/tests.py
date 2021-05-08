@@ -113,6 +113,6 @@ name = userpayHandler.get_available_bank_name()
 
 'in this test i will be using my Zenith Bank account'
 bankInfo = userpayHandler.get_bank_code('Zenith Bank')
-
+realAcctNum +='33342'
 IsUserAcountValid = userpayHandler.test_user_account(realAcctNum,bankInfo.get('code'))
 
