@@ -75,11 +75,17 @@ find a logic to pay the user when they  request for payment:
         begin
             if it true we accept then we create a instance of a model called UserRequestPayment
 
-            UserRequestPayment:
+        UserRequestPayment MOdel:
                 is going to contain 
-                user name
-                amount
-                ispaid
+                username foregin key with the logged in user
+                amount -- 
+                ispaid -- boolean field
+                isreadyForPayment -- boolean field
+                account_number -- the user account number 
+                account_name -- the user account number 
+                bank_code
+                bank_name
+                recipient_code = will save this when i make a request to https://api.paystack.co/transferrecipient
 
 
             in the admin we going to sperate the paid and not paid show the admin what we havent paid
