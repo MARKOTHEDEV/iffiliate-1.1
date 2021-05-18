@@ -4,10 +4,12 @@ from users import models
 from django.contrib import messages
 from django.shortcuts import redirect
 from  . import signals
-
+import datetime
+from django.contrib.auth import get_user_model
 
 class UserHelperMixin:
     'This a mixin that will contain helper methods that helps the user model provide ansers out of the box'
+    
 
     def get_user_EarningLimit(self):
         'this mthod gives u the user earning limit'
@@ -24,6 +26,16 @@ class UserHelperMixin:
         subObject = models.Subscription.objects.get(user_membership=currentUserMembership)
         return subObject.expires_in
 
+    def isUserEligbleForPay(self):
+        membership = models.Membership.objects.get(slug ='Free')
+        user=  get_user_model().objects.get(email=self.request.user)
+        currentUserMembership =  models.UserMembership.objects.get(user=user)
+        # check if the user is on freemode and his earnings are above 0.00 then returnTrue
+        if membership.membership_type == currentUserMembership.membership.membership_type and user.userEarnings > 0.00:
+            return True
+        else:
+            return False
+
 
 
 class RetstictFreeUser(AccessMixin):
@@ -37,14 +49,7 @@ class RetstictFreeUser(AccessMixin):
     # send a custom message and redirect the user
 
 
-    def redirect_free_user(self):
-        'send message to the user and redirect the user'
-        messages.warning(self.request,self.error_message)
 
-        return redirect(self.redirect_url)
-
-    
-    
     def dispatch(self, request, *args, **kwargs):
     
         membership = models.Membership.objects.get(slug ='Free')
@@ -59,6 +64,17 @@ class RetstictFreeUser(AccessMixin):
 
 
         return super(RetstictFreeUser, self).dispatch(request, *args, **kwargs)
+
+    def redirect_free_user(self):
+        'send message to the user and redirect the user'
+        messages.warning(self.request,self.error_message)
+
+        return redirect(self.redirect_url)
+
+
+
+
+
 
 
 class UserViewPage:

@@ -19,8 +19,10 @@ class UserDashboard(LoginRequiredMixin,user_mixins.UserHelperMixin,generic.Templ
     
     def get_context_data(self, **kwargs):
         context = super(UserDashboard, self).get_context_data(**kwargs)
-
+        
         userEarningLimit = self.get_user_EarningLimit()
+        # this is a boolean
+        context['isUserEligbleForPay'] =self.isUserEligbleForPay()
         context['userEarningLimit'] = userEarningLimit
         context['userExiringDate'] = self.get_user_subExpireDate()
         # print(userEarningLimit)
@@ -63,7 +65,9 @@ class UserTransactionPage(LoginRequiredMixin,user_mixins.UserHelperMixin,generic
     def get_context_data(self, **kwargs):
         context = super(UserTransactionPage, self).get_context_data(**kwargs)
         userEarningLimit = self.get_user_EarningLimit()
-
+        
         context['userExiringDate'] = self.get_user_subExpireDate()
         # print(userEarningLimit)
         return context
+
+
