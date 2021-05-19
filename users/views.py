@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.contrib.auth.mixins import UserPassesTestMixin,AccessMixin,PermissionRequiredMixin,UserPassesTestMixin
 from django.contrib import messages
+from users import prepUserforPay
 
 # Create your views here.
 
@@ -79,15 +80,15 @@ class FileForPayment(LoginRequiredMixin,UserPassesTestMixin,user_mixins.UserHelp
     # this is the first process to get payed u will have to file for a payment 
     # that if u are Eligble"""
     template_name = 'UserDashboardPage/queUserpayment.html'
-    
-    # def dispatch(self, request, *args, **kwargs):
-    #     if self.isUserEligbleForPay():
-    #         print('ket him stay')
-    #     else:
-    #         print('Redirect the user tell him he not eligble')
-    #     return super(QueUserPayment, self).dispatch(request, *args, **kwargs)
-    
+    userPaymentPre = prepUserforPay.UserPaymentPreparation()
 
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super(FileForPayment, self).get_context_data(**kwargs)
+        context['listOfBanks'] = self.userPaymentPre.get_available_bank_name()
+        return context
+    
 
     def test_func(self):
         if self.isUserEligbleForPay():

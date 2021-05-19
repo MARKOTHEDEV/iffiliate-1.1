@@ -4,10 +4,6 @@ from django.conf import settings
 
 import os
 
-PAYSTACK_SECRET_KEY   =  'sk_test_38a62cfc2939b3665f400a7c57bd61b7ab19f3fa'
-
-
-
 
 
 
@@ -70,7 +66,7 @@ class UserPaymentPreparation:
     def create_transfer_recipient(self,data):
         url = f'https://api.paystack.co/transferrecipient'
         headers = {
-            'Authorization': 'Bearer '+PAYSTACK_SECRET_KEY,
+            'Authorization': 'Bearer '+settings.PAYSTACK_SECRET_KEY,
             'Content-Type' : 'application/json',
             'Accept': 'application/json',
         }
@@ -90,7 +86,7 @@ class UserPaymentPreparation:
         
         url = f'https://api.paystack.co/bank/resolve?account_number={accountNumber}&bank_code={bankCode}'
         headers = {
-            'Authorization': 'Bearer '+PAYSTACK_SECRET_KEY,
+            'Authorization': 'Bearer '+settings.PAYSTACK_SECRET_KEY,
             'Content-Type' : 'application/json',
             'Accept': 'application/json',
 
@@ -152,12 +148,15 @@ class UserPaymentPreparation:
 """
 
 
-userpayHandler = UserPaymentPreparation()
-# so we will use this in the view to render the list of avilable banks
-name = userpayHandler.get_available_bank_name()
-# this will return status true of false we work with that from there
-# if the bool is True we save it in our     UserRequestPayment
-print(userpayHandler.run('Zenith Bank',realAcctNum))
+
+
+"This code below is for testing"
+# userpayHandler = UserPaymentPreparation()
+# # so we will use this in the view to render the list of avilable banks
+# name = userpayHandler.get_available_bank_name()
+# # this will return status true of false we work with that from there
+# # if the bool is True we save it in our     UserRequestPayment
+# print(userpayHandler.run('Zenith Bank',realAcctNum))
 
 
 

@@ -55,25 +55,30 @@
 								<form class="auth-form signup-form" id="signUpForm">         
 									
 									<div class="form-group email">
-										<label class="sr-only" for="signup-email">Your Email</label>
-										<input id="signup-email" name="email" type="email" class="form-control signup-email" placeholder="Please enter a valid email" required="required">
+										<label class="sr-only" for="amount">Amount</label>
+										<input id="amount" name="amount" type="amount" class="form-control " disabled placeholder=" ₦{{ user.userEarnings }}">
 										<div class="message"></div>
 									</div><!--//form-group-->
 									<div class="form-group password">
-										<label class="sr-only" for="signup-password">Password</label>
-										<input id="signup-password1" name="password1" type="password" class="form-control signup-password" placeholder="Create a password" required="required">
+										<label class="sr-only" for="accountNumber">Account Number</label>
+										<input id="accountNumber" name="accountNumber" type="accountNumber" class="form-control signup-password" placeholder="Correct Account Number" required="required">
 										
 									</div><!--//form-group-->
-									<div class="form-group password">
-										<label class="sr-only" for="signup-password">Confirm Password</label>
-										<input id="signup-password2" name="password2" type="password" class="form-control signup-password" placeholder="Create a password" required="required">
-										<div class="message"></div>
-									</div><!--//form-group-->
+	
+
+										
+									<div class="form-group">
+										<select name="" id="bank" class="form-control">
+											{% for bank in listOfBanks %}
+											<option value="{{ bank }}">{{ bank }}</option>
+											{% endfor %}
+										</select>
+									</div>
 
 									<!-- <div class="legal-note mb-4 text-center">By signing up, you agree to our <a href="#" class="theme-link">terms of service</a> and <a href="#" class="theme-link">privacy policy</a>.</div> -->
 									<div class="text-center">
 										<!-- <button type="submit" class="btn btn-gradient btn-submit theme-btn mx-auto">Create an account</button> -->
-										<input type="submit" class="btn btn-gradient btn-submit theme-btn mx-auto" value="Create an account">
+										<input type="submit" class="btn btn-gradient btn-submit theme-btn mx-auto" value="File For Pay">
 									</div>
 								</form><!--//auth-form-->
 							</div><!--//auth-form-container-->
