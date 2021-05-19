@@ -68,6 +68,12 @@ SO I NEED A CRON DUB TO ---:
 
 
 
+1)create html file that has a form asking user for thier -- half done
+2)account number and and bank which is going to be loaded by UserPaymentPreparation
+3) on submit check if valiability if it okay and info to UserRequestPayment Model --"tell them thier payment was recived that they will be credited in the next 7 days"
+4) if not send a message to the paging tell them some kind of eroor return by UserPaymentPreparation
+5) 
+
 
 
 find a logic to pay the user when they  request for payment:
@@ -97,8 +103,7 @@ find a logic to pay the user when they  request for payment:
         end
 
 create user dashboard:
-    make template work
-    onread of new pay them accordingly
-    load money on the index page
-    load transaction show user all his payment and paid
-
+    make template work --done
+    onread of new pay them accordingly-- done
+    load money on the index page --done
+    load transaction show user all his payment and paid --done

@@ -8,4 +8,7 @@ urlpatterns = [
     path('readpost-detail/<int:pk>/',user_views.UserReadPostForMoneyPageDetailView.as_view(),name='read-post-for-money-detail-page'),
     path('user-transactions/', user_views.UserTransactionPage.as_view(), name='user-transction'),
 
+    # this is the first process to get payed u will have to file for a payment 
+    # that if u are Eligble
+    path('registerPayment/',user_views.FileForPayment.as_view(),name='file-for-payment')
 ]

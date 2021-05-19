@@ -4,7 +4,7 @@ from users import models
 from users import mixins as user_mixins
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.contrib.auth.mixins import UserPassesTestMixin,AccessMixin
+from django.contrib.auth.mixins import UserPassesTestMixin,AccessMixin,PermissionRequiredMixin,UserPassesTestMixin
 from django.contrib import messages
 
 # Create your views here.
@@ -51,8 +51,6 @@ user_mixins.UserHelperMixin,user_mixins.UserViewPage,generic.DetailView):
     # this attribute is comming from RetstictFreeUser
     redirect_url='pricing'
 
-# 
-    
 
 class UserTransactionPage(LoginRequiredMixin,user_mixins.UserHelperMixin,generic.ListView):
     template_name='UserDashboardPage/userTransaction.html'
@@ -71,3 +69,29 @@ class UserTransactionPage(LoginRequiredMixin,user_mixins.UserHelperMixin,generic
         return context
 
 
+
+class FileForPayment(LoginRequiredMixin,UserPassesTestMixin,user_mixins.UserHelperMixin,generic.TemplateView):
+    """
+        this is a view that help to rigister Eligble user for payment it adds them to the
+        UserRequestPayment which will make user Admin see the user request and he will approve
+    """
+    """
+    # this is the first process to get payed u will have to file for a payment 
+    # that if u are Eligble"""
+    template_name = 'UserDashboardPage/queUserpayment.html'
+    
+    # def dispatch(self, request, *args, **kwargs):
+    #     if self.isUserEligbleForPay():
+    #         print('ket him stay')
+    #     else:
+    #         print('Redirect the user tell him he not eligble')
+    #     return super(QueUserPayment, self).dispatch(request, *args, **kwargs)
+    
+
+
+    def test_func(self):
+        if self.isUserEligbleForPay():
+          
+            return True
+        else:
+            return False

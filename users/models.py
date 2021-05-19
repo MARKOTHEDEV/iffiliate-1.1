@@ -154,6 +154,28 @@ class Subscription(models.Model):
         return self.user_membership.__str__()
 
 
+class UserRequestPayment(models.Model):
+    'this actually save the user OR file the user for payment'
+    # user that requested for payment
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    # amount this is the amout the user have currently in his account
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    # check if we have paid this bitch
+    isPaid = models.BooleanField(default=False)
+    # account_number e.g 3590450454
+    account_number = models.CharField(max_length=160)
+    # e.g Mr MARKOTHEDEV
+    account_name = models.CharField(max_length=150)
+    # this will be gotten from a json file in the user app so dont worry
+    bank_code = models.CharField(max_length=10)
+    bank_name = models.CharField(max_length=50)
+    # this is the most important one we will refrece it back when we wanna pay this person
+    recipient_code = models.CharField(max_length=20)
+
+    def __str__(self) -> str:
+        return f'{self.user} requested for Payment -> {self.amount}'
+
+
 
 
 class MoneyPost(models.Model):
@@ -180,8 +202,14 @@ class SeenMoneyPost(models.Model):
 
 
 
+
+
+
+
+
+
 def paythisUser(request):
-    "# this handles the user payment" 
+    "# this handles updating user Earnings when he reads a particular post" 
     user_membership =  UserMembership.objects.get(user=request.user)
     user = get_user_model().objects.get(email=request.user.email)
     

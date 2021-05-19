@@ -144,7 +144,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     # Path(BASE_DIR,'iffliateLanding_page','static')
     os.path.join(BASE_DIR,'iffliateLanding_page','static')
-    # '/var/www/static/',
+    
 ]
 
 
