@@ -52,8 +52,23 @@
 							<h2 class="auth-heading text-center mb-4">FIle For Payment</h2>
 							
 							<div class="auth-form-container text-left mx-auto">
-								<form class="auth-form signup-form" id="signUpForm">         
-									
+							
+			
+				
+								{% if messages %}
+								<ul class="messages" style="background-color: #f65f34;width:100%;color:white;padding:1.2rem;font-size:1rem ;text-align:center;border-radius:10px;">
+									{% for message in messages %}
+									<li class="{{ message.tags }}" style="color: white;list-style-type:none;">{{ message }}</li>
+									{% endfor %}
+								
+
+								</ul>
+								{% endif %}
+
+							
+							
+								<form action="{% url 'file-for-payment' %}" method="POST" class="auth-form signup-form" id="signUpForm" >         
+									{% csrf_token %}
 									<div class="form-group email">
 										<label class="sr-only" for="amount">Amount</label>
 										<input id="amount" name="amount" type="amount" class="form-control " disabled placeholder=" ₦{{ user.userEarnings }}">
@@ -61,14 +76,14 @@
 									</div><!--//form-group-->
 									<div class="form-group password">
 										<label class="sr-only" for="accountNumber">Account Number</label>
-										<input id="accountNumber" name="accountNumber" type="accountNumber" class="form-control signup-password" placeholder="Correct Account Number" required="required">
+										<input id="accountNumber" name="account_number" type="number" class="form-control signup-password" placeholder="Correct Account Number" required="required">
 										
 									</div><!--//form-group-->
 	
 
 										
 									<div class="form-group">
-										<select name="" id="bank" class="form-control">
+										<select name="bank_name" id="bank" class="form-control">
 											{% for bank in listOfBanks %}
 											<option value="{{ bank }}">{{ bank }}</option>
 											{% endfor %}

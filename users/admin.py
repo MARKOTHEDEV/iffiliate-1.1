@@ -37,3 +37,4 @@ admin.site.register(models.Subscription)
 
 admin.site.register(models.MoneyPost)
 admin.site.register(models.SeenMoneyPost)
+admin.site.register(models.UserRequestPayment)

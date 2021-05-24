@@ -1,5 +1,8 @@
+import django
+from django.forms import forms
 from django.shortcuts import render,redirect
 from django.views import generic
+import requests
 from users import models
 from users import mixins as user_mixins
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -7,6 +10,10 @@ from django.urls import reverse
 from django.contrib.auth.mixins import UserPassesTestMixin,AccessMixin,PermissionRequiredMixin,UserPassesTestMixin
 from django.contrib import messages
 from users import prepUserforPay
+from django import views as django_views
+from django.contrib.auth import get_user_model
+
+
 
 # Create your views here.
 
@@ -23,6 +30,7 @@ class UserDashboard(LoginRequiredMixin,user_mixins.UserHelperMixin,generic.Templ
         
         userEarningLimit = self.get_user_EarningLimit()
         # this is a boolean
+        # check if the user is on freemode and his earnings are above 0.00 then returnTrue
         context['isUserEligbleForPay'] =self.isUserEligbleForPay()
         context['userEarningLimit'] = userEarningLimit
         context['userExiringDate'] = self.get_user_subExpireDate()
@@ -80,8 +88,61 @@ class FileForPayment(LoginRequiredMixin,UserPassesTestMixin,user_mixins.UserHelp
     # this is the first process to get payed u will have to file for a payment 
     # that if u are Eligble"""
     template_name = 'UserDashboardPage/queUserpayment.html'
+    error_message = ''
+    # this is a handler that will handle
+    # listing of banks,creating of payment request,and showing of error ifsomething is wrong with account num
+    # or network provideer
     userPaymentPre = prepUserforPay.UserPaymentPreparation()
 
+
+    def post(self,request,*args,**kwargs):
+        'this method will trigger when a user submit the file for payment Form in the front end'
+        LOGINUSER = get_user_model().objects.get(email=request.user.email)
+        # print(LOGINUSER)
+        # print(request.POST,'Request')
+        data = dict(request.POST)
+        # this is a list so we access the the first item
+        bankName = data['bank_name'][0]
+        # account number should be numric not str
+        account_number = int(data['account_number'][0])
+        # we get the bank Name
+        bankCode = self.userPaymentPre.get_bank_code(bankName)
+        # print(bankName)
+        print('--------------------')
+        # print(bankCode)
+        # 
+
+        
+        accountTestAndCreateRecipent = self.userPaymentPre.test_user_account(accountNumber=account_number,bankCode=bankCode,Bankname=bankName)
+        # we will work with the response "accountTestAndCreateRecipent" givies us
+        if accountTestAndCreateRecipent.get('status'):
+            'if the status is True save data to database=> So the Admin can see it'
+            # print(accountTestAndCreateRecipent)
+            UserRequestPaymentModel = models.UserRequestPayment.objects.create(
+                user=request.user,
+                amount =  LOGINUSER.userEarnings,
+                account_number=account_number,
+                account_name = accountTestAndCreateRecipent['data']['name'],
+                bank_code  = bankCode,
+                bank_name = bankName,
+                recipient_code = accountTestAndCreateRecipent['data']['recipient_code']   
+            )
+            # now we save it to the data base
+            UserRequestPaymentModel.save()
+            # after that we are Going to set the user userEarnings To Zero Since he has already requested for payment
+            LOGINUSER.userEarnings = 0
+            # now we save the changes
+            LOGINUSER.save()
+            messages.success(request,accountTestAndCreateRecipent.get('message'))
+            return redirect('user-dashboard')
+
+        else:
+            # this will mean there is some kind of error
+            # we will send a respose back to the front end
+            messages.error(request,accountTestAndCreateRecipent.get('message'))
+
+        # we passing listOfBanks again in the context because for some reason when the page reload it doesnt show
+        return render(request, self.template_name,{'listOfBanks':self.userPaymentPre.get_available_bank_name()})
     
     
     def get_context_data(self, **kwargs):

@@ -159,18 +159,18 @@ class UserRequestPayment(models.Model):
     # user that requested for payment
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     # amount this is the amout the user have currently in his account
-    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00 ,blank =True)
     # check if we have paid this bitch
     isPaid = models.BooleanField(default=False)
     # account_number e.g 3590450454
     account_number = models.CharField(max_length=160)
     # e.g Mr MARKOTHEDEV
-    account_name = models.CharField(max_length=150)
+    account_name = models.CharField(max_length=150,blank=True)
     # this will be gotten from a json file in the user app so dont worry
-    bank_code = models.CharField(max_length=10)
-    bank_name = models.CharField(max_length=50)
+    bank_code = models.CharField(max_length=10,blank=True)
+    bank_name = models.CharField(max_length=50,blank=True)
     # this is the most important one we will refrece it back when we wanna pay this person
-    recipient_code = models.CharField(max_length=20)
+    recipient_code = models.CharField(max_length=20,blank=True)
 
     def __str__(self) -> str:
         return f'{self.user} requested for Payment -> {self.amount}'

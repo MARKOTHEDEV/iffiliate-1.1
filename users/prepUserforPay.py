@@ -53,7 +53,7 @@ class UserPaymentPreparation:
         
         
         allBankCode = self.get_bankCodeFromJSON()
-        
+        correctBank = dict()
         for bank in allBankCode:
             # list_of_bank_names.append(bank.get('name'))
             if bankName == bank.get('name'):
@@ -61,7 +61,7 @@ class UserPaymentPreparation:
                 correctBank = bank
                 
                 # print(bankName,bank.get('name'))
-        return correctBank
+        return correctBank.get('code')
 
     def create_transfer_recipient(self,data):
         url = f'https://api.paystack.co/transferrecipient'
@@ -80,8 +80,10 @@ class UserPaymentPreparation:
 
 
     def test_user_account(self,accountNumber,bankCode,Bankname):
-        'this test the user account if it valid or not'
-        'if yes we save the data to a database'
+        """this test the user account if it valid or not
+            not only that if the request was okay it create paystack Transfer recipt
+            else it retuns status:false
+        """
         # print(accountNumber,bankCode)
         
         url = f'https://api.paystack.co/bank/resolve?account_number={accountNumber}&bank_code={bankCode}'

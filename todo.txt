@@ -68,8 +68,8 @@ SO I NEED A CRON DUB TO ---:
 
 
 
-1)create html file that has a form asking user for thier -- half done
-2)account number and and bank which is going to be loaded by UserPaymentPreparation
+1)create html file that has a form asking user for thier --  done
+2)account number and and bank which is going to be loaded by UserPaymentPreparation in the frontend -- done
 3) on submit check if valiability if it okay and info to UserRequestPayment Model --"tell them thier payment was recived that they will be credited in the next 7 days"
 4) if not send a message to the paging tell them some kind of eroor return by UserPaymentPreparation
 5) 
