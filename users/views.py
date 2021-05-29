@@ -17,7 +17,7 @@ from django.contrib.auth import get_user_model
 
 # Create your views here.
 
-
+'USER DASHBOARD CODE START'
 
 
 class UserDashboard(LoginRequiredMixin,user_mixins.UserHelperMixin,generic.TemplateView):
@@ -80,6 +80,7 @@ class UserTransactionPage(LoginRequiredMixin,user_mixins.UserHelperMixin,generic
 
 
 class FileForPayment(LoginRequiredMixin,UserPassesTestMixin,user_mixins.UserHelperMixin,generic.TemplateView):
+
     """
         this is a view that help to rigister Eligble user for payment it adds them to the
         UserRequestPayment which will make user Admin see the user request and he will approve
@@ -157,3 +158,16 @@ class FileForPayment(LoginRequiredMixin,UserPassesTestMixin,user_mixins.UserHelp
             return True
         else:
             return False
+
+
+
+'USER DASHBOARD CODE END'
+
+
+'ADMIN USER DASHBOARD CODE START'
+def adminDashhboardIndex(request):
+
+    return render(request,'adminDashboard/index.html')
+
+    
+'ADMIN USER DASHBOARD CODE END'

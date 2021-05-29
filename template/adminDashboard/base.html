@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		<title>iffiliate - Admin Dashboard</title>
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="{% static 'adminDashboard/assets/img/favicon.png' %}">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{% static 'adminDashboard/assets/css/bootstrap.min.css' %}">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="{% static 'adminDashboard/assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+		<link rel="stylesheet" href="{% static 'adminDashboard/assets/plugins/fontawesome/css/all.min.css' %}">
+		
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="{% static 'adminDashboard/assets/css/style.css' %}">
+		
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+	
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+		
+			<!-- Header -->
+			<div class="header">
+			
+				<!-- Logo -->
+				<div class="header-left">
+					<a href="index.html" class="logo">
+						<img src="{% static 'adminDashboard/assets/img/logo.png' %}" alt="Logo">
+					</a>
+					<a href="index.html" class="logo logo-small">
+						<img src="{% static 'adminDashboard/assets/img/logo-small.png' %}" alt="Logo" width="30" height="30">
+					</a>
+				</div>
+				<!-- /Logo -->
+				
+				<!-- Sidebar Toggle -->
+				<a href="javascript:void(0);" id="toggle_btn">
+					<i class="fas fa-bars"></i>
+				</a>
+				<!-- /Sidebar Toggle -->
+				
+				<!-- Search -->
+				<!-- <div class="top-nav-search">
+					<form>
+						<input type="text" class="form-control" placeholder="Search here">
+						<button class="btn" type="submit"><i class="fas fa-search"></i></button>
+					</form>
+				</div> -->
+				<!-- /Search -->
+				
+				<!-- Mobile Menu Toggle -->
+				<a class="mobile_btn" id="mobile_btn">
+					<i class="fas fa-bars"></i>
+				</a>
+				<!-- /Mobile Menu Toggle -->
+				
+				<!-- Header Menu -->
+				<ul class="nav user-menu">
+				
+					<!-- Flag -->
+					<li class="nav-item dropdown has-arrow flag-nav">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+							<img src="{% static 'adminDashboard/assets/img/flags/us.png' %}" alt="" height="20"> <span>English</span>
+						</a>
+
+					</li>
+					<!-- /Flag -->
+					
+					<!-- Notifications -->
+					
+					<!-- /Notifications -->
+					
+					<!-- User Menu -->
+					<li class="nav-item dropdown has-arrow main-drop">
+						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+							<span class="user-img">
+								<img src="{% static 'adminDashboard/assets/img/profiles/avatar-01.jpg' %}" alt="">
+								<span class="status online"></span>
+							</span>
+							<span>Admin</span>
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="profile.html"><i data-feather="user" class="mr-1"></i> Profile</a>
+							<a class="dropdown-item" href="settings.html"><i data-feather="settings" class="mr-1"></i> Settings</a>
+							<a class="dropdown-item" href="login.html"><i data-feather="log-out" class="mr-1"></i> Logout</a>
+						</div>
+					</li>
+					<!-- /User Menu -->
+					
+				</ul>
+				<!-- /Header Menu -->
+				
+			</div>
+			<!-- /Header -->
+			
+			<!-- Sidebar -->
+			<div class="sidebar" id="sidebar">
+				<div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+						<ul>
+							<li class="menu-title"><span>Main</span></li>
+							<li class="active">
+								<a href="index.html"><i data-feather="home"></i> <span>Dashboard</span></a>
+							</li>
+							<li>
+								<a href="customers.html"><i data-feather="users"></i> <span>Customers</span></a>
+							</li>
+							<li>
+								<a href="payments.html"><i data-feather="credit-card"></i> <span>Payments</span></a>
+							</li>
+							<li>
+								<a href="settings.html"><i data-feather="settings"></i> <span>Settings</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="grid"></i> <span> Application</span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="chat.html">Chat</a></li>
+									<li><a href="calendar.html">Calendar</a></li>
+									<li><a href="inbox.html">Email</a></li>
+								</ul>
+							</li>
+							<li class="menu-title"> 
+								<span>Pages</span>
+							</li>
+							<li> 
+								<a href="profile.html"><i data-feather="user-plus"></i> <span>Profile</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="lock"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="login.html"> Login </a></li>
+									<li><a href="register.html"> Register </a></li>
+									<li><a href="forgot-password.html"> Forgot Password </a></li>
+									<li><a href="lock-screen.html"> Lock Screen </a></li>
+								</ul>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /Sidebar -->
+			
+			{% block content %}
+                
+			{% endblock content %}
+
+			
+		</div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+		<script src="{% static 'adminDashboard/assets/js/jquery-3.5.1.min.js' %}"></script>
+		
+		<!-- Bootstrap Core JS -->
+		<script src="{% static 'adminDashboard/assets/js/popper.min.js' %}"></script>
+		<script src="{% static 'adminDashboard/assets/js/bootstrap.min.js' %}"></script>
+		
+		<!-- Feather Icon JS -->
+		<script src="{% static 'adminDashboard/assets/js/feather.min.js' %}"></script>
+		
+		<!-- Slimscroll JS -->
+		<script src="{% static 'adminDashboard/assets/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+		
+		<!-- Chart JS -->
+		<script src="{% static 'adminDashboard/assets/plugins/apexchart/apexcharts.min.js' %}"></script>
+		<script src="{% static 'adminDashboard/assets/plugins/apexchart/chart-data.js' %}"></script>
+		
+		<!-- Custom JS -->
+		<script src="{% static 'adminDashboard/assets/js/script.js' %}"></script>
+
+	</body>
+
+</html>

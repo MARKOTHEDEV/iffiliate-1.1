@@ -1,0 +1,222 @@
+{% extends 'adminDashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+	<div class="content container-fluid">
+
+		<div class="row">
+			<div class="col-xl-3 col-sm-6 col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="dash-widget-header">
+							<span class="dash-widget-icon bg-1">
+								<i class="fas fa-dollar-sign"></i>
+							</span>
+							<div class="dash-count">
+								<div class="dash-title">Amount Due</div>
+								<div class="dash-counts">
+									<p>1,642</p>
+								</div>
+							</div>
+						</div>
+						<div class="progress progress-sm mt-3">
+							<div class="progress-bar bg-5" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<p class="text-muted mt-3 mb-0"><span class="text-danger mr-1"><i class="fas fa-arrow-down mr-1"></i>1.15%</span> since last week</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-3 col-sm-6 col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="dash-widget-header">
+							<span class="dash-widget-icon bg-2">
+								<i class="fas fa-users"></i>
+							</span>
+							<div class="dash-count">
+								<div class="dash-title">Customers</div>
+								<div class="dash-counts">
+									<p>3,642</p>
+								</div>
+							</div>
+						</div>
+						<div class="progress progress-sm mt-3">
+							<div class="progress-bar bg-6" role="progressbar" style="width: 65%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<p class="text-muted mt-3 mb-0"><span class="text-success mr-1"><i class="fas fa-arrow-up mr-1"></i>2.37%</span> since last week</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-3 col-sm-6 col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="dash-widget-header">
+							<span class="dash-widget-icon bg-3">
+								<i class="fas fa-file-alt"></i>
+							</span>
+							<div class="dash-count">
+								<div class="dash-title">Invoices</div>
+								<div class="dash-counts">
+									<p>1,041</p>
+								</div>
+							</div>
+						</div>
+						<div class="progress progress-sm mt-3">
+							<div class="progress-bar bg-7" role="progressbar" style="width: 85%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<p class="text-muted mt-3 mb-0"><span class="text-success mr-1"><i class="fas fa-arrow-up mr-1"></i>3.77%</span> since last week</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-3 col-sm-6 col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="dash-widget-header">
+							<span class="dash-widget-icon bg-4">
+								<i class="far fa-file"></i>
+							</span> 
+							<div class="dash-count">
+								<div class="dash-title">Estimates</div>
+								<div class="dash-counts">
+									<p>2,150</p>
+								</div>
+							</div>
+						</div>
+						<div class="progress progress-sm mt-3">
+							<div class="progress-bar bg-8" role="progressbar" style="width: 45%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+						</div>
+						<p class="text-muted mt-3 mb-0"><span class="text-danger mr-1"><i class="fas fa-arrow-down mr-1"></i>8.68%</span> since last week</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+
+		<div class="row">
+			<div class="col-md-6 col-sm-6">
+				<div class="card">
+					<div class="card-header">
+						<div class="row">
+							<div class="col">
+								<h5 class="card-title">Withdraws requested</h5>
+							</div>
+							<div class="col-auto">
+								<a href="invoices.html" class="btn-right btn btn-sm btn-outline-primary">
+									View All 
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						
+	
+						<div class="table-responsive">
+						
+							<table class="table table-stripped table-hover">
+								<thead class="thead-light">
+									<tr>
+									   <th>Customer</th>
+									   <th>Amount</th>
+									   <th>Due Date</th>
+									   <th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<h2 class="table-avatar">
+												<a href="profile.html"><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{% static 'adminDashboard/assets/img/profiles/avatar-04.jpg'%}" alt="User Image">Barbara Moore</a>
+											</h2>
+										</td>
+										<td>$118</td>
+										<td>23 Nov 2020</td>
+										<td><span class="badge bg-success-light">Paid</span></td>
+									
+									</tr>
+
+									<tr>
+										<td>
+											<h2 class="table-avatar">
+												<a href="profile.html"><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{% static 'adminDashboard/assets/img/profiles/avatar-10.jpg' %}" alt="User Image">Joseph Collins</a>
+											</h2>
+										</td>
+										<td>$826</td>
+										<td>25 Sep 2020</td>
+										<td><span class="badge bg-danger-light">Not Paid</span></td>
+							
+									</tr>
+
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-sm-6">
+				<div class="card">
+						<div class="card-header">
+						<div class="row">
+							<div class="col">
+								<h5 class="card-title">Newly Subscrribed users</h5>
+							</div>
+							<div class="col-auto">
+								<a href="estimates.html" class="btn-right btn btn-sm btn-outline-primary">
+									View All 
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead class="thead-light">
+									<tr>
+										<th>Customer</th>
+										<th>Expiry Date</th>
+										<th>Plan</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<h2 class="table-avatar">
+												<a href="profile.html"><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{% static 'adminDashboard/assets/img/profiles/avatar-05.jpg' %}" alt="User Image"> Greg Lynch</a>
+											</h2>
+										</td>
+										<td>5 Nov 2020</td>
+										<td>$175</td>
+										<td><span class="badge bg-info-light">Sent</span></td>
+						
+									</tr>
+
+									<tr>
+										<td>
+											<h2 class="table-avatar">
+												<a href="profile.html"><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{% static 'adminDashboard/assets/img/profiles/avatar-05.jpg' %}" alt="User Image"> Greg Lynch</a>
+											</h2>
+										</td>
+										<td>5 Nov 2020</td>
+										<td>$175</td>
+										<td><span class="badge bg-danger-light">Free</span></td>
+						
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /Page Wrapper -->
+
+{% endblock content %}
