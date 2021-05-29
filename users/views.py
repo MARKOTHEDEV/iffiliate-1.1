@@ -163,11 +163,36 @@ class FileForPayment(LoginRequiredMixin,UserPassesTestMixin,user_mixins.UserHelp
 
 'USER DASHBOARD CODE END'
 
-
 'ADMIN USER DASHBOARD CODE START'
 def adminDashhboardIndex(request):
+    # so i got all UserRequestPayment that has not been paid
+    # then create a for loop that get all the amount which i sum...
 
-    return render(request,'adminDashboard/index.html')
+    amount_owing= int(sum([amount.amount for amount in models.UserRequestPayment.objects.filter(isPaid=False)]))
+    num_of_custormers = get_user_model().objects.all().count()
+    # paid users all users that are on a paid subscription
+    freeMembership = models.Membership.objects.get(slug='Free')
+    paid_users = models.UserMembership.objects.exclude(membership=freeMembership).count()
+    # 'NOT THIS IS NOT PAYMENT MADE TO THE USER IT PAYMENT MADE TO iffiliate'
+    # get the all trascation to iffiliate -> and some the amount that will give u what iffilate has made
+    payment_made_to_iffiliate = int(sum([amount.amount for amount in models.PayHistory.objects.filter(who_is_getting_payed='Iffilate',paid=True)]))
+   
+
+    context = {
+        "amount_owing":amount_owing,
+        # amount_owing_percent this is what we use to calculate the visual
+        # in the user interface there is a line of color that will increase according to the percentage we get here
+        "amount_owing_percent":int(amount_owing/100),
+        'num_of_custormers':num_of_custormers,
+        'num_of_custormers_percent':int(num_of_custormers/100),
+        'num_of_paid_users':paid_users,
+        'num_of_paid_users_percent':int(paid_users/100),
+        'payment_made_to_iffiliate':payment_made_to_iffiliate,
+        'payment_made_to_iffiliate_percent':int(payment_made_to_iffiliate/100),
+        
+
+    }
+    return render(request,'adminDashboard/index.html',context)
 
     
 'ADMIN USER DASHBOARD CODE END'

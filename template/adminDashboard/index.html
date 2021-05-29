@@ -16,14 +16,14 @@
 								<i class="fas fa-dollar-sign"></i>
 							</span>
 							<div class="dash-count">
-								<div class="dash-title">Amount Due</div>
+								<div class="dash-title">Amount Owing</div>
 								<div class="dash-counts">
-									<p>1,642</p>
+									<p>$ {{ amount_owing }}</p>
 								</div>
 							</div>
 						</div>
-						<div class="progress progress-sm mt-3">
-							<div class="progress-bar bg-5" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+						<div class="progress progress-sm mt-3">	
+							<div class="progress-bar bg-5" role="progressbar" style="width:{{ amount_owing_percent}}%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 						<p class="text-muted mt-3 mb-0"><span class="text-danger mr-1"><i class="fas fa-arrow-down mr-1"></i>1.15%</span> since last week</p>
 					</div>
@@ -39,12 +39,12 @@
 							<div class="dash-count">
 								<div class="dash-title">Customers</div>
 								<div class="dash-counts">
-									<p>3,642</p>
+									<p>{{ num_of_custormers }}</p>
 								</div>
 							</div>
 						</div>
 						<div class="progress progress-sm mt-3">
-							<div class="progress-bar bg-6" role="progressbar" style="width: 65%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress-bar bg-6" role="progressbar" style="width: {{ num_of_custormers_percent }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 						<p class="text-muted mt-3 mb-0"><span class="text-success mr-1"><i class="fas fa-arrow-up mr-1"></i>2.37%</span> since last week</p>
 					</div>
@@ -58,14 +58,14 @@
 								<i class="fas fa-file-alt"></i>
 							</span>
 							<div class="dash-count">
-								<div class="dash-title">Invoices</div>
+								<div class="dash-title"> to Iffiliate</div>
 								<div class="dash-counts">
-									<p>1,041</p>
+									<p>${{ payment_made_to_iffiliate }}</p>
 								</div>
 							</div>
 						</div>
 						<div class="progress progress-sm mt-3">
-							<div class="progress-bar bg-7" role="progressbar" style="width: 85%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress-bar bg-7" role="progressbar" style="width: {{ payment_made_to_iffiliate_percent }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 						<p class="text-muted mt-3 mb-0"><span class="text-success mr-1"><i class="fas fa-arrow-up mr-1"></i>3.77%</span> since last week</p>
 					</div>
@@ -79,14 +79,14 @@
 								<i class="far fa-file"></i>
 							</span> 
 							<div class="dash-count">
-								<div class="dash-title">Estimates</div>
+								<div class="dash-title">Paid Users</div>
 								<div class="dash-counts">
-									<p>2,150</p>
+									<p>{{ num_of_paid_users }}</p>
 								</div>
 							</div>
 						</div>
 						<div class="progress progress-sm mt-3">
-							<div class="progress-bar bg-8" role="progressbar" style="width: 45%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+							<div class="progress-bar bg-8" role="progressbar" style="width: {{ num_of_paid_users_percent }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
 						</div>
 						<p class="text-muted mt-3 mb-0"><span class="text-danger mr-1"><i class="fas fa-arrow-down mr-1"></i>8.68%</span> since last week</p>
 					</div>

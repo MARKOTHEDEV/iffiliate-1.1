@@ -92,6 +92,7 @@ class PayHistory(models.Model):
         ('User','User'),
     )
     who_is_getting_payed = models.CharField(choices=benefactor_of_payment,null=True,blank=True,max_length=10)
+    
     def __str__(self):
         return self.user.__str__()
 
