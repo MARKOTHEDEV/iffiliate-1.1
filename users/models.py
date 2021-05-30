@@ -172,7 +172,8 @@ class UserRequestPayment(models.Model):
     bank_name = models.CharField(max_length=50,blank=True)
     # this is the most important one we will refrece it back when we wanna pay this person
     recipient_code = models.CharField(max_length=20,blank=True)
-
+    # this is more like a time stamp -> the docs says u cant override it
+    date_requested = models.DateTimeField(auto_now_add=True)
     def __str__(self) -> str:
         return f'{self.user} requested for Payment -> {self.amount}'
 

@@ -103,9 +103,9 @@ find a logic to pay the user when they  request for payment: -- done
 
    first we need to sort out the template:
 dashboard  which is the index.html :
-    will show - amount iffliate is owing -- by calculating the UserRequestPayment table excluding the is_paid=true colunm
-    count how ,many customer we have
-    amout that has been paid to Iffilate
+    will show - amount iffliate is owing -- by calculating the UserRequestPayment table excluding the is_paid=true colunm -done
+    count how ,many customer we have --done
+    amout that has been paid to Iffilate  --done
 
 
     view withdraws requested - in the index page show 6 recent

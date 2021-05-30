@@ -177,6 +177,14 @@ def adminDashhboardIndex(request):
     # get the all trascation to iffiliate -> and some the amount that will give u what iffilate has made
     payment_made_to_iffiliate = int(sum([amount.amount for amount in models.PayHistory.objects.filter(who_is_getting_payed='Iffilate',paid=True)]))
    
+    # get all the people that has requested for a payment
+    # limit it to five
+    paymentRequested = models.UserRequestPayment.objects.filter(isPaid=False)[0:5]
+    # show the admin the recently created users
+    # recentCreatedUser = get_user_model().objects.values_list('email').union(models.UserMembership.objects.values_list('membership__membership_type'))
+    recentCreatedUser = models.UserMembership.objects.values('user__email','membership__membership_type')
+
+    # print(recentCreatedUser)
 
     context = {
         "amount_owing":amount_owing,
@@ -189,8 +197,10 @@ def adminDashhboardIndex(request):
         'num_of_paid_users_percent':int(paid_users/100),
         'payment_made_to_iffiliate':payment_made_to_iffiliate,
         'payment_made_to_iffiliate_percent':int(payment_made_to_iffiliate/100),
-        
-
+        'paymentRequested':paymentRequested,
+        # since we dont have a date created i just reverse the list so the newset one
+        # will be ontop
+        'recentCreatedUser':reversed(recentCreatedUser),
     }
     return render(request,'adminDashboard/index.html',context)
 

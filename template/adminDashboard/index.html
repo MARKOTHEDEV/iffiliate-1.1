@@ -126,29 +126,23 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.html"><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{% static 'adminDashboard/assets/img/profiles/avatar-04.jpg'%}" alt="User Image">Barbara Moore</a>
-											</h2>
-										</td>
-										<td>$118</td>
-										<td>23 Nov 2020</td>
-										<td><span class="badge bg-success-light">Paid</span></td>
-									
-									</tr>
 
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.html"><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{% static 'adminDashboard/assets/img/profiles/avatar-10.jpg' %}" alt="User Image">Joseph Collins</a>
-											</h2>
-										</td>
-										<td>$826</td>
-										<td>25 Sep 2020</td>
-										<td><span class="badge bg-danger-light">Not Paid</span></td>
-							
-									</tr>
+									
+									{% for paymentfiled in paymentRequested %}
+											
+										<tr>
+											<td>
+												<h2 class="table-avatar">
+													<a href=""><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{{ paymentfiled.user.userPics.url }}" alt="User Image">{{ paymentfiled.user }}</a>
+												</h2>
+											</td>
+											<td>${{ paymentfiled.amount }}</td>
+											<td>{{ paymentfiled.date_requested }} </td>
+											<td><span class="badge bg-danger-light">Not Paid</span></td>
+								
+										</tr>
+									{% endfor %}
+									
 
 
 								</tbody>
@@ -163,7 +157,7 @@
 						<div class="card-header">
 						<div class="row">
 							<div class="col">
-								<h5 class="card-title">Newly Subscrribed users</h5>
+								<h5 class="card-title">Newly Created users</h5>
 							</div>
 							<div class="col-auto">
 								<a href="estimates.html" class="btn-right btn btn-sm btn-outline-primary">
@@ -179,35 +173,28 @@
 								<thead class="thead-light">
 									<tr>
 										<th>Customer</th>
-										<th>Expiry Date</th>
+										<!-- <th>Expiry Date</th> -->
 										<th>Plan</th>
-										<th>Status</th>
+										<!-- <th>Status</th> -->
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.html"><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{% static 'adminDashboard/assets/img/profiles/avatar-05.jpg' %}" alt="User Image"> Greg Lynch</a>
-											</h2>
-										</td>
-										<td>5 Nov 2020</td>
-										<td>$175</td>
-										<td><span class="badge bg-info-light">Sent</span></td>
-						
-									</tr>
 
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.html"><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{% static 'adminDashboard/assets/img/profiles/avatar-05.jpg' %}" alt="User Image"> Greg Lynch</a>
-											</h2>
-										</td>
-										<td>5 Nov 2020</td>
-										<td>$175</td>
-										<td><span class="badge bg-danger-light">Free</span></td>
-						
-									</tr>
+									
+									{% for newUser  in recentCreatedUser  %}
+											<tr>
+												<td>
+													<h2 class="table-avatar">
+														<a href="profile.html"><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{% static 'adminDashboard/assets/img/profiles/avatar-05.jpg' %}" alt="User Image">{{ newUser.user__email }}</a>
+													</h2>
+												</td>
+												<!-- <td>5 Nov 2020</td> -->
+												<td>{{ newUser.membership__membership_type }}</td>
+												<!-- <td><span class="badge bg-info-light">Sent</span></td> -->
+								
+											</tr>										
+									{% endfor %}
+										
 								</tbody>
 							</table>
 						</div>

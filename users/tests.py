@@ -25,3 +25,7 @@
      '2209134092', 'account_name': 'OGECHUKWU MATTHEW NWOKOLO', 
      'bank_code': '057', 'bank_name': 'Zenith Bank'}
      }}
+
+a =  ['a','y','b']
+
+print(list(reversed(a)))
