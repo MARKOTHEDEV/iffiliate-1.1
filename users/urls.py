@@ -13,5 +13,5 @@ urlpatterns = [
 
 
     # url for the ADMIN DASHBOARD
-    path('adminDashboard/',user_views.adminDashhboardIndex, name='adminDasboard'),
+    path('adminDashboard/',user_views.AdminDashhboardIndex.as_view(), name='adminDasboard'),
 ]

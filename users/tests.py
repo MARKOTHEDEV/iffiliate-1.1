@@ -26,6 +26,8 @@
      'bank_code': '057', 'bank_name': 'Zenith Bank'}
      }}
 
-a =  ['a','y','b']
 
-print(list(reversed(a)))
+a = {'s':1}
+
+a.update({'1':'3'})
+print(a)

@@ -6,12 +6,14 @@ import requests
 from users import models
 from users import mixins as user_mixins
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
-from django.contrib.auth.mixins import UserPassesTestMixin,AccessMixin,PermissionRequiredMixin,UserPassesTestMixin
+from django.urls import reverse,reverse_lazy
+from django.contrib.auth.mixins import UserPassesTestMixin,AccessMixin,PermissionRequiredMixin
 from django.contrib import messages
 from users import prepUserforPay
 from django import views as django_views
 from django.contrib.auth import get_user_model
+from django.views import View
+
 
 
 
@@ -163,46 +165,65 @@ class FileForPayment(LoginRequiredMixin,UserPassesTestMixin,user_mixins.UserHelp
 
 'USER DASHBOARD CODE END'
 
+
 'ADMIN USER DASHBOARD CODE START'
-def adminDashhboardIndex(request):
-    # so i got all UserRequestPayment that has not been paid
-    # then create a for loop that get all the amount which i sum...
+class AdminDashhboardIndex(UserPassesTestMixin,generic.TemplateView):
+    template_name='adminDashboard/index.html'
+    login_url =reverse_lazy(viewname='signin')
 
-    amount_owing= int(sum([amount.amount for amount in models.UserRequestPayment.objects.filter(isPaid=False)]))
-    num_of_custormers = get_user_model().objects.all().count()
-    # paid users all users that are on a paid subscription
-    freeMembership = models.Membership.objects.get(slug='Free')
-    paid_users = models.UserMembership.objects.exclude(membership=freeMembership).count()
-    # 'NOT THIS IS NOT PAYMENT MADE TO THE USER IT PAYMENT MADE TO iffiliate'
-    # get the all trascation to iffiliate -> and some the amount that will give u what iffilate has made
-    payment_made_to_iffiliate = int(sum([amount.amount for amount in models.PayHistory.objects.filter(who_is_getting_payed='Iffilate',paid=True)]))
-   
-    # get all the people that has requested for a payment
-    # limit it to five
-    paymentRequested = models.UserRequestPayment.objects.filter(isPaid=False)[0:5]
-    # show the admin the recently created users
-    # recentCreatedUser = get_user_model().objects.values_list('email').union(models.UserMembership.objects.values_list('membership__membership_type'))
-    recentCreatedUser = models.UserMembership.objects.values('user__email','membership__membership_type')
+    def test_func(self):
+        'we check if the user is a staff if true then let them in else show them that this page is forbidden'
+        return self.request.user.is_staff
+        # return True
 
-    # print(recentCreatedUser)
+    def get_all_the_data_to_display(self):
+        'this will get all the data from the back end and return a dictionary'
+        # so i got all UserRequestPayment that has not been paid
+        # then create a for loop that get all the amount which i sum...
 
-    context = {
-        "amount_owing":amount_owing,
-        # amount_owing_percent this is what we use to calculate the visual
-        # in the user interface there is a line of color that will increase according to the percentage we get here
-        "amount_owing_percent":int(amount_owing/100),
-        'num_of_custormers':num_of_custormers,
-        'num_of_custormers_percent':int(num_of_custormers/100),
-        'num_of_paid_users':paid_users,
-        'num_of_paid_users_percent':int(paid_users/100),
-        'payment_made_to_iffiliate':payment_made_to_iffiliate,
-        'payment_made_to_iffiliate_percent':int(payment_made_to_iffiliate/100),
-        'paymentRequested':paymentRequested,
-        # since we dont have a date created i just reverse the list so the newset one
-        # will be ontop
-        'recentCreatedUser':reversed(recentCreatedUser),
-    }
-    return render(request,'adminDashboard/index.html',context)
+        amount_owing= int(sum([amount.amount for amount in models.UserRequestPayment.objects.filter(isPaid=False)]))
+        num_of_custormers = get_user_model().objects.all().count()
+        # paid users all users that are on a paid subscription
+        freeMembership = models.Membership.objects.get(slug='Free')
+        paid_users = models.UserMembership.objects.exclude(membership=freeMembership).count()
+        # 'NOT THIS IS NOT PAYMENT MADE TO THE USER IT PAYMENT MADE TO iffiliate'
+        # get the all trascation to iffiliate -> and some the amount that will give u what iffilate has made
+        payment_made_to_iffiliate = int(sum([amount.amount for amount in models.PayHistory.objects.filter(who_is_getting_payed='Iffilate',paid=True)]))
+    
+        # get all the people that has requested for a payment
+        # limit it to five
+        paymentRequested = models.UserRequestPayment.objects.filter(isPaid=False)[0:5]
+        # show the admin the recently created users
+        # recentCreatedUser = get_user_model().objects.values_list('email').union(models.UserMembership.objects.values_list('membership__membership_type'))
+        recentCreatedUser = models.UserMembership.objects.values('user__email','user__userPics','membership__membership_type')
+
+        # print(recentCreatedUser)
+
+        context = {
+            "amount_owing":amount_owing,
+            # amount_owing_percent this is what we use to calculate the visual
+            # in the user interface there is a line of color that will increase according to the percentage we get here
+            "amount_owing_percent":int(amount_owing/100),
+            'num_of_custormers':num_of_custormers,
+            'num_of_custormers_percent':int(num_of_custormers/100),
+            'num_of_paid_users':paid_users,
+            'num_of_paid_users_percent':int(paid_users/100),
+            'payment_made_to_iffiliate':payment_made_to_iffiliate,
+            'payment_made_to_iffiliate_percent':int(payment_made_to_iffiliate/100),
+            'paymentRequested':paymentRequested,
+            # since we dont have a date created i just reverse the list so the newset one
+            # will be ontop
+            'recentCreatedUser':reversed(recentCreatedUser),
+        }
+        return context
 
     
+    def get_context_data(self, **kwargs):
+        context = super(AdminDashhboardIndex, self).get_context_data(**kwargs)
+        context.update(self.get_all_the_data_to_display())
+        return context
+
+
+
+
 'ADMIN USER DASHBOARD CODE END'

@@ -60,6 +60,9 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     objects = UserManager()
 
+    def imageUrl(self):
+        return self.userPics.url
+
     def __str__(self):
         return self.email
 

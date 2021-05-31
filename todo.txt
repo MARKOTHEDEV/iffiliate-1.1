@@ -108,8 +108,8 @@ dashboard  which is the index.html :
     amout that has been paid to Iffilate  --done
 
 
-    view withdraws requested - in the index page show 6 recent
-    view newly Members  -- in the index page show 6 recent
+    view withdraws requested - in the index page show 6 recent -- done
+    view newly Members  -- in the index page show 6 recent --done
 
     admin PAYMENTPAGE logic:
             in the admin we going to sperate the paid and not paid show the admin what we havent paid
