@@ -1,5 +1,5 @@
 from users import models
-from django.contrib.auth.mixins import AccessMixin
+from django.contrib.auth.mixins import AccessMixin,UserPassesTestMixin
 from users import models
 from django.contrib import messages
 from django.shortcuts import redirect
@@ -71,12 +71,6 @@ class RetstictFreeUser(AccessMixin):
 
         return redirect(self.redirect_url)
 
-
-
-
-
-
-
 class UserViewPage:
     'this mixin trigars when u see a model detail page'
     
@@ -91,4 +85,9 @@ class UserViewPage:
             signals.object_viewed_signal.send(instance.__class__,instance=instance,request=request) 
         
         return super(UserViewPage, self).dispatch(request, *args, **kwargs)
-    
+
+
+class Allow_supeusersOnly(UserPassesTestMixin) :
+    def test_func(self):
+        'we check if the user is a staff if true then let them in else show them that this page is forbidden'
+        return self.request.user.is_staff

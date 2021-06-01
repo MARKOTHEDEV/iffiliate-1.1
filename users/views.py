@@ -167,14 +167,10 @@ class FileForPayment(LoginRequiredMixin,UserPassesTestMixin,user_mixins.UserHelp
 
 
 'ADMIN USER DASHBOARD CODE START'
-class AdminDashhboardIndex(UserPassesTestMixin,generic.TemplateView):
+class AdminDashhboardIndex(user_mixins.Allow_supeusersOnly,generic.TemplateView):
     template_name='adminDashboard/index.html'
     login_url =reverse_lazy(viewname='signin')
 
-    def test_func(self):
-        'we check if the user is a staff if true then let them in else show them that this page is forbidden'
-        return self.request.user.is_staff
-        # return True
 
     def get_all_the_data_to_display(self):
         'this will get all the data from the back end and return a dictionary'
@@ -225,5 +221,10 @@ class AdminDashhboardIndex(UserPassesTestMixin,generic.TemplateView):
 
 
 
+class UserRequestPaymentListView(user_mixins.Allow_supeusersOnly,generic.ListView):
+    template_name='adminDashboard/customers.html'
+    login_url =reverse_lazy(viewname='signin')
+    model = models.UserRequestPayment
+    context_object_name = 'userpayment'
 
 'ADMIN USER DASHBOARD CODE END'
