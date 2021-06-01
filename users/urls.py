@@ -14,5 +14,6 @@ urlpatterns = [
     # url for the ADMIN DASHBOARD
     path('adminDashboard/',user_views.AdminDashhboardIndex.as_view(), name='adminDasboard'),
     path('adminDashboard/listofpendingpayment/',user_views.UserRequestPaymentListView.as_view(), name='listofpendingpayment'),
-
+    path('adminDashboard/payuser/',user_views.payUSer, name='payUSer'),
+    
 ]

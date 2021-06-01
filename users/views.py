@@ -225,6 +225,13 @@ class UserRequestPaymentListView(user_mixins.Allow_supeusersOnly,generic.ListVie
     template_name='adminDashboard/customers.html'
     login_url =reverse_lazy(viewname='signin')
     model = models.UserRequestPayment
-    context_object_name = 'userpayment'
+    context_object_name = 'userpayments'
+
+
+
+def payUSer(request):
+    'this method allow the payment to the  user'
+
+    return render(request,'adminDashboard/payuser.html')
 
 'ADMIN USER DASHBOARD CODE END'
