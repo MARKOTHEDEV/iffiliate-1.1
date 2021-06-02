@@ -84,7 +84,7 @@
 												<td>
 													<h2 class="table-avatar">
 														<!-- <a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-02.jpg" alt="User Image"></a> -->
-														<a href="profile.html">{{ userpayment.account_name }} <span>{{ userpayment.account_number }}</span></a>
+														<a href="{% url 'payUSer' userpayment.id %}">{{ userpayment.account_name }} <span>{{ userpayment.account_number }}</span></a>
 													</h2>
 												</td>
 												<td>{{ userpayment.user }}</td>

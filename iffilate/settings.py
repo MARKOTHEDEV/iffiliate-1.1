@@ -129,8 +129,12 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+"this line of code tell django that hey! when the browser is close tell the user to login again!!"
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 
 STATIC_URL = '/static/'
 
@@ -158,6 +162,7 @@ AUTH_USER_MODEL = 'users.User'
 
 PAYSTACK_SECRET_KEY   =  'sk_test_38a62cfc2939b3665f400a7c57bd61b7ab19f3fa'
 PAYSTACK_PUBLIC_KEY  = 'pk_test_17925fc67c5b6da3dbef32feab9afccb0d175729'
+
 
 
 

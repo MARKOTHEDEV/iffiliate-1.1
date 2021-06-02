@@ -8,6 +8,7 @@ from users import mixins as user_mixins
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse,reverse_lazy
 from django.contrib.auth.mixins import UserPassesTestMixin,AccessMixin,PermissionRequiredMixin
+from django.views.generic.detail import SingleObjectMixin
 from django.contrib import messages
 from users import prepUserforPay
 from django import views as django_views
@@ -229,9 +230,27 @@ class UserRequestPaymentListView(user_mixins.Allow_supeusersOnly,generic.ListVie
 
 
 
-def payUSer(request):
-    'this method allow the payment to the  user'
+class PayUser(SingleObjectMixin,View):
+    """this uses helps me work with a single object 
+    #this view triggers the payment of the users
+    """
+    template_name ='adminDashboard/payuser.html'
+    model = models.UserRequestPayment
 
-    return render(request,'adminDashboard/payuser.html')
+    
+    def get(self,request,pk=None):
+        'this just renders the template'
+        
 
-'ADMIN USER DASHBOARD CODE END'
+        return render(request,'adminDashboard/payuser.html',{'pk':pk})
+
+    def post(self,request,*args,**kwargs):
+        'this works when the user clicks on payment button'
+        self.payUserProcesse()
+        
+        return render(request,'adminDashboard/payuser.html',{'pk':self.kwargs.get('pk')})
+    
+    def payUserProcesse(self):
+        print('Hello world good time to be alive')
+       
+# 'ADMIN USER DASHBOARD CODE END'
