@@ -14,6 +14,8 @@ from users import prepUserforPay
 from django import views as django_views
 from django.contrib.auth import get_user_model
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 
@@ -236,21 +238,35 @@ class PayUser(SingleObjectMixin,View):
     """
     template_name ='adminDashboard/payuser.html'
     model = models.UserRequestPayment
+    context_object_name = 'user_to_be_paid'
 
     
     def get(self,request,pk=None):
         'this just renders the template'
-        
+      
 
-        return render(request,'adminDashboard/payuser.html',{'pk':pk})
+        return render(request,'adminDashboard/payuser.html',{'pk':pk,'account_name':self.get_object().account_name})
 
     def post(self,request,*args,**kwargs):
         'this works when the user clicks on payment button'
         self.payUserProcesse()
         
-        return render(request,'adminDashboard/payuser.html',{'pk':self.kwargs.get('pk')})
+        return render(request,'adminDashboard/payuser.html',{'pk':self.kwargs.get('pk'),'account_name':self.get_object().account_name})
     
     def payUserProcesse(self):
-        print('Hello world good time to be alive')
-       
+        # the below variable is the insance of the UserRequestPayment Model
+        userPaymentInstance = self.get_object()
+
+
+
+@csrf_exempt
+def payUserWebHook(request):
+    print('The webhook was triggered')
+    print(request.POST)
+    print(request.GET)
+    print(request.body)
+    if request.method == 'POST':
+        print('The webhook was triggered')
+
+
 # 'ADMIN USER DASHBOARD CODE END'

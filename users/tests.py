@@ -26,8 +26,40 @@
      'bank_code': '057', 'bank_name': 'Zenith Bank'}
      }}
 
+import requests,json
 
-a = {'s':1}
+PAYSTACK_SECRET_KEY   =  'sk_test_38a62cfc2939b3665f400a7c57bd61b7ab19f3fa'
 
-a.update({'1':'3'})
-print(a)
+# url https://api.paystack.co/transfer
+
+# -H "Authorization: Bearer YOUR_SECRET_KEY"
+
+# -H "Content-Type: application/json"
+
+# -d '{ "source": "balance", 
+
+#       "amount": "3794800", 
+
+#       "recipient": "RCP_t0ya41mp35flk40", 
+
+#       "reason": "Holiday Flexing" 
+
+#     }'
+url = 'https://api.paystack.co/transfer'
+header = {
+     "Authorization": f"Bearer {PAYSTACK_SECRET_KEY}",
+     "content-Type": "application/json",
+      'Accept': 'application/json',
+}
+data = {
+     "source": "balance","amount": "39800","recipient": "RCP_b5brnbx0fz516w4",
+     "reason": "Holiday Flexing" ,
+     'redirect_url' :'/user/'
+}
+data =json.dumps(data)
+
+resp = requests.post(url=url,data=data,headers=header)
+print(resp.json())
+
+
+# 2209134092

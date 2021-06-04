@@ -16,4 +16,9 @@ urlpatterns = [
     path('adminDashboard/listofpendingpayment/',user_views.UserRequestPaymentListView.as_view(), name='listofpendingpayment'),
     path('adminDashboard/payuser/<int:pk>/',user_views.PayUser.as_view(), name='payUSer'),
     
+
+
+
+    # TEST URL DOWN HERE
+    path('mywebhook/',user_views.payUserWebHook)
 ]

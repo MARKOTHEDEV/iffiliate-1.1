@@ -11,7 +11,7 @@
                     
                     <form action="{% url 'payUSer' pk %}" method="POST" style="text-align:center;display:flex; justify-content:center;align-items:center;flex-direction:column;height:100%;">
 						{% csrf_token %}
-						<h1 >Payment to {{ user }}</h1>
+						<h1 >Payment to {{ account_name }}</h1>
                         <input class="btn-right btn btn-sm btn-outline-primary" type="submit" value="PayUser" >
                     </form>
 				
