@@ -79,7 +79,7 @@
 								<i class="far fa-file"></i>
 							</span> 
 							<div class="dash-count">
-								<div class="dash-title">Paid Users</div>
+								<div class="dash-title">No. Paid Membership</div>
 								<div class="dash-counts">
 									<p>{{ num_of_paid_users }}</p>
 								</div>
@@ -133,7 +133,7 @@
 										<tr>
 											<td>
 												<h2 class="table-avatar">
-													<a href=""><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{{ paymentfiled.user.userPics.url }}" alt="User Image">{{ paymentfiled.user }}</a>
+													<a href="{% url 'payUSer' paymentfiled.id  %}"><img class="avatar avatar-sm mr-2 avatar-img rounded-circle" src="{{ paymentfiled.user.userPics.url }}" alt="User Image">{{ paymentfiled.user }}</a>
 												</h2>
 											</td>
 											<td>${{ paymentfiled.amount }}</td>

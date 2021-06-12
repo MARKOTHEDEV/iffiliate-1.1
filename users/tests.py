@@ -54,12 +54,30 @@ header = {
 data = {
      "source": "balance","amount": "39800","recipient": "RCP_b5brnbx0fz516w4",
      "reason": "Holiday Flexing" ,
-     'redirect_url' :'/user/'
+     'redirect_url' :'/user/',
 }
 data =json.dumps(data)
-
+ 
 resp = requests.post(url=url,data=data,headers=header)
 print(resp.json())
+
+{"event":"transfer.success",
+   "data":{"amount":39800,"currency":"NGN","domain":"test",
+   "failures":null,"id":64518142,
+   "integration":{"id":579669,"is_live":false,"business_name":"MARKOTHEDEV"},
+   "reason":"Holiday Flexing","reference":"toa67doamj","source":"balance","source_details":null,
+   "status":"success","titan_code":null,"transfer_code":"TRF_a66ufohh4y6e1q3","transferred_at":null,
+   "recipient":{"active":true,"currency":"NGN","description":null,"domain":"test","email":null,"id":14385883,
+   "integration":579669,"metadata":null,"name":"OGECHUKWU MATTHEW NWOKOLO","recipient_code":"RCP_b5brnbx0fz516w4",
+   "type":"nuban","is_deleted":false,"details":{"authorization_code":null,"account_number":"2209134092",
+   "account_name":"OGECHUKWU MATTHEW NWOKOLO","bank_code":"057","bank_name":"Zenith Bank"},
+   "created_at":"2021-05-17T19:28:26.000Z","updated_at":"2021-05-17T19:28:26.000Z"},
+   "session":{"provider":null,"id":null},"created_at":"2021-06-12T13:45:55.000Z",
+   "updated_at":"2021-06-12T13:45:55.000Z"}}
+"""
+The webhook was triggered
+
+"""
 
 
 # 2209134092

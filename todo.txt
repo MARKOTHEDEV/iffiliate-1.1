@@ -122,3 +122,7 @@ dashboard  which is the index.html :
 
         end
 
+Pay user once they login for the day -- not done
+show all customers -- not done
+show all customers that have been payed -- not done
+show all customers that requested for a payment -- not done

@@ -1,8 +1,9 @@
-import django
+# import django
 from django.forms import forms
-from django.shortcuts import render,redirect
+from django.http.response import HttpResponseBadRequest
+from django.shortcuts import render,redirect,HttpResponse
 from django.views import generic
-import requests
+import requests,json
 from users import models
 from users import mixins as user_mixins
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -15,6 +16,8 @@ from django import views as django_views
 from django.contrib.auth import get_user_model
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from django.http import HttpResponse,HttpResponseServerError
 
 
 
@@ -184,6 +187,7 @@ class AdminDashhboardIndex(user_mixins.Allow_supeusersOnly,generic.TemplateView)
         num_of_custormers = get_user_model().objects.all().count()
         # paid users all users that are on a paid subscription
         freeMembership = models.Membership.objects.get(slug='Free')
+        # this shows the paid memebership
         paid_users = models.UserMembership.objects.exclude(membership=freeMembership).count()
         # 'NOT THIS IS NOT PAYMENT MADE TO THE USER IT PAYMENT MADE TO iffiliate'
         # get the all trascation to iffiliate -> and some the amount that will give u what iffilate has made
@@ -249,24 +253,48 @@ class PayUser(SingleObjectMixin,View):
 
     def post(self,request,*args,**kwargs):
         'this works when the user clicks on payment button'
-        self.payUserProcesse()
+        # start payment proceess
+        responseData = self._payUserProcesse()
         
-        return render(request,'adminDashboard/payuser.html',{'pk':self.kwargs.get('pk'),'account_name':self.get_object().account_name})
+        return render(request,'adminDashboard/payuser.html',{'pk':self.kwargs.get('pk'),
+        'account_name':self.get_object().account_name,"status":responseData.get('status'),"message":responseData.get('message')})
     
-    def payUserProcesse(self):
-        # the below variable is the insance of the UserRequestPayment Model
+    def _payUserProcesse(self):
+        # the below variable is the insance of the UserRequestPayment Model we currently on
         userPaymentInstance = self.get_object()
+        # print(userPaymentInstance)
+        try:
+            url = 'https://api.paystack.co/transfer'
+            header = {
+            "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
+            "content-Type": "application/json",
+            'Accept': 'application/json',}
+            data = {
+            "source": "balance","amount": "39800","recipient": f"{userPaymentInstance.recipient_code}",
+            "reason": "Payment to Iffilate User"}
+            data =json.dumps(data)
+            # send the data to paystack
+            resp = requests.post(url=url,data=data,headers=header)
+            "this is the response data"
+            respData = resp.json()
 
+            # so this one will retunn status and message
+            return respData
+        except:
+            return {'status':False,"message":"some error Occured Refresh the page and try Again!!"}
 
 
 @csrf_exempt
 def payUserWebHook(request):
-    print('The webhook was triggered')
-    print(request.POST)
-    print(request.GET)
-    print(request.body)
+    "when we get the webhook data we check if it transfer.success or transfer.failed Then we decide to set isPaid"
     if request.method == 'POST':
-        print('The webhook was triggered')
-
+        paystackResponse = json.loads(request.body)
+        "check it this instance exits in the UserRequestPayment Table if true set it the paid true"        
+        if  models.UserRequestPayment.objects.filter(recipient_code=paystackResponse['data']['recipient']['recipient_code'],isPaid=False).exists():
+            user_request_payment_instance = models.UserRequestPayment.objects.get(recipient_code=paystackResponse['data']['recipient']['recipient_code'],isPaid=False)
+            user_request_payment_instance.isPaid=True
+            user_request_payment_instance.save()
+            return HttpResponse('User payment request has been paid and confirmed')
+    return HttpResponseServerError("something went wrong")
 
 # 'ADMIN USER DASHBOARD CODE END'
