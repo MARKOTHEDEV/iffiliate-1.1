@@ -13,7 +13,10 @@ urlpatterns = [
     path('support/',views.support,name='support'),
     path('contactUs/',views.contactUs,name='contact-us'),
     path('signup/',views.signup,name='signup'),
+    # this api is responsible for Creating User
     path('api/create-user/', views.CreateUserApi.as_view(), name='create-user-api'),
+    # this api is responsible for Logging User  in 
+    path('api/signin-user/', views.SignInAPIView.as_view(), name='signin-user-api'),
     path('signin/',views.SignInView.as_view(),name='signin'),
     
     # this url is for the blog view

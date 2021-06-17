@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model,login
 from users import models
 
 
@@ -17,3 +17,12 @@ class UserSerializers(serializers.ModelSerializer):
         model = get_user_model()
         fields =['email','password']
         extra_kwargs = {'password':{'style':{'input_type':'password'},'write_only':True}}
+
+
+class SignInSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(trim_whitespace =True)
+
+    
+    
+  

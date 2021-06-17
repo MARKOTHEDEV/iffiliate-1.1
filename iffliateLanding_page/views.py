@@ -1,12 +1,13 @@
 from django.shortcuts import render,get_object_or_404
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView, detail
 from django.contrib.auth.views import LoginView
 # Create your views here.
 from iffliateLanding_page import models
 from rest_framework.generics import CreateAPIView
+from rest_framework.views import APIView
 from users import serializers
 from users import models as userModels
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model, login
 from django.shortcuts import resolve_url,redirect,HttpResponseRedirect
 from django.conf import settings
 import datetime,requests,json
@@ -76,6 +77,7 @@ class CreateUserApi(CreateAPIView):
     serializer_class = serializers.UserSerializers
 
 
+
 # def signin(request):
 #     return render(request,'iffliateLanding_page/signin.html')
 
@@ -83,11 +85,32 @@ class SignInView(LoginView):
     template_name = 'iffliateLanding_page/signin.html'    
     # def dispatch(self, request, *args, **kwargs):
     #     return super(CLASS_NAME, self).dispatch(request, *args, **kwargs)
-    
+
+
 
     # def get_success_url(self):
         # url = self.get_redirect_url()
         # return url or resolve_url(settings.LOGIN_REDIRECT_URL)
+
+class SignInAPIView(APIView):
+    serializer_class = serializers.SignInSerializer
+
+
+    def post(self, request, format=None):
+        email = self.request.data.get('email')
+        password = self.request.data.get('password')
+        
+
+
+        user = authenticate(username=email,password=password)
+        if user is not None:
+            # well at this point the user is oviously a member! now i can login him in
+            login(self.request,user)
+            return Response(data={'success':'validated Successfully'})
+        
+        return Response(data={'error':'Wrong Credentials Try again'})
+
+    
 """
 THIS JUST A CODE TO CHECK THE EXIPIRE DATE OF THE USER
 # if(instance.expires_in < today):
