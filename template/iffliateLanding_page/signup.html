@@ -187,8 +187,11 @@
 
 
 			const data = { 'email': email.value,'password':password2.value };
-
-			fetch('http://localhost:8000/api/create-user/', {
+			/*
+				USed window.location.origin to get the website name
+				because i dont want to hard code it in for featur puposes
+			*/
+			fetch(`${window.location.origin}/api/create-user/`, {
 			method: 'POST', // or 'PUT'
 			headers: {
 				'Content-Type': 'application/json',

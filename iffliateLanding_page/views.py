@@ -108,7 +108,7 @@ class SignInAPIView(APIView):
             login(self.request,user)
             return Response(data={'success':'validated Successfully'})
         
-        return Response(data={'error':'Wrong Credentials Try again'})
+        return Response(data={'error':'Wrong username or password Try again'})
 
     
 """

@@ -24,6 +24,14 @@
 	<!-- Theme CSS -->  
 	<link id="theme-style" rel="stylesheet" href="{% static '/iffliateLanding_page/assets/css/theme.css' %}">
 
+	<style>
+		.message.success{
+			color: greenyellow;
+		}
+		.message.error{
+			color: #f65f34;
+		}
+	</style>
 </head> 
 
 <body>    
@@ -45,15 +53,19 @@
 					<h2 class="auth-heading text-center mb-4">Sign in to your account</h2>
 
 					<div class="auth-form-container text-left mx-auto">
-						<form class="auth-form signup-form" method="POST">   
+						<form class="auth-form signup-form" id="signin-form" method="POST" >   
 							{% csrf_token %}       
 							<div class="form-group email">
 								<label class="sr-only" for="signin-email">Email</label>
 								<input id="signin-email" name="username" type="email" class="form-control signin-email" placeholder="Email" required="required">
+								<div class="message"></div>
+							
 							</div><!--//form-group-->
 							<div class="form-group password">
 								<label class="sr-only" for="signin-password">Password</label>
 								<input id="signin-password" name="password" type="password" class="form-control signin-password" placeholder="Password" required="required">
+								<div class="message"></div>
+						
 								<div class="extra mt-2 position-relative">
 									<div class="checkbox remember">
 										<label>
@@ -113,9 +125,101 @@
 	<script src="{% static '/iffliateLanding_page/assets/plugins/popper.min.js' %}"></script>
 	<script src="{% static '/iffliateLanding_page/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>  
 	
+	<script>
+		function getCookie(name) {
+			let cookieValue = null;
+			if (document.cookie && document.cookie !== '') {
+				const cookies = document.cookie.split(';');
+				for (let i = 0; i < cookies.length; i++) {
+					const cookie = cookies[i].trim();
+					// Does this cookie string begin with the name we want?
+					if (cookie.substring(0, name.length + 1) === (name + '=')) {
+						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+						break;
+					}
+				}
+			}
+			return cookieValue;
+		}
+		const csrftoken = getCookie('csrftoken');
+
+	</script>
+
 
 	<script>
+	
+
+		class SigninFORM{
+
+			constructor(formID){
+				this.formID =formID
+				this.form = document.querySelector(formID)
+				this.emailInput = document.querySelector('#signin-email');
+				this.passwordInput = document.querySelector('#signin-password')
+			}
+				//this method send data to the backend
+			async sendTobackEnd(data){
+
+				const resp = await fetch(`${window.location.origin}/api/signin-user/`, {
+								method: 'POST', // or 'PUT'
+								headers: {
+								'Content-Type': 'application/json',
+								'X-CSRFToken':csrftoken
+								},
+								body: JSON.stringify(data),
+							})
+				const respData = resp.json()
+
+				return respData
+			}//end of code of sendTobackEnd
+
+			displayMessageToUi(message,status){
+				const messageDiv = 	this.emailInput.parentElement.querySelector('.message')
+				if(status === 'error'){
+					messageDiv.classList.remove('success')
+					messageDiv.classList.add('error')
+				}else{
+					messageDiv.classList.remove('error')
+					messageDiv.classList.add('success')
+				}
+				messageDiv.innerText = message
+
+			}
+			
+			LoadformEvent(){
+
+				this.form.addEventListener('submit',e=>{
+					e.preventDefault()
+				
+
+					this.sendTobackEnd({'email':this.emailInput.value,'password':this.passwordInput.value})
+					.then(data=>{
+
+						if(data.success){
+							this.displayMessageToUi(data.success,'success')
+							window.location.href = "{% url 'user-dashboard' %}"
+						}else if(data.error){
+							this.displayMessageToUi(data.error,'error')
+
+
+						}
+					})
+					.catch(data=>{
+						alert('There has been some unforseen error Please Reload the page')
+					})
+
+				})
+
+			}
+
+
+		}
 		
+		let Form = new SigninFORM('#signin-form')
+
+
+		Form.LoadformEvent()
+
 	</script>
 </body>
 
