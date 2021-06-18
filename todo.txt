@@ -52,7 +52,6 @@ FIX ALLOW USER TO PAY ONES SO IF THEY HAVE A SUB THEN DON ALLOW THEM TO PAY --do
                 create a function that limits the user if he is above his pay ---done found in the user app
 
 
-PRELOADER -- for logining -not done
 not added transaction page --done
     
 
@@ -122,7 +121,12 @@ dashboard  which is the index.html :
 
         end
 
-Pay user once they login for the day -- not done
+Pay user once they login for the day --  done:USED A CRON JOB!!!
+    check the user last login if it was user.last_login.day === today
+    if true pay the user
+
 show all customers -- not done
 show all customers that have been payed -- not done
 show all customers that requested for a payment -- not done
+
+PRELOADER -- for logining -not done
