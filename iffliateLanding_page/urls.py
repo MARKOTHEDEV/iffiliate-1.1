@@ -1,5 +1,6 @@
 from django.urls import path
 from iffliateLanding_page import views
+from django.contrib.auth.views import LoginView, LogoutView
 
 
 
@@ -13,6 +14,7 @@ urlpatterns = [
     path('support/',views.support,name='support'),
     path('contactUs/',views.contactUs,name='contact-us'),
     path('signup/',views.signup,name='signup'),
+    path('logout',LogoutView.as_view(template_name='iffliateLanding_page/logout.html'),name='logout'),
     # this api is responsible for Creating User
     path('api/create-user/', views.CreateUserApi.as_view(), name='create-user-api'),
     # this api is responsible for Logging User  in 
