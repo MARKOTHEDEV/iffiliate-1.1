@@ -1,0 +1,26 @@
+{% extends 'adminDashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Page Wrapper -->
+			
+			<!-- Page Wrapper -->
+			<div class="page-wrapper">
+				<div class="content container-fluid" style="height:100vh;">
+                    
+                    <form action="" method="POST" style="text-align:center;display:flex; justify-content:center;align-items:center;flex-direction:column;height:100%;">
+						{% csrf_token %}
+						<h1 >Are you sure you wanna delete ?</h1>
+					    <p>{{ userInstance }}</p>
+                        <input class="btn-right btn btn-sm btn-outline-primary" type="submit" value="Delete anyway" >
+                    </form>
+				
+			
+				</div>
+			</div>
+			<!-- /Page Wrapper -->
+			
+<!-- /Page Wrapper -->
+
+{% endblock content %}

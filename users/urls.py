@@ -16,6 +16,7 @@ urlpatterns = [
     path('adminDashboard/listofpendingpayment/',user_views.UserRequestPaymentListView.as_view(), name='listofpendingpayment'),
     path('adminDashboard/payuser/<int:pk>/',user_views.PayUser.as_view(), name='payUSer'),
     path('adminDashboard/listallusers/',user_views.AllUserListView.as_view(), name='allUsers'),
+    path('adminDashboard/deleteuser/<int:pk>/',user_views.DeleteUserView.as_view(), name='deleteUser'),
     
 
 

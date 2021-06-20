@@ -254,7 +254,7 @@ class BaseUserViewMixin(user_mixins.Allow_supeusersOnly):
 class AllUserListView(BaseUserViewMixin,generic.ListView):
     "list all the users in Databse"
     template_name='adminDashboard/list_of_users.html'
-    queryset =  models.User.objects.values('email','userEarnings','usermembership__membership__membership_type')
+    queryset =  models.User.objects.values('pk','email','userEarnings','usermembership__membership__membership_type')
     paginate_by = 10
     context_object_name = 'list_Of_All_Users'
 
@@ -267,7 +267,9 @@ class AllUserListView(BaseUserViewMixin,generic.ListView):
 
 class DeleteUserView(BaseUserViewMixin,generic.DeleteView):
     context_object_name = 'userInstance'
-    template_name = ''
+    template_name = 'adminDashboard/deleteUser.html'
+    success_url = reverse_lazy('allUsers')
+
 
 
 class PayUser(SingleObjectMixin,View):
