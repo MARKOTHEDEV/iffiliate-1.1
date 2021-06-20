@@ -229,11 +229,45 @@ class AdminDashhboardIndex(user_mixins.Allow_supeusersOnly,generic.TemplateView)
 
 
 class UserRequestPaymentListView(user_mixins.Allow_supeusersOnly,generic.ListView):
-    template_name='adminDashboard/customers.html'
+    template_name='adminDashboard/listOfpendingPayment.html'
     login_url =reverse_lazy(viewname='signin')
     model = models.UserRequestPayment
-    context_object_name = 'userpayments'
+    # context_object_name = 'userpayments'
 
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        " listOfpendingPayment = this will list all the payment that are still pending"
+        context['listOfpendingPayment'] = models.UserRequestPayment.objects.filter(isPaid=False)
+        return context
+
+
+class BaseUserViewMixin(user_mixins.Allow_supeusersOnly):
+    """
+        this view avoid repeated Code in :      
+                AllUserListView - that list all the user
+                DeleteUserView -- that delete user
+    """
+    model = models.User
+    login_url =reverse_lazy(viewname='signin')
+
+class AllUserListView(BaseUserViewMixin,generic.ListView):
+    "list all the users in Databse"
+    template_name='adminDashboard/list_of_users.html'
+    queryset =  models.User.objects.values('email','userEarnings','usermembership__membership__membership_type')
+    paginate_by = 10
+    context_object_name = 'list_Of_All_Users'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     " listOfpendingPayment = this will list all the payment that are still pending"
+    #     context['list_Of_All_Users'] = models.User.objects.values('email','userEarnings','usermembership__membership__membership_type')
+    #     return context
+
+
+class DeleteUserView(BaseUserViewMixin,generic.DeleteView):
+    context_object_name = 'userInstance'
+    template_name = ''
 
 
 class PayUser(SingleObjectMixin,View):

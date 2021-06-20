@@ -78,8 +78,8 @@
 											</thead>
 											<tbody>
 												
-									{% for userpayment in userpayments %}
-								
+									{% for userpayment in listOfpendingPayment %}
+												<!-- this will list all the payment that are still pending -->
 											<tr>
 												<td>
 													<h2 class="table-avatar">
@@ -87,15 +87,15 @@
 														<a href="{% url 'payUSer' userpayment.id %}">{{ userpayment.account_name }} <span>{{ userpayment.account_number }}</span></a>
 													</h2>
 												</td>
-												<td>{{ userpayment.user }}</td>
+												<td>{{ userpayment.user }}dd</td>
 												<td>${{ userpayment.amount }}</td>
 												<td>{{ userpayment.date_requested }}</td>
 												{% if userpayment.isPaid  %}
-												<td><span class="badge badge-pill bg-success-light">Active</span></td>
+												<td><span class="badge badge-pill bg-success-light">Paid</span></td>
 															
 
 												{% else %}
-												<td><span class="badge badge-pill bg-danger-light">Inactive</span></td>
+												<td><span class="badge badge-pill bg-danger-light">Not Paid</span></td>
 
 												{% endif %}
 											

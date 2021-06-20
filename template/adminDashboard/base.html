@@ -69,12 +69,12 @@
 				<ul class="nav user-menu">
 				
 					<!-- Flag -->
-					<li class="nav-item dropdown has-arrow flag-nav">
+					<!-- <li class="nav-item dropdown has-arrow flag-nav">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
 							<img src="{% static 'adminDashboard/assets/img/flags/us.png' %}" alt="" height="20"> <span>English</span>
 						</a>
 
-					</li>
+					</li> -->
 					<!-- /Flag -->
 					
 					<!-- Notifications -->
@@ -85,14 +85,14 @@
 					<li class="nav-item dropdown has-arrow main-drop">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<span class="user-img">
-								<img src="{% static 'adminDashboard/assets/img/profiles/avatar-01.jpg' %}" alt="">
+								<!-- <img src="{{ user.userPics.url }}" alt=""> -->
 								<span class="status online"></span>
 							</span>
-							<span>Admin</span>
+							<span>{{ user.email }}</span>
 						</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="profile.html"><i data-feather="user" class="mr-1"></i> Profile</a>
-							<a class="dropdown-item" href="settings.html"><i data-feather="settings" class="mr-1"></i> Settings</a>
+							<!-- <a class="dropdown-item" href="profile.html"><i data-feather="user" class="mr-1"></i> Profile</a> -->
+							<!-- <a class="dropdown-item" href="settings.html"><i data-feather="settings" class="mr-1"></i> Settings</a> -->
 							<a class="dropdown-item" href="{% url 'logout' %}"><i data-feather="log-out" class="mr-1"></i> Logout</a>
 						</div>
 					</li>
@@ -111,29 +111,29 @@
 						<ul>
 							<li class="menu-title"><span>Main</span></li>
 							<li class="active">
-								<a href="index.html"><i data-feather="home"></i> <span>Dashboard</span></a>
+								<a href="{% url 'adminDasboard' %}"><i data-feather="home"></i> <span>Dashboard</span></a>
 							</li>
 							<li>
-								<a href="customers.html"><i data-feather="users"></i> <span>Customers</span></a>
+								<a href="{% url 'listofpendingpayment' %}"><i data-feather="credit-card"></i> <span>List of Pending Payment</span></a>
 							</li>
 							<li>
-								<a href="payments.html"><i data-feather="credit-card"></i> <span>Payments</span></a>
+								<a href="{% url 'allUsers' %}"><i data-feather="users"></i> <span>Users</span></a>
 							</li>
-							<li>
+							<!-- <li>
 								<a href="settings.html"><i data-feather="settings"></i> <span>Settings</span></a>
-							</li>
-							<li class="submenu">
+							</li> -->
+							<!-- <li class="submenu">
 								<a href="#"><i data-feather="grid"></i> <span> Application</span> <span class="menu-arrow"></span></a>
 								<ul>
 									<li><a href="chat.html">Chat</a></li>
 									<li><a href="calendar.html">Calendar</a></li>
 									<li><a href="inbox.html">Email</a></li>
 								</ul>
-							</li>
-							<li class="menu-title"> 
+							</li> -->
+							<!-- <li class="menu-title"> 
 								<span>Pages</span>
-							</li>
-							<li> 
+							</li> -->
+							<!-- <li> 
 								<a href="profile.html"><i data-feather="user-plus"></i> <span>Profile</span></a>
 							</li>
 							<li class="submenu">
@@ -144,7 +144,7 @@
 									<li><a href="forgot-password.html"> Forgot Password </a></li>
 									<li><a href="lock-screen.html"> Lock Screen </a></li>
 								</ul>
-							</li>
+							</li> -->
 
 						</ul>
 					</div>
