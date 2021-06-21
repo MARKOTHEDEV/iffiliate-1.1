@@ -25,6 +25,8 @@ urlpatterns = [
     path('',include('iffliateLanding_page.urls')),
     # this url leads straight to the user Dashborad
     path('user/',include('users.urls')),
+    #django all auth  
+    path('accounts/', include('allauth.urls')),
 ]
 
 

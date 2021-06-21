@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
 
     # local files
@@ -49,6 +50,15 @@ INSTALLED_APPS = [
     # third party api
     'rest_framework',
    
+
+    #defualt apps for django all auth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',    
+
+    # providers i will need e.g facebook
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -165,4 +175,7 @@ PAYSTACK_PUBLIC_KEY  = 'pk_test_17925fc67c5b6da3dbef32feab9afccb0d175729'
 
 
 
+
+# this area is django all auth specfic settings
+SITE_ID = 1
 

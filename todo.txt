@@ -131,8 +131,8 @@ show all customers that requested for a payment --  done
 create logout view the link should be at the dashboard and home page --  done 
 
 PRELOADER -- for logining or any rest calls -not done
-login with socials
-forgot password
-error page for transaction
+3)login with socials
+2)forgot password
+1)error page for transaction -- use logout template
 fill all links
 IF U WANT TO UPLOAD TO HEROKU PLEASE UNCOMMENT UR CRON JOBS!!!
