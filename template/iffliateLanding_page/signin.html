@@ -1,5 +1,7 @@
 {% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
+
 <html lang="en"> 
 
 <head>
@@ -90,6 +92,7 @@
 					
 					<div class="social-auth text-center mx-auto">                        
 						<ul class="social-buttons list-unstyled">
+							<a href="{% provider_login_url 'google' %}">login with google</a>
 							<li class="mb-3">
 								<a href="#" class="btn btn-social btn-block">
 									<span class="icon-holder"><img src="{% static '/iffliateLanding_page/assets/images/social/google-logo.svg' %}" alt=""></span>
