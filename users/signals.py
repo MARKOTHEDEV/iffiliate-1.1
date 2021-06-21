@@ -4,11 +4,12 @@ from datetime import timedelta
 import datetime
 from django.db.models.signals import post_save,pre_save
 from django.dispatch import receiver
+from  allauth.account.signals  import user_signed_up
+from django.contrib.auth import get_user_model
 
 
 today = datetime.date.today()
 # print(today)
-
 
 
 
@@ -30,6 +31,18 @@ def create_subscription(sender, instance,created, *args, **kwargs):
 
         # sub.delete()
 
+@receiver(user_signed_up)
+def give_socialUser_freeMode(sender,request, user,**kwargs):
+    """
+        this function does the same job that users.serializers.UserSerializers.create method  does
+        since this is a new user he has to have a free membership first
+        before he can purchase a paid membership
+        #NOTE THIS SIGNAL IS FOR GOOGLE AUTH USERS!!
+    """
+
+    Freesub = models.Membership.objects.get(membership_type='Free')
+    user_membership = models.UserMembership.objects.create(user=user,membership=Freesub)
+    # print("successfully create a user using django allauth signals")
 
 
 from django.dispatch import Signal
