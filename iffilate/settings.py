@@ -191,8 +191,26 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+"the line below tells django that ="
+" 'Hey any social auth u use use the email to authenticate'"
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+"Hey if u using a social auth the data we need the most is an email"
 ACCOUNT_EMAIL_REQUIRED = True
+"hey am not going to accept duplicate email Let that stick in your head "
 ACCOUNT_UNIQUE_EMAIL = True
+"NOMARLY django uses username but i wrote a custom user model to use email ass authentication"
+# so i set it to none just to override the defualt behaviour
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+"Since my custom model dont need a Username is authenticate so we dont need the username.."
 ACCOUNT_USERNAME_REQUIRED = False
+
+
+
+"The code below has to do with enabling django to send email to USers"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ['website_email']
+EMAIL_HOST_PASSWORD = os.environ['website_email_password']
+EMAIL_USE_TLS = True
