@@ -25,7 +25,8 @@ urlpatterns = [
     path('blog/', views.BlogListView.as_view(), name='blog-list-view'),
     path('blog-detail/<int:pk>/', views.BlogDetailView.as_view(), name='blog-detail'),
 
-
+    # error page url
+    path('error/', views.errorpage, name='errorpage'),
 
     # this path is a funtion based api view that takes care of payment
     path('accept-payment/', views.accept_paymentfor_anyplan),

@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en"> 
+
+<head>
+	<title>Iffiliate - Sign in</title>
+	
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Sign in">
+	<meta name="author" content="Raphael">    
+	<link rel="shortcut icon" href="{% static '/iffliateLanding_page/assets/images/favicon.png' %}"> 	
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&amp;display=swap" rel="stylesheet">
+	
+	<!-- FontAwesome JS-->	
+	<script defer src="{% static '/iffliateLanding_page/assets/fontawesome/js/all.min.js' %}"></script>
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" href="{% static '/iffliateLanding_page/assets/dripicons/webfont/webfont.css' %}">
+
+	<!-- Theme CSS -->  
+	<link id="theme-style" rel="stylesheet" href="{% static '/iffliateLanding_page/assets/css/theme.css' %}">
+
+	<style>
+		.message.success{
+			color: greenyellow;
+		}
+		.message.error{
+			color: #f65f34;
+		}
+	</style>
+</head> 
+
+<body>    
+	
+	<div class="signin-section auth-section">
+		<div class="curve-container">
+			<div class="curve-top"></div>
+			<div class="curve-bottom"></div>
+		</div><!--//curve-container--> 
+		<div class="container">
+			<div class="auth-option over-curve text-center text-lg-right pt-4 mb-5">
+				Don't have an account?<a class="ml-2 more-link" href="{% url 'home' %}">Go Home<strong>&rarr;</strong></a>              
+			</div>
+			<div class="single-col-max mx-auto over-curve px-5">  
+				
+				<div class="site-logo mb-4 text-center"><a class="navbar-brand" href="{% url 'home' %}"><img class="logo-icon mr-2" src="{% static '/iffliateLanding_page/assets/images/Logo.png' %}" alt="logo"></a></div>   
+
+				<div class="auth-wrapper mx-auto">
+					<h2 class="auth-heading text-center mb-4">Some Error has occoured );</h2>
+
+					
+				</div><!--//auth-wrapper-->
+			</div><!--//single-col-max-->
+		</div><!--//container-->
+	</div><!--//signin-section-->
+	
+	
+
+	<!-- Javascript -->          
+	<script src="{% static '/iffliateLanding_page/assets/plugins/jquery-3.4.1.min.js' %}"></script>
+	<script src="{% static '/iffliateLanding_page/assets/plugins/popper.min.js' %}"></script>
+	<script src="{% static '/iffliateLanding_page/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>  
+	
+	
+
+</body>
+
+</html> 
+

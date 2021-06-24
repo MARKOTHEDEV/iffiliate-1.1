@@ -69,6 +69,8 @@ def contactUs(request):
 def signup(request):
     return render(request,'iffliateLanding_page/signup.html')
 
+def errorpage(request):
+    return render(request,'iffliateLanding_page/errorPage.html')
 
 class CreateUserApi(CreateAPIView):
     'this view assit the signup funtion but it has just one job create a user'
