@@ -92,20 +92,20 @@
 					
 					<div class="social-auth text-center mx-auto">                        
 						<ul class="social-buttons list-unstyled">
-							<a href="{% provider_login_url 'google' %}">login with google</a>
+						
 							<li class="mb-3">
-								<a href="#" class="btn btn-social btn-block">
+								<a href="{% provider_login_url 'google' %}" class="btn btn-social btn-block">
 									<span class="icon-holder"><img src="{% static '/iffliateLanding_page/assets/images/social/google-logo.svg' %}" alt=""></span>
 									<span class="btn-text">Sign in with Google</span>
 								</a>
 							</li>
-							<li class="mb-3"><a href="#" class="btn btn-social btn-block"><span class="icon-holder"><span class="icon-holder"><img src="{% static '/iffliateLanding_page/assets/images/social/facebook-seeklogo.com.svg' %}" alt=""></span></span><span class="btn-text">Sign in with Facebook</span></a></li>
+							<!-- <li class="mb-3"><a href="#" class="btn btn-social btn-block"><span class="icon-holder"><span class="icon-holder"><img src="{% static '/iffliateLanding_page/assets/images/social/facebook-seeklogo.com.svg' %}" alt=""></span></span><span class="btn-text">Sign in with Facebook</span></a></li> -->
 						</ul>
 					</div><!--//social-auth-->
 					
 					<div class="auth-footer py-5 mt-5 text-center">
 						<div class="copyright mb-2">
-							 Copyright &copy; <a class="theme-link" href="index.html" target="_blank">IFFILIATE</a>
+							 Copyright &copy; <a class="theme-link" href="{% url 'home' %}" >IFFILIATE</a>
 						</div>
 						<div class="legal">
 							<ul class="list-inline">

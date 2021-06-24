@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en"> 
 
@@ -85,12 +86,12 @@
 							<div class="social-auth text-center mx-auto">                        
 								<ul class="social-buttons list-unstyled">
 									<li class="mb-3">
-										<a href="#" class="btn btn-social btn-block">
+										<a href="{% provider_login_url 'google' %}" class="btn btn-social btn-block">
 											<span class="icon-holder"><img src="{% static '/iffliateLanding_page/assets/images/social/google-logo.svg' %}" alt=""></span>
 											<span class="btn-text">Sign up with Google</span>
 										</a>
 									</li>
-									<li class="mb-3"><a href="#" class="btn btn-social btn-block"><span class="icon-holder"><span class="icon-holder"><img src="{% static '/iffliateLanding_page/assets/images/social/facebook-seeklogo.com.svg' %}" alt=""></span></span><span class="btn-text">Sign up with Facebook</span></a></li>
+									<!-- <li class="mb-3"><a href="#" class="btn btn-social btn-block"><span class="icon-holder"><span class="icon-holder"><img src="{% static '/iffliateLanding_page/assets/images/social/facebook-seeklogo.com.svg' %}" alt=""></span></span><span class="btn-text">Sign up with Facebook</span></a></li> -->
 								</ul>
 							</div><!--//social-auth-->
 							
