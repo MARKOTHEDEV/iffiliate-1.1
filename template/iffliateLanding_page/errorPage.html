@@ -51,6 +51,7 @@
 
 				<div class="auth-wrapper mx-auto">
 					<h2 class="auth-heading text-center mb-4">Some Error has occoured );</h2>
+                    <p id="errorText" style="text-align: center;"></p>
 
 					
 				</div><!--//auth-wrapper-->
@@ -61,12 +62,24 @@
 	
 
 	<!-- Javascript -->          
-	<script src="{% static '/iffliateLanding_page/assets/plugins/jquery-3.4.1.min.js' %}"></script>
+	
+    
+    <script>
+        const errorText = document.querySelector('#errorText')
+        function showerror(){
+            const message = sessionStorage.getItem('errorText')
+            //if message is null retun empty sting
+            errorText.innerText=  message !==null  ?message :''
+        }
+
+
+        showerror(errorText)
+    </script>
+
+    <script src="{% static '/iffliateLanding_page/assets/plugins/jquery-3.4.1.min.js' %}"></script>
 	<script src="{% static '/iffliateLanding_page/assets/plugins/popper.min.js' %}"></script>
 	<script src="{% static '/iffliateLanding_page/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>  
 	
-	
-
 </body>
 
 </html> 

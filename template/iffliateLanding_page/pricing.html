@@ -358,6 +358,8 @@
 				  })
 				  .catch((error) => {
 					console.error('Error:', error);
+					sessionStorage.setItem('errorText','Error Info: Payment did not Go through ...')
+					window.location.href = "{% url 'errorpage' %}"
 				  });
 
 

@@ -199,13 +199,13 @@ def accept_paymentfor_anyplan(request):
     'first after getting a plan then we fetch an membership instance from the database'
     fetch_membership =  userModels.Membership.objects.filter(membership_type=plan).exists()
 
-    print(fetch_membership)
+    # print(fetch_membership)
     'if the plan exist then we can proceed else redrect user back to the subscribe page where there is plan buttons'
     if fetch_membership == False:
         return redirect('subcribe')
     'so we get an instace of the membership model e.g free,medium,gold '
     membership =userModels.Membership.objects.get(membership_type=plan)
-    print('plan price:',membership.price)
+    # print('plan price:',membership.price)
     'this just turning or price to kobo'
     price = float(membership.price)*100 # We need to multiply the price by 100 because Paystack receives in kobo and not naira.
     price = int(price)
