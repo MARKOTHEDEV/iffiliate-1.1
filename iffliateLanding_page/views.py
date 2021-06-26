@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect,resolve_url,redirect,HttpResponseRedirect
 from django.views.generic import ListView,DetailView, detail
 from django.contrib.auth.views import LoginView
 # Create your views here.
@@ -8,7 +8,6 @@ from rest_framework.views import APIView
 from users import serializers
 from users import models as userModels
 from django.contrib.auth import authenticate, get_user_model, login
-from django.shortcuts import resolve_url,redirect,HttpResponseRedirect
 from django.conf import settings
 import datetime,requests,json
 from rest_framework.response import Response
@@ -16,10 +15,24 @@ from datetime import datetime as dt
 from datetime import timedelta
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-
-
-
 from rest_framework.decorators import api_view
+from django.contrib.auth import get_user_model
+"password rest import"
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.tokens import default_token_generator 
+from django.core.mail import BadHeaderError, send_mail
+from django.db.models import Q
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth import views as djangopassword_restviews
+from django.core.exceptions import ValidationError
+from django.utils.http import ( urlsafe_base64_decode,)
+
+
+"End of password rest import"
+
 
 
 TODAY = datetime.date.today()
@@ -79,6 +92,57 @@ class CreateUserApi(CreateAPIView):
     serializer_class = serializers.UserSerializers
 
 
+def password_reset_request(request):
+    if request.method == "POST":
+        # print(request.POST)
+        domain = request.headers['Host']
+        password_reset_form = PasswordResetForm(request.POST)
+        if password_reset_form.is_valid():
+            data = password_reset_form.cleaned_data['email']
+            associated_users = get_user_model().objects.filter(email=data)
+            # You can use more than one way like this for resetting the password.
+            # ...filter(Q(email=data) | Q(username=data))
+            # but with this you may need to change the password_reset form as well.
+            # print('associated_users',associated_users)
+            if associated_users.exists():
+                for user in associated_users:
+                    subject = "Password Reset Requested"
+                    email_template_name = "registration/password_reset_subject.txt"
+                    c = {
+                        "email": user.email,
+                        'domain': domain,
+                        'site_name': 'Interface',
+                        "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+                        "user": user,
+                        'token': default_token_generator.make_token(user),
+                        'protocol': 'http',
+                    }
+                    email = render_to_string(email_template_name, c)
+                    try:
+                        send_mail(subject, email, settings.EMAIL_HOST_USER, [user.email])
+                        # print("email sent")
+                    except BadHeaderError:
+                        return HttpResponse('Invalid header found.')
+                    return redirect("password_reset_done")
+    password_reset_form = PasswordResetForm()
+
+    return render(request=request, template_name="registration/password_reset_form.html",
+                  context={"password_reset_form": password_reset_form})
+
+
+class CustomPasswordResetConfirmView(djangopassword_restviews.PasswordResetConfirmView):
+    
+    template_name ='registration/password_reset_confirm.html'
+
+    def get_user(self, uidb64):
+        try:
+            # urlsafe_base64_decode() decodes to bytestring
+            uid = urlsafe_base64_decode(uidb64).decode()
+            user = get_user_model().objects.get(pk=uid)
+          
+        except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist, ValidationError):
+            user = None
+        return user
 
 # def signin(request):
 #     return render(request,'iffliateLanding_page/signin.html')

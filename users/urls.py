@@ -20,7 +20,6 @@ urlpatterns = [
     
 
 
-
     # TEST URL DOWN HERE
     path('mywebhook/',user_views.payUserWebHook)
 ]

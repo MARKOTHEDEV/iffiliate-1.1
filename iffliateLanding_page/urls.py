@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path,include
 from iffliateLanding_page import views
 from django.contrib.auth.views import LoginView, LogoutView
-
+from django.contrib.auth import views as password_restviews
 
 
 # app_name ='iffliate_landingPage'
@@ -31,4 +31,10 @@ urlpatterns = [
     # this path is a funtion based api view that takes care of payment
     path('accept-payment/', views.accept_paymentfor_anyplan),
     path('mycallback/', views.mycallback),
+
+    path('password_reset/',views.password_reset_request,name='custom_password_reset'),
+    path('reset-password/reset/<uidb64>/<token>/',views.CustomPasswordResetConfirmView.as_view()),
+     path('reset-password/', include('django.contrib.auth.urls')),
+
+
 ]

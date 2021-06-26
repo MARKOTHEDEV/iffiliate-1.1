@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views 
 
 
 urlpatterns = [
@@ -27,6 +28,10 @@ urlpatterns = [
     path('user/',include('users.urls')),
     #django all auth  
     path('accounts/', include('allauth.urls')),
+
+    # this url is to reset the user password
+    #  path('reset-password/', include('django.contrib.auth.urls')),
+    # path('password_reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset_form.html'), name='password_reset'),
 ]
 
 
