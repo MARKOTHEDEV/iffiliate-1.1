@@ -325,12 +325,20 @@ def payUserWebHook(request):
     "when we get the webhook data we check if it transfer.success or transfer.failed Then we decide to set isPaid"
     if request.method == 'POST':
         paystackResponse = json.loads(request.body)
-        "check it this instance exits in the UserRequestPayment Table if true set it the paid true"        
-        if  models.UserRequestPayment.objects.filter(recipient_code=paystackResponse['data']['recipient']['recipient_code'],isPaid=False).exists():
-            user_request_payment_instance = models.UserRequestPayment.objects.get(recipient_code=paystackResponse['data']['recipient']['recipient_code'],isPaid=False)
-            user_request_payment_instance.isPaid=True
-            user_request_payment_instance.save()
-            return HttpResponse('User payment request has been paid and confirmed')
+        if paystackResponse.get('event') == 'transfer.success' and paystackResponse['data']['reason']=='Payment to Iffilate User':
+            "check it this instance exits in the UserRequestPayment Table if true set it the paid true"
+            "also check if the payment is payment for a user"
+            if  models.UserRequestPayment.objects.filter(recipient_code=paystackResponse['data']['recipient']['recipient_code'],isPaid=False).exists():
+                user_request_payment_instance = models.UserRequestPayment.objects.get(recipient_code=paystackResponse['data']['recipient']['recipient_code'],isPaid=False)
+                user_request_payment_instance.isPaid=True
+                user_request_payment_instance.save()
+                return HttpResponse('User payment request has been paid and confirmed')
+        
     return HttpResponseServerError("something went wrong")
 
 # 'ADMIN USER DASHBOARD CODE END'
+# {'event': 'transfer.success', 
+# 'data': {'amount': 39800, 'currency': 'NGN',
+#  'domain': 'test', 'failures': None, 'id': 66749935,
+#   'integration': {'id': 579669, 'is_live': False,
+#    'business_name': 'MARKOTHEDEV'}, 'reason': 'Payment to Iffilate User', 'reference': 'vxlx7sqjob', 'source': 'balance', 'source_details': None, 'status': 'success', 'titan_code': None, 'transfer_code': 'TRF_hfqbexnumsct9qd', 'transferred_at': None, 'recipient': {'active': True, 'currency': 'NGN', 'description': None, 'domain': 'test', 'email': None, 'id': 14385883, 'integration': 579669, 'metadata': None, 'name': 'OGECHUKWU MATTHEW NWOKOLO', 'recipient_code': 'RCP_b5brnbx0fz516w4', 'type': 'nuban', 'is_deleted': False, 'details': {'authorization_code': None, 'account_number': '2209134092', 'account_name': 'OGECHUKWU MATTHEW NWOKOLO', 'bank_code': '057', 'bank_name': 'Zenith Bank'}, 'created_at': '2021-05-17T19:28:26.000Z', 'updated_at': '2021-05-17T19:28:26.000Z'}, 'session': {'provider': None, 'id': None}, 'created_at': '2021-06-28T23:22:42.000Z', 'updated_at': '2021-06-28T23:22:42.000Z'}}
