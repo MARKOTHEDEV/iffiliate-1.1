@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # local files
     'iffliateLanding_page.apps.IffliatelandingPageConfig',
     'users.apps.UsersConfig',
+    'raffleDraw.apps.RaffledrawConfig',
 
 
 
