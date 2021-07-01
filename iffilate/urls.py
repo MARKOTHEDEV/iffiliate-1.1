@@ -28,7 +28,8 @@ urlpatterns = [
     path('user/',include('users.urls')),
     #django all auth  
     path('accounts/', include('allauth.urls')),
-
+    # this url is for the last Raffle Draw app
+    path('raffle/',include('raffleDraw.urls'))
     # this url is to reset the user password
     #  path('reset-password/', include('django.contrib.auth.urls')),
     # path('password_reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset_form.html'), name='password_reset'),

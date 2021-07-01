@@ -139,9 +139,13 @@ NOT DONE
 fill all links
 PRELOADER -- for logining or any rest calls -not done
 raffle draw = :
-                user can create an instace if the raffle is open --SO EACH instace SHOULD HAVE A DATE SO WE CAN GROUP THEM INTO BATCHES
-                they will pay
-                and i will ranomly pick with python code
-                then send that user his money
+create nessacry template
+    coding steps
+    create a page were user can enter the amount they want to bet on
+    after they click play
+    an RaffleDrawPlayer instance will be crated
+    they would be prompted to pay that amount to paystack before 
+    before we set the is payed to true the webhook has to confirm success
+    then after 22 hours we randomly pick the winner and set the batch to complete
 
 IF U WANT TO UPLOAD TO HEROKU PLEASE UNCOMMENT UR CRON JOBS!!!

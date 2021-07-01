@@ -19,6 +19,7 @@ class RaffleDrawPlayer(models.Model):
     user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     raffle_draw_batch = models.ForeignKey(RaffleDrawBatch,on_delete=models.CASCADE,null=True)
     account_number = models.CharField(max_length=30,blank=True)
+    isPayed = models.BooleanField(default=False)
     
 
     def __str__(self):
