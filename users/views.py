@@ -324,7 +324,9 @@ class PayUser(SingleObjectMixin,View):
 def payUserWebHook(request):
     "THIS IS OFFICALLY OUR MAIN PAYSTACK WEBHOOK"
     if request.method == 'POST':
+        print("Web Hook wAs triggered")
         paystackResponse = json.loads(request.body)
+        print(paystackResponse)
         if paystackResponse.get('event') == 'transfer.success' and paystackResponse['data']['reason']=='Payment to Iffilate User':
             # "when we get the webhook data we check if it transfer.success or transfer.failed Then we decide to set isPaid"
             "check it this instance exits in the UserRequestPayment Table if true set it the paid true"

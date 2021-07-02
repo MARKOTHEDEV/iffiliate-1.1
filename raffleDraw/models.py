@@ -20,7 +20,7 @@ class RaffleDrawPlayer(models.Model):
     raffle_draw_batch = models.ForeignKey(RaffleDrawBatch,on_delete=models.CASCADE,null=True)
     isPayed = models.BooleanField(default=False)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00 ,blank =True)
-    
+    payment_reference = models.CharField(max_length=30,blank=True)
 
     def __str__(self):
         return self.user.email

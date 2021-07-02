@@ -141,7 +141,9 @@ PRELOADER -- for logining or any rest calls -not done
 raffle draw = :
 create nessacry template
     coding steps
-    create a page were user can enter the amount they want to bet on
+    create a page were user can enter the amount they want to bet on -- done but not functional:
+                when submited we create an instance of a player but we dont add him to a batch yet
+                when payment is confirmed we can then add..
     after they click play
     an RaffleDrawPlayer instance will be crated
     they would be prompted to pay that amount to paystack before 

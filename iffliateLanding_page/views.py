@@ -329,6 +329,13 @@ def mycallback(request):
     # in the basic term it the payment gete way call back funtion
     reference = request.GET.get('reference')
     print(reference)
+    '''
+        this referece is unique like an id 
+            so when a payment is payed in another app an a referece is generated
+            we will check if the referece is located in the PayHistory then that means 
+            the person payed for a sub
+            
+    '''
     # if u remeber when we were handling paymnet we stored the refernce in the payment history
     checkpay = userModels.PayHistory.objects.filter(paystack_charge_id=reference).exists()
     if checkpay == False:

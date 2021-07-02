@@ -6,5 +6,6 @@ from . import views
 
 
 urlpatterns = [
-    path('registerforRaffle/', views.registerFor_RaffleDraw, name='register-for-raffle'),
+    path('registerforRaffle/', views.registerFor_RaffleDraw.as_view(), name='register-for-raffle'),
+    path('raffleDraw-callback/', views.raffleDraw_callback,name='raffleDraw-callback')
 ]
