@@ -148,8 +148,9 @@ create nessacry template
     an RaffleDrawPlayer instance will be crated -- done
     they would be prompted to pay that amount to paystack before  --done
     before we set the is payed to true the webhook has to confirm success -- done
-    then after 22 hours we randomly pick the winner and set the batch to complete
+    then after 22 hours we randomly pick the winner and set the batch to complete -done
 WE DONT NEED AN ACCOUNT NUMBER BECAUSE WHEN DEY WIN WE JUST ADD THE POINT TO THEIR DASHBOAORD 
+ERROOR !! THE RAFFLE PAYMENT IS NOT SAVING IN THE USER MODE\
 Designs
     When count down we show the winners of the last Round
 

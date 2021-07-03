@@ -1,4 +1,5 @@
 from raffleDraw.models import RaffleDrawPlayer,RaffleDrawBatch
+from django.contrib.auth import get_user_model
 import random
 
 
@@ -16,8 +17,15 @@ def chooseRaffleDraw_winner_randomly():
         # now let get the related players
         allPlayers  = currentBatch.raffledrawplayer_set.all()
         randomWinner = random.choice(allPlayers)
+        allPlayersMoney = sum([player.amount  for player in allPlayers])
+        # print(allPlayersMoney)
+        # randomWinner.user.userEarnings = 
+        user = get_user_model().objects.get(email=randomWinner.user)
+        user.userEarnings =allPlayersMoney
+        user.save()
         randomWinner.is_winner = True
         randomWinner.save()
+        
         'we just close the batch That means the competiton is over'
         currentBatch.is_close = True
         currentBatch.save()
