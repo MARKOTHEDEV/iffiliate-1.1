@@ -38,9 +38,9 @@ class registerFor_RaffleDraw(LoginRequiredMixin,FormView):
             player = models.RaffleDrawPlayer.objects.create(
                     user = self.request.user,
                     raffle_draw_batch= raffle_batch,
-                    isPayed = False,
                     amount = amount,
                     payment_reference =response['reference'])
+
             player.save()
             return HttpResponseRedirect(response['paystacklink'])
         else:
@@ -52,7 +52,7 @@ class registerFor_RaffleDraw(LoginRequiredMixin,FormView):
     
     def _Initialize_payment(self,amount,email):
         # convert it to NGN
-        amount = int(amount)
+        # amount = int(amount)
         url ='https://api.paystack.co/transaction/initialize'
         headers = {
             "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",

@@ -18,7 +18,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.http import HttpResponse,HttpResponseServerError
-
+from raffleDraw import models as raffle_model
 
 
 
@@ -324,9 +324,8 @@ class PayUser(SingleObjectMixin,View):
 def payUserWebHook(request):
     "THIS IS OFFICALLY OUR MAIN PAYSTACK WEBHOOK"
     if request.method == 'POST':
-        print("Web Hook wAs triggered")
         paystackResponse = json.loads(request.body)
-        print(paystackResponse)
+
         if paystackResponse.get('event') == 'transfer.success' and paystackResponse['data']['reason']=='Payment to Iffilate User':
             # "when we get the webhook data we check if it transfer.success or transfer.failed Then we decide to set isPaid"
             "check it this instance exits in the UserRequestPayment Table if true set it the paid true"
@@ -336,6 +335,16 @@ def payUserWebHook(request):
                 user_request_payment_instance.isPaid=True
                 user_request_payment_instance.save()
                 return HttpResponse('User payment request has been paid and confirmed')
-
+       
+        if paystackResponse.get('event') == 'charge.success' and paystackResponse['data']['metadata']['custom_fields']['paymentFor'] =='raffle_game' and raffle_model.RaffleDrawPlayer.objects.filter(payment_reference=paystackResponse['data']['reference']).exists() == True:
+            """this if statement is to check 
+                1) if the payment was a charge.succesful=meanig the user sent money to iffliate and it was succefull
+                2) also if the payment was for  raffle_game
+            'then we check if the payer exist'
+            """
+            player = raffle_model.RaffleDrawPlayer.objects.get(payment_reference=paystackResponse['data']['reference'])
+            player.isPayed =True
+            player.save()
+            
+            
     return HttpResponseServerError("something went wrong")
-
