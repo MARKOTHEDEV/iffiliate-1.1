@@ -21,6 +21,7 @@ class RaffleDrawPlayer(models.Model):
     isPayed = models.BooleanField(default=False)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00 ,blank =True)
     payment_reference = models.CharField(max_length=30,blank=True)
+    is_winner = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.email

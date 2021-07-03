@@ -345,6 +345,7 @@ def payUserWebHook(request):
             player = raffle_model.RaffleDrawPlayer.objects.get(payment_reference=paystackResponse['data']['reference'])
             player.isPayed =True
             player.save()
+            return HttpResponse('User payment for raffle draw has been paid and confirmed')
             
             
     return HttpResponseServerError("something went wrong")

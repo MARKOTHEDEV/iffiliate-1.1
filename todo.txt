@@ -145,11 +145,11 @@ create nessacry template
                 when submited we create an instance of a player but we dont add him to a batch yet
                 when payment is confirmed we can then add..
     after they click play
-    an RaffleDrawPlayer instance will be crated
-    they would be prompted to pay that amount to paystack before 
-    before we set the is payed to true the webhook has to confirm success
+    an RaffleDrawPlayer instance will be crated -- done
+    they would be prompted to pay that amount to paystack before  --done
+    before we set the is payed to true the webhook has to confirm success -- done
     then after 22 hours we randomly pick the winner and set the batch to complete
-WE DONT NEED AN ACCOUNT NUMBER BECAUSE WHEN DEY WIN WE JUST ADD THE POINT TO THEIR DASHBOAORD
+WE DONT NEED AN ACCOUNT NUMBER BECAUSE WHEN DEY WIN WE JUST ADD THE POINT TO THEIR DASHBOAORD 
 Designs
     When count down we show the winners of the last Round
 

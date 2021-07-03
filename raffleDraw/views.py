@@ -52,7 +52,8 @@ class registerFor_RaffleDraw(LoginRequiredMixin,FormView):
     
     def _Initialize_payment(self,amount,email):
         # convert it to NGN
-        # amount = int(amount)
+        amount = float(amount)*100
+        amount = int(amount)
         url ='https://api.paystack.co/transaction/initialize'
         headers = {
             "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
