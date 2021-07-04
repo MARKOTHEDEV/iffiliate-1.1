@@ -324,8 +324,12 @@ class PayUser(SingleObjectMixin,View):
 def payUserWebHook(request):
     "THIS IS OFFICALLY OUR MAIN PAYSTACK WEBHOOK"
     if request.method == 'POST':
+        def convert_kobo_to_naira(kobo):
+            kobo = float(kobo)/100
+            kobo = int(kobo)
+            return kobo
         paystackResponse = json.loads(request.body)
-
+        # print(paystackResponse)
         if paystackResponse.get('event') == 'transfer.success' and paystackResponse['data']['reason']=='Payment to Iffilate User':
             # "when we get the webhook data we check if it transfer.success or transfer.failed Then we decide to set isPaid"
             "check it this instance exits in the UserRequestPayment Table if true set it the paid true"
@@ -343,6 +347,8 @@ def payUserWebHook(request):
             'then we check if the payer exist'
             """
             player = raffle_model.RaffleDrawPlayer.objects.get(payment_reference=paystackResponse['data']['reference'])
+            # convert the amount from kobo to naira 
+            player.amount +=convert_kobo_to_naira(paystackResponse['data']['amount'])
             player.isPayed =True
             player.save()
             return HttpResponse('User payment for raffle draw has been paid and confirmed')

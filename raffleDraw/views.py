@@ -2,7 +2,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import (render,redirect)
 from django.urls import reverse
 import requests,json
-from django.views.generic import (View,TemplateView,FormView)
+from django.views.generic import (View,ListView,FormView,TemplateView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.conf import settings
@@ -27,7 +27,7 @@ class registerFor_RaffleDraw(LoginRequiredMixin,FormView):
     def form_valid(self,form):
         'this is the amount the user decides to pay'
         amount = form.cleaned_data['amount']
-        print(self.request.user.email)
+        # print(self.request.user.email)
         response = self._Initialize_payment(amount,self.request.user.email)
         if response['status'] == True:
             # then the request was good we gonna take the person to paystack payment getway
@@ -35,11 +35,13 @@ class registerFor_RaffleDraw(LoginRequiredMixin,FormView):
             "since the person has started the payment proccess let check if there is a batch that is open"
             raffle_batch ,created= models.RaffleDrawBatch.objects.get_or_create(is_close=False)
             "then we create a player ... and add that player to a BAtch"
-            player = models.RaffleDrawPlayer.objects.create(
+            player,isPlayercreated = models.RaffleDrawPlayer.objects.get_or_create(
                     user = self.request.user,
                     raffle_draw_batch= raffle_batch,
-                    amount = amount,
-                    payment_reference =response['reference'])
+                    # amount = amount,
+                    # payment_reference =response['reference']
+                    )
+            player.payment_reference = response['reference'] 
 
             player.save()
             return HttpResponseRedirect(response['paystacklink'])
@@ -61,6 +63,7 @@ class registerFor_RaffleDraw(LoginRequiredMixin,FormView):
         }
         data = {
             "email":email, "amount":amount,
+            'currency':'NGN',
             "metadata":{
                 "custom_fields":{"paymentFor":'raffle_game'}
             },
@@ -80,6 +83,12 @@ class registerFor_RaffleDraw(LoginRequiredMixin,FormView):
         except requests.exceptions.ConnectionError:
             return {'status':False,'message':'Network Problem'}
         
+
+
+class List_Of_AllPlayers(TemplateView):
+    template_name = 'raffleDraw/listOfRafflePlayers.html'
+    # queryset = models.RaffleDrawBatch.objects.get(is_close=False).raffledrawplayer_set.all()
+
 
 @csrf_exempt
 def raffleDraw_callback(request):

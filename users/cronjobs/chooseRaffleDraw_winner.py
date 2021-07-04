@@ -18,7 +18,7 @@ def chooseRaffleDraw_winner_randomly():
         allPlayers  = currentBatch.raffledrawplayer_set.all()
         randomWinner = random.choice(allPlayers)
         allPlayersMoney = sum([player.amount  for player in allPlayers])
-        # print(allPlayersMoney)
+        # print(allPlayersMoney)e
         # randomWinner.user.userEarnings = 
         user = get_user_model().objects.get(email=randomWinner.user)
         user.userEarnings =allPlayersMoney

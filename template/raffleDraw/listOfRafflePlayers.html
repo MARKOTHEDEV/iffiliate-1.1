@@ -1,0 +1,191 @@
+{% extends '../iffliateLanding_page/base.html' %}
+{% load static %}
+
+
+{% block title %}
+	Players
+{% endblock title %}
+	
+
+{% block content %}
+<!--  -->
+ {{ user }}
+	<div class="hero-wrapper">
+		<div class="curve-container">
+			<div class="curve-top"></div>
+			<div class="curve-bottom"></div>
+		</div><!--//curve-container-->
+
+
+		{% include '../iffliateLanding_page/partials/nav.html' %}
+
+
+	
+
+
+			{% if messages %}
+	<ul class="messages" style="background-color: #f65f34;width:100%;color:white;padding:1.2rem;font-size:3rem ;text-align:center;">
+		{% for message in messages %}
+		<li class="{{ message.tags }}" style="color: white;list-style-type:none;">{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+			
+		
+
+							<!-- tell user that he is not eiligble to sub scribe -->
+							<section class="pricing-header page-header over-curve py-3 py-md-5">
+								<div class="container text-center">	
+									<div class="single-col-max mx-auto">	   
+										<h1 class="page-headline mb-3">Choose Your Plan</h1>
+										<div class="page-tagline mb-3">Intro goes here lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eros quam, suscipit at ultrices ut, iaculis sit amet tellus. Phasellus accumsan interdum purus non dapibus.</div>
+									</div><!--//single-col-max-->
+									
+									<!--
+									<a class="news-banner shadow mb-5" href="#" >
+										<span class="badge badge-success badge-new mr-2 mb-2 mb-md-0">NEW</span>
+										<br class="d-block d-lg-none">
+										<span class="news-text mr-2">Announce news using this widget lorem ipsum dolor sit amet.</span>
+										<span class="link-arrow"><i class="fas fa-chevron-right"></i></span>
+									</a><!--//news-banner-->
+									
+									<div class="plans-wrapper pb-5 py-lg-5 z-index-10 position-relative">
+										<div id="pricing-tabs" class="pricing-tabs d-block d-lg-none mb-3 ">
+											<a href="#" class="pricing-tab active mb-2 shadow-sm" data-target="pricing-1-data">Bronze</a>	           
+											<a href="#" class="pricing-tab mb-2" data-target="pricing-2-data">Silver</a>
+											<a href="#" class="pricing-tab" data-target="pricing-3-data">Gold</a>
+										</div><!--//pricing-tabs-->
+					
+										<table id="pricing-table" class="pricing-table shadow rounded pt-5 box">
+											<thead>
+												<tr class="tr-plan">
+													<th class="pricing-0-data mobile-is-hidden">
+														<th class="pricing-1-data pricing-plan-desc">
+															<div class="pricing-data-header">
+																<div class="pricing-plan-name mb-2">Bronze</div>
+																<div class="pricing-figure">
+																	<span class="currency">₦</span>
+																	<span class="number">3k</span>
+																	<span class="unit">/ mo</span>
+																</div><!--//pricing-figure-->
+																
+																<div class="pricing-cta mb-3">
+																	<a class="btn btn-gradient"  data-bronze="Bronze">Subscribe</a>
+																</div><!--//pricing-cta-->
+																
+															</div><!--//pricing-data-header-->
+														</th>
+														<th class="pricing-2-data pricing-plan-desc mobile-is-hidden position-relative">
+															<div class="pricing-data-header">
+																<div class="pricing-label position-absolute rounded-top d-none d-lg-block">MOST POPULAR</div>
+																<div class="pricing-plan-name mb-2">Silver</div>
+																<div class="pricing-figure">
+																	<span class="currency">₦</span>
+																	<span class="number">7k</span>
+																	<span class="unit">/ mo</span>
+																</div><!--//pricing-figure-->
+																
+																<div class="pricing-cta mb-3">
+																	<a class="btn btn-gradient"  data-silver="Silver">Subscribe</a>
+																</div><!--//pricing-cta-->
+																
+															</div><!--//pricing-data-header-->
+														</th>
+														<th class="pricing-3-data pricing-plan-desc mobile-is-hidden">
+															<div class="pricing-data-header">
+																<div class="pricing-plan-name mb-2">Gold</div>
+																<div class="pricing-figure">
+																	<span class="currency">₦</span>
+																	<span class="number">14k</span>
+																	<span class="unit">/ mo</span>
+																</div><!--//pricing-figure-->
+																
+																<div class="pricing-cta">
+																	<a class="btn btn-gradient mb-3" data-gold="Gold">Subscribe</a>
+																</div><!--//pricing-cta-->
+															</div><!--//pricing-data-header-->
+														</th>
+													</tr><!--//tr-plan-->
+												</thead>
+												<tbody>
+													
+													<tr class="tr-data-type text-left">
+														<td colspan="4" class="pricing-0-data">
+															<div>
+																Main Features
+															</div>
+														</td>
+													</tr><!--//tr-data-type-->
+													<tr class="tr-data">
+														<th class="pricing-0-data">Raffle draw<div class="info-popover-trigger icon dripicons-italic ml-2" data-container="body" data-toggle="popover" data-placement="top" data-content="Popover example sagittis lacus vel augue laoreet rutrum faucibus."></div></th>
+														<td class="pricing-1-data"><div class="icon dripicons-checkmark icon-tick"></div></td>
+														<td class="pricing-2-data mobile-is-hidden"><div class="icon dripicons-checkmark icon-tick"></div></td>
+														<td class="pricing-3-data mobile-is-hidden"><div class="icon dripicons-checkmark icon-tick"></div></td>
+													</tr><!--//tr-data-->
+													<tr class="tr-data">
+														<th class="pricing-0-data">Monthly earnings</th>
+														<td class="pricing-1-data"><span class="data-text">₦13k</span></td>
+														<td class="pricing-2-data mobile-is-hidden"><span class="data-text">₦20k</span></td>
+														<td class="pricing-3-data mobile-is-hidden"><span class="data-text">₦27k</span></td>
+													</tr><!--//tr-data-->
+													<tr class="tr-data">
+														<th class="pricing-0-data">Bonus package</th>
+														<td class="pricing-1-data"><span class="data-text">%0.023</span></td>
+														<td class="pricing-2-data mobile-is-hidden"><span class="data-text">%0.028</span></td>
+														<td class="pricing-3-data mobile-is-hidden"><span class="data-text">%0.031</span></td>
+													</tr><!--//tr-data-->
+													<tr class="tr-data">
+														<th class="pricing-0-data">Daily earnings</th>
+														<td class="pricing-1-data"><span class="data-text">₦430</span></td>
+														<td class="pricing-2-data mobile-is-hidden"><span class="data-text">₦600</span></td>
+														<td class="pricing-3-data mobile-is-hidden"><span class="data-text">₦900</span></td>
+													</tr><!--//tr-data-->
+													<tr class="tr-data">
+														<th class="pricing-0-data">Accounts</th>
+														<td class="pricing-1-data"><span class="data-text"> Only one account can be used.</span></td>
+														<td class="pricing-2-data mobile-is-hidden"><span class="data-text"> Only one account can be used.</span></td>
+														<td class="pricing-3-data mobile-is-hidden"><span class="data-text"> Only two account can be used.</span></td>
+													</tr><!--//tr-data-->
+													
+													
+													
+												</tbody>
+											</table><!--//pricing-table-->
+										</div><!--//plans-wrapper-->
+									</div><!--//container-->
+								</section><!--//pricing-header-->
+							</div><!--//hero-wrapper-->
+
+	
+
+
+		
+			
+				
+
+		
+		
+		{% endblock content %}
+
+{% block Javascript %}
+	
+		<!-- Javascript -->          
+		<script src="{% static '/iffliateLanding_page/assets/plugins/jquery-3.4.1.min.js' %}"></script>
+		<script src="{% static '/iffliateLanding_page/assets/plugins/popper.min.js' %}"></script>
+		<script src="{% static '/iffliateLanding_page/assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>  
+		
+		<!-- Page Specific JS -->
+		<script src="{% static '/iffliateLanding_page/assets/js/pricing.js' %}"></script> 
+	
+		
+
+
+
+
+
+
+
+
+
+{% endblock Javascript %}
+	
