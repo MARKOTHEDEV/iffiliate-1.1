@@ -9,6 +9,7 @@ class RaffleDrawBatch(models.Model):
     is_close = models.BooleanField(default=False)
     # this is created when an instance is created u cant modify it!!
     created_on = models.DateTimeField(auto_now_add=True)
+    when = models.DateTimeField(null=True)
     
 
     def __str__(self):
