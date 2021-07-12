@@ -11,13 +11,13 @@ def start():
     scheduler = BackgroundScheduler()
     userChecker = UserStatusChecker()
     print("Loading Scheduler.....")
-    # scheduler.add_job(runScraper,"interval",hours=24,id="MoneyPost_001",replace_existing=True)
-    # scheduler.add_job(userChecker.start,"interval",hours=23,id="checkExpiredSub_001",replace_existing=True)
-    # scheduler.add_job(payUser_onlogin.start,"interval",hours=21,id="payUser_onlogin_001",replace_existing=True)
+    scheduler.add_job(runScraper,"interval",hours=24,id="MoneyPost_001",replace_existing=True)
+    scheduler.add_job(userChecker.start,"interval",hours=23,id="checkExpiredSub_001",replace_existing=True)
+    scheduler.add_job(payUser_onlogin.start,"interval",hours=21,id="payUser_onlogin_001",replace_existing=True)
     
-    # scheduler.add_job(chooseRaffleDraw_winner_randomly,"interval",hours=14,id="chooseRaffleDraw_001",replace_existing=True)
+    scheduler.add_job(chooseRaffleDraw_winner_randomly,"interval",hours=14,id="chooseRaffleDraw_001",replace_existing=True)
 
-    # scheduler.start()
+    scheduler.start()
     
 
 
