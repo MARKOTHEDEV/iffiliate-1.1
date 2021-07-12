@@ -129,13 +129,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Etc/GMT-8'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
 
 
 
@@ -153,13 +154,14 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    # Path(BASE_DIR,'iffliateLanding_page','static')
-    os.path.join(BASE_DIR,'iffliateLanding_page','static')
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+#     # Path(BASE_DIR,'iffliateLanding_page','static')
+#     os.path.join(BASE_DIR,'iffliateLanding_page','static')
     
-]
+# ]
 
+STATIC_ROOT = Path(BASE_DIR,'static')
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
@@ -222,8 +224,6 @@ EMAIL_USE_TLS = True
 RAFFLE_DRAW_PAYMENT_CALLBACK_URL = 'http://localhost:8000/raffle/raffleDraw-callback/'
 
 
-USE_TZ = True
-TIME_ZONE = 'Etc/GMT-8'
 
 
 
