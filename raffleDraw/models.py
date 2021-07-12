@@ -1,16 +1,19 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.db.utils import OperationalError
+
+
 # Create your models here.
 
 class RaffleDrawBatch(models.Model):
     'this model will help me group the candidate into groups'
-
+    totalAmountPaid_to_game = models.DecimalField(max_digits=10, decimal_places=2, default=0.00 ,blank =True) 
     # if is_close is True then nobody can apply to that batch--meaning we have already seen the winner of the batch
     is_close = models.BooleanField(default=False)
     # this is created when an instance is created u cant modify it!!
     created_on = models.DateTimeField(auto_now_add=True)
     when = models.DateTimeField(null=True)
-    
+
 
     def __str__(self):
         return f'Batch {self.id}'
@@ -27,4 +30,21 @@ class RaffleDrawPlayer(models.Model):
     def __str__(self):
         return self.user.email
 
+    @classmethod
+    def get_all_winners(cls):
+        '''
+        this class method gets all the winners
+        1) first we get all the batch instance all interate through them\
+        2) for each instance of RaffleDrawBatch 
+        (and get all the players that Won those game)
+        '''
+        # allWinners = [batch.objects.set_raffledrawplayer.filter(is_winner=True) for batch in cls.objects.all()]
 
+
+        try:
+
+
+            return cls.objects.filter(is_winner=True)
+        except OperationalError:
+            "means the table has not been created yet :: This error is bound to happen Hapeens in the migration stage"
+            return []

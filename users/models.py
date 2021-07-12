@@ -217,7 +217,6 @@ def paythisUser(request):
     "# this handles updating user Earnings when he reads a particular post" 
     user_membership =  UserMembership.objects.get(user=request.user)
     user = get_user_model().objects.get(email=request.user.email)
-    
     if str(user_membership.membership) == 'Gold':
         # print('pay Gold')
         user.userEarnings += 400
@@ -237,6 +236,8 @@ def paythisUser(request):
     elif str(user_membership.membership) == 'Bronze':
         # print('pay Bronze')
         user.userEarnings += 200
+        user.save()
+
         LimitUserPay(request.user)
 
 

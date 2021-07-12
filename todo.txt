@@ -151,7 +151,7 @@ create nessacry template
         before we set the is payed to true the webhook has to confirm success -- done
         then after 22 hours we pick the player with the largets Bid winner and set the batch to complete -done
         WE DONT NEED AN ACCOUNT NUMBER BECAUSE WHEN DEY WIN WE JUST ADD THE POINT TO THEIR DASHBOAORD --done
-ERROOR !! THE RAFFLE PAYMENT IS NOT SAVING IN THE USER MODE\  -- done -solved
+ERROOR !! THE RAFFLE PAYMENT IS NOT SAVING IN THE USER MODE  -- done -solved
 
     not done:
         when user is named as a winner we create another batch and set the start date to sunday

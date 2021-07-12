@@ -341,7 +341,9 @@ def payUserWebHook(request):
                 return HttpResponse('User payment request has been paid and confirmed')
        
         if paystackResponse.get('event') == 'charge.success' and paystackResponse['data']['metadata']['custom_fields']['paymentFor'] =='raffle_game' and raffle_model.RaffleDrawPlayer.objects.filter(payment_reference=paystackResponse['data']['reference']).exists() == True:
-            """this if statement is to check 
+            """
+            $ this is payment for raffle game - theusers will pay to participate
+            this if statement is to check 
                 1) if the payment was a charge.succesful=meanig the user sent money to iffliate and it was succefull
                 2) also if the payment was for  raffle_game
             'then we check if the payer exist'

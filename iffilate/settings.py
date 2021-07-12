@@ -97,12 +97,9 @@ WSGI_APPLICATION = 'iffilate.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'iffiliate',
-        'USER':'postgres',
-        'PASSWORD':'backup2020',
-        'HOST':'localhost'
+     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -222,3 +219,8 @@ EMAIL_USE_TLS = True
 "ALL MY CALLBACK URL VARIBLES .. THIS ARE THE URL THAT GET CALLED AFTER A PERSON PAYS"
 "mainly paystack payment"
 RAFFLE_DRAW_PAYMENT_CALLBACK_URL = 'http://localhost:8000/raffle/raffleDraw-callback/'
+
+
+USE_TZ = True
+TIME_ZONE = 'Etc/GMT-8'
+

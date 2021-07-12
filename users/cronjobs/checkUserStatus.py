@@ -3,6 +3,7 @@
 from users import models
 from django.contrib.auth import get_user_model
 import datetime
+import django
 """
 Steps
 
@@ -19,6 +20,7 @@ class UserStatusChecker:
 
     def __init__(self):
         self.freemembership =  models.Membership.objects.get(slug='Free') 
+        # self.freemembership,created =  models.Membership.objects.get_or_create(slug='Free',duration=100,duration_period='Month') 
 
     
     def get_user_expiring_date(self,user):
@@ -73,3 +75,10 @@ class UserStatusChecker:
                 print('CronTab Started:')
                 self.get_user_expiring_date(user)#this funtion get the  
 
+
+
+if __name__ == '__main__':
+    django.setup()
+    # import AFTER setup
+
+    # from now I can access WorldBorder!!
