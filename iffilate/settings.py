@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -224,3 +225,6 @@ RAFFLE_DRAW_PAYMENT_CALLBACK_URL = 'http://localhost:8000/raffle/raffleDraw-call
 USE_TZ = True
 TIME_ZONE = 'Etc/GMT-8'
 
+
+
+django_heroku.settings(locals())
