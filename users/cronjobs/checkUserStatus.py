@@ -19,8 +19,8 @@ class UserStatusChecker:
     'this class helps the application remove expired paid plan...'
 
     def __init__(self):
-        self.freemembership =  models.Membership.objects.get(slug='Free') 
-        # self.freemembership,created =  models.Membership.objects.get_or_create(slug='Free',duration=100,duration_period='Month') 
+        # self.freemembership =  models.Membership.objects.get(slug='Free') 
+        self.freemembership,created =  models.Membership.objects.get_or_create(slug='Free',duration=100,duration_period='Month') 
 
     
     def get_user_expiring_date(self,user):

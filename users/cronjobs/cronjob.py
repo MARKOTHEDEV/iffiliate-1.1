@@ -17,7 +17,7 @@ def start():
     
     # scheduler.add_job(chooseRaffleDraw_winner_randomly,"interval",hours=14,id="chooseRaffleDraw_001",replace_existing=True)
 
-    scheduler.start()
+    # scheduler.start()
     
 
 
