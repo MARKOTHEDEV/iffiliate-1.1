@@ -44,7 +44,7 @@ Now u have to create the paid membership They as follow
     <p>price - 3000.00</p>
     <p>EaarningLimit - 13000.00</p>
 <br>
-    <li><h3>Bronze</h3></li>
+    <li><h3>Silver</h3></li>
     <p>Duration- 30</p>
     <p>duration period - days</p>
     <p>price - 7000.00</p>

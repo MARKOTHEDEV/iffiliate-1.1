@@ -58,7 +58,7 @@ class UserStatusChecker:
 
 
     def start(self):
-        self.freemembership,created =  models.Membership.objects.get_or_create(slug='Free',duration=100,duration_period='Month') 
+        self.freemembership =  models.Membership.objects.get(slug='Free') 
         allUsers = get_user_model().objects.all()
         
         for user in allUsers:

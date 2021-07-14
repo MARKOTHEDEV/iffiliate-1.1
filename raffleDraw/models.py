@@ -30,21 +30,3 @@ class RaffleDrawPlayer(models.Model):
     def __str__(self):
         return self.user.email
 
-    @classmethod
-    def get_all_winners(cls):
-        '''
-        this class method gets all the winners
-        1) first we get all the batch instance all interate through them\
-        2) for each instance of RaffleDrawBatch 
-        (and get all the players that Won those game)
-        '''
-        # allWinners = [batch.objects.set_raffledrawplayer.filter(is_winner=True) for batch in cls.objects.all()]
-
-
-        try:
-
-
-            return cls.objects.filter(is_winner=True)
-        except OperationalError:
-            "means the table has not been created yet :: This error is bound to happen Hapeens in the migration stage"
-            return []

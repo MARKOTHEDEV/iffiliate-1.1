@@ -18,10 +18,5 @@ class UsersConfig(AppConfig):
 
     
 
-    def _create_defualt_model_instance(self):
-        'this function create models that are very important! to run the app without them the app will fail!'
-        from . import models
-        freeMembership,created = models.Membership.objects.get_or_create(slug='Free')
-        freeMembership.save()
         
         

@@ -56,6 +56,15 @@
 
 					<div class="auth-form-container text-left mx-auto">
 						<form class="auth-form signup-form" id="signin-form" method="POST" >   
+							<!-- start  of messages -->
+							{% if messages %}
+								<ul class="messages" style="background-color: #f65f34;width:100%;color:white;padding:1.2rem;font-size:1.2rem ;text-align:center;">
+									{% for message in messages %}
+									<li class="{{ message.tags }}" style="color: white;list-style-type:none;">{{ message }}</li>
+									{% endfor %}
+								</ul>
+							{% endif %}
+							<!-- end of messages -->
 							{% csrf_token %}       
 							<div class="form-group email">
 								<label class="sr-only" for="signin-email">Email</label>
