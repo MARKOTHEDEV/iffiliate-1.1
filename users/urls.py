@@ -1,5 +1,6 @@
 from django.urls import path
 from users import views as user_views
+from raffleDraw import views as raffle_views
 
 urlpatterns = [
     
@@ -17,7 +18,9 @@ urlpatterns = [
     path('adminDashboard/payuser/<int:pk>/',user_views.PayUser.as_view(), name='payUSer'),
     path('adminDashboard/listallusers/',user_views.AllUserListView.as_view(), name='allUsers'),
     path('adminDashboard/deleteuser/<int:pk>/',user_views.DeleteUserView.as_view(), name='deleteUser'),
-    
+    # this is link that display the List Of Al l Raffle Draw
+    path('adminDashboard/all_raffle_draw/',raffle_views.ListOfRaffleDraw.as_view(),name='AllRaffleDraw'),
+    path('adminDashboard/raffleDrawDetail/<int:pk>/',raffle_views.RaffleDrawDetail.as_view(),name='RaffleDrawDetail'),
 
 
     # TEST URL DOWN HERE

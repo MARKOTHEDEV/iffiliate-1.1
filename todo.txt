@@ -141,33 +141,23 @@ PRELOADER -- for logining or any rest calls -not done
 raffle draw = :
 
 create nessacry template
-    coding steps
-    create a page were user can enter the amount they want to bet on -- done :
-                when submited we create an instance of a player but we dont add him to a batch yet
-                when payment is confirmed we can then add..
-    after they click play
-        an RaffleDrawPlayer instance will be crated -- done
-        they would be prompted to pay that amount to paystack before  --done
-        before we set the is payed to true the webhook has to confirm success -- done
-        then after 22 hours we pick the player with the largets Bid winner and set the batch to complete -done
-        WE DONT NEED AN ACCOUNT NUMBER BECAUSE WHEN DEY WIN WE JUST ADD THE POINT TO THEIR DASHBOAORD --done
-ERROOR !! THE RAFFLE PAYMENT IS NOT SAVING IN THE USER MODE  -- done -solved
+     Steps:
+            If game Open Game Doesnt Exist or He Isnt Logged In We Prevent User From Playing -- done
+            else:
+                 User Can Play Using Paystack to Pay --done
 
-    not done:
-        when user is named as a winner we create another batch and set the start date to sunday
-        LISTEN TO BROWN AUDIO TO FIGURE THE TIME OF THE EVENT SO WE CAN CODE ACCURATLY
+         Give Admin Right To Create And End A Game   --Done
+            When It created THe Game Will Be open(meaing users can pay and play):
+                create a template that --:
+                                    shows all Raffle Draw And Indecate the Closed One The Open One Should Be On top
+                                    the Detail Should Show (THe detail But if It already closed Dont Show Close Btn Again)
+            on Close Of the Game:
+                we create A signal Which Listen To Update Then We Check If the
+                        Game Was Closed  and check if (end_game == false) if both are true:
+                            We Then Choose The Winner
+                            And End the Game 
 
-    ISSUE -- WHAT IF A PLAYER PAYS TWICE
-            we use get_or_create if created is true we just going to add his pay to his previous one
-            IN THE PAYMENT PROCCESS WE MADE A MISTAKE WE ADDED THE amount TO THE MODEL BEFORE THE USER 
-            PAYMENT WAS CONFIRMED -- WE ARE MENT TO ADD IT IN THE WEBHOOK
-            WE HAVE TO DEAL WITH DUPLICATE PAYMENT..
     
-    RAFFLE STEPS TO BE DONE:
-        after count down has been completed give user acces to pay
-        so we have to create a mixin to prevvent user to see the raffle payment page using accesmixin
-            when the today is less that the event dont allow people to access
-
 
 
 IF U WANT TO UPLOAD TO HEROKU PLEASE UNCOMMENT UR CRON JOBS!!!

@@ -1,14 +1,17 @@
 import datetime
+from django.db.models.base import Model
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import (render,redirect)
-from django.urls import reverse
+from django.urls import reverse,reverse_lazy
 import requests,json
-from django.views.generic import (View,ListView,FormView,TemplateView)
+from django.views.generic import (View,ListView,FormView,TemplateView,DetailView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.conf import settings
 from . import form as customforms
 from . import (models,mixins)
+from users import mixins as user_mixins
+
 
 
 # Create your views here.
@@ -94,3 +97,32 @@ class registerFor_RaffleDraw(mixins.CheckGame,FormView):
 def Game_is_close_for_now(request):
 
     return render(request,'raffleDraw/noGame.html')
+
+
+"The view Below Are Will Show In the Custom  Admin Dashboard"
+
+class ListOfRaffleDraw(user_mixins.Allow_supeusersOnly,ListView):
+    login_url = reverse_lazy(viewname='signin')
+    'this list all the availble RaffleDraw in the database'
+    model = models.RaffleDrawBatch
+    template_name = 'adminDashboard/ListOfRaffleDraw.html'
+    context_object_name = 'ListOfRaffleDraw'
+
+    def get_queryset(self):
+        "We ordering by the is_close column--> THe New RaffleBatch Will Be At The Top"
+        return models.RaffleDrawBatch.objects.all().order_by('is_close')
+
+
+
+class RaffleDrawDetail(user_mixins.Allow_supeusersOnly,DetailView):
+    login_url = reverse_lazy(viewname='signin')
+    model = models.RaffleDrawBatch
+    template_name = 'adminDashboard/RaffleDrawDetail.html'
+    context_object_name = 'raffledraw'
+
+    def get_context_data(self, **kwargs):
+        context  = super().get_context_data(**kwargs)
+        # self.get_object() returns the instance of the current RaffleBatch We viewing
+        context['listOfPlayer'] = models.RaffleDrawPlayer.objects.filter(raffle_draw_batch=self.get_object())
+  
+        return context

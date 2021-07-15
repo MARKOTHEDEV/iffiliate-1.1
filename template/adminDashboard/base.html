@@ -136,6 +136,18 @@
 							>
 								<a href="{% url 'allUsers' %}"><i data-feather="users"></i> <span>Users</span></a>
 							</li>
+							l
+
+							<li
+							
+							{% if  request.path ==  '/user/adminDashboard/all_raffle_draw/' %}
+									class="active" 
+								{% endif %}
+							>
+								<a href="{% url 'AllRaffleDraw' %}"><i data-feather="users"></i> <span>List Of Raffle Draw</span></a>
+							</li>
+							l
+
 							<!-- <li>
 								<a href="settings.html"><i data-feather="settings"></i> <span>Settings</span></a>
 							</li> -->
