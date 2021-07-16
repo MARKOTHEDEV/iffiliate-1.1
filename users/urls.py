@@ -21,7 +21,7 @@ urlpatterns = [
     # this is link that display the List Of Al l Raffle Draw
     path('adminDashboard/all_raffle_draw/',raffle_views.ListOfRaffleDraw.as_view(),name='AllRaffleDraw'),
     path('adminDashboard/raffleDrawDetail/<int:pk>/',raffle_views.RaffleDrawDetail.as_view(),name='RaffleDrawDetail'),
-
+    path('adminDashboard/Close_RaffleDraw/<int:pk>/',raffle_views.Close_RaffleDrawView,name='Close_RaffleDraw'),
 
     # TEST URL DOWN HERE
     path('mywebhook/',user_views.payUserWebHook)

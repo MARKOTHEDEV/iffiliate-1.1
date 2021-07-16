@@ -9,19 +9,23 @@
 			<div class="page-wrapper">
 				<div class="content container-fluid" style="height:100vh;">
                     
-                    <form action="" method="POST" style="overflow:scroll;height:100%;">
-						{% csrf_token %}
+                    <!-- <form action="" method="POST" style="overflow:scroll;height:100%;"> -->
+						<!-- {% csrf_token %} -->
 
                         
                         {% if raffledraw.is_close == False %}
                         <p>Note: When You Close The Winner Will Be added Automatically</p>
-                            <input class="btn-right btn btn-sm btn-outline-primary" type="submit" value="Close This Raffle Batch" >
-
+                        <input type="checkbox" name="is_close" value="True"  hidden>
+                            <!-- <input class="btn-right btn btn-sm btn-outline-primary" type="submit" value="Close This Raffle Batch" > -->
+                            <a href="{% url 'Close_RaffleDraw' raffledraw.id %}" class="btn-right btn btn-sm btn-outline-primary">Close This Raffle Batch</a>
                         {% endif %}
                             
 
-                        <p>Total Amout Paid: <strong>$103727</strong></p>
-
+                        <p>Total Amout Paid: <strong>${{  raffledraw.totalAmountPaid_to_game }}</strong></p>
+                        <div>
+                            <p>Winner: <strong>{{ winnerForthisBatch }}</strong></p>
+                        </div>
+                        <br>
                         <h4>Name Of Players..</h4>
                         
                         {% for player in  listOfPlayer %}
@@ -29,7 +33,7 @@
                         {% endfor %}
                        
                             
-                    </form>
+                    <!-- </form> -->
 				
 			
 				</div>

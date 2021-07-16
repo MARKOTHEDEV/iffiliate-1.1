@@ -11,6 +11,8 @@ from django.conf import settings
 from . import form as customforms
 from . import (models,mixins)
 from users import mixins as user_mixins
+from django.views.generic.detail import SingleObjectMixin
+
 
 
 
@@ -124,5 +126,36 @@ class RaffleDrawDetail(user_mixins.Allow_supeusersOnly,DetailView):
         context  = super().get_context_data(**kwargs)
         # self.get_object() returns the instance of the current RaffleBatch We viewing
         context['listOfPlayer'] = models.RaffleDrawPlayer.objects.filter(raffle_draw_batch=self.get_object())
-  
+        
+        try:
+            context['winnerForthisBatch'] = models.RaffleDrawPlayer.objects.filter(raffle_draw_batch=self.get_object(),is_winner=True)[0]
+        except IndexError:
+            context['winnerForthisBatch'] = 'Close This Batch To Get The Winner!!'
+
         return context
+
+def Close_RaffleDrawView(request,pk=None):
+    """
+        this view will activate when an admin clicks on "Close This Raffle Batch" in RaffleDrawDetail view
+            1)It Closes The Game
+            2)This view adds up the Money Paid and save it to totalAmountPaid_to_game
+            3)Above all it Picks the Winner
+    """
+    if pk != None and models.RaffleDrawBatch.objects.filter(is_close=False,pk=pk).exists():
+        # this is an  raffleDrawBatch Instance That we Want to Close
+        raffleDrawBatch = models.RaffleDrawBatch.objects.get(pk=pk)
+        # all players
+        allPlayers  = raffleDrawBatch.raffledrawplayer_set.all()
+        # get the highest Amount
+        highestAmount = max([player.amount  for player in allPlayers])
+        # we add all the money and add it to the totalAmountPaid_to_game
+        raffleDrawBatch.totalAmountPaid_to_game +=sum([player.amount  for player in allPlayers])
+        raffleDrawBatch.is_close = True
+        raffleDrawBatch.save()
+        # now we choose the Winner
+        Winner = raffleDrawBatch.raffledrawplayer_set.filter(amount=highestAmount)[0]
+        # 
+        Winner.is_winner = True
+        Winner.save()
+        return redirect('AllRaffleDraw')
+    
