@@ -22,6 +22,8 @@ class RaffleDrawPlayer(models.Model):
     'this is modeling a player that will play the raffle draw'
     user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
     raffle_draw_batch = models.ForeignKey(RaffleDrawBatch,on_delete=models.CASCADE,null=True)
+    account_number = models.IntegerField(blank=True,default=0)
+    # this colomn tells me if the payment is confirmed
     isPayed = models.BooleanField(default=False)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00 ,blank =True)
     payment_reference = models.CharField(max_length=30,blank=True)

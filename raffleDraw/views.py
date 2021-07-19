@@ -36,6 +36,7 @@ class registerFor_RaffleDraw(mixins.CheckGame,FormView):
     def form_valid(self,form):
         'this is the amount the user decides to pay'
         amount = form.cleaned_data['amount']
+        account_number = form.cleaned_data['account_number']
       
         response = self._Initialize_payment(amount,self.request.user.email)
         if response['status'] == True:
@@ -47,10 +48,12 @@ class registerFor_RaffleDraw(mixins.CheckGame,FormView):
             player,isPlayercreated = models.RaffleDrawPlayer.objects.get_or_create(
                     user = self.request.user,
                     raffle_draw_batch= raffle_batch,
+                    # account_number = account_number,
                     # amount = amount,
                     # payment_reference =response['reference']
                     )
             player.payment_reference = response['reference'] 
+            player.account_number = account_number
 
             player.save()
             return HttpResponseRedirect(response['paystacklink'])
@@ -93,8 +96,8 @@ class registerFor_RaffleDraw(mixins.CheckGame,FormView):
             return {'status':False,'message':'Network Problem'}
         
 
-
-
+def raffle_paymentcallback(request):
+    return render(request,'raffleDraw/paymentInfo.html')
 
 def Game_is_close_for_now(request):
 
@@ -112,7 +115,7 @@ class ListOfRaffleDraw(user_mixins.Allow_supeusersOnly,ListView):
 
     def get_queryset(self):
         "We ordering by the is_close column--> THe New RaffleBatch Will Be At The Top"
-        return models.RaffleDrawBatch.objects.all().order_by('is_close')
+        return models.RaffleDrawBatch.objects.all().order_by('-id')
 
 
 
@@ -128,7 +131,10 @@ class RaffleDrawDetail(user_mixins.Allow_supeusersOnly,DetailView):
         context['listOfPlayer'] = models.RaffleDrawPlayer.objects.filter(raffle_draw_batch=self.get_object())
         
         try:
-            context['winnerForthisBatch'] = models.RaffleDrawPlayer.objects.filter(raffle_draw_batch=self.get_object(),is_winner=True)[0]
+            winner = models.RaffleDrawPlayer.objects.filter(raffle_draw_batch=self.get_object(),is_winner=True)[0]
+            context['winnerForthisBatch'] = winner.user
+            context['winnerForthisBatch__acct_number'] = winner.account_number
+            
         except IndexError:
             context['winnerForthisBatch'] = 'Close This Batch To Get The Winner!!'
 
@@ -158,4 +164,12 @@ def Close_RaffleDrawView(request,pk=None):
         Winner.is_winner = True
         Winner.save()
         return redirect('AllRaffleDraw')
-    
+
+def Create_RaffleDrawView(request):
+    "this view helps to create a raffleBatch-->in the html it just a link"
+    New_raffleDrawBatch ,created= models.RaffleDrawBatch.objects.get_or_create(is_close=False)
+    New_raffleDrawBatch.save()
+    # we neeed a message to alert the users a raffle has been created 
+    messages.success(request,'Hello!!! The Raffle Draw Is Open!!!')
+    # once we create a raffle draw batch we take the Adminuser back to list of alll Raffle Draw
+    return redirect('AllRaffleDraw')

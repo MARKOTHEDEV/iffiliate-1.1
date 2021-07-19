@@ -22,7 +22,8 @@ urlpatterns = [
     path('adminDashboard/all_raffle_draw/',raffle_views.ListOfRaffleDraw.as_view(),name='AllRaffleDraw'),
     path('adminDashboard/raffleDrawDetail/<int:pk>/',raffle_views.RaffleDrawDetail.as_view(),name='RaffleDrawDetail'),
     path('adminDashboard/Close_RaffleDraw/<int:pk>/',raffle_views.Close_RaffleDrawView,name='Close_RaffleDraw'),
-
+    # link to create a new raffle Draw exclusive_to_the adminUser
+    path('adminDashboard/Create_Raffle_Draw_game/',raffle_views.Create_RaffleDrawView,name='create_raffle_draw'),
     # TEST URL DOWN HERE
     path('mywebhook/',user_views.payUserWebHook)
 ]

@@ -3,6 +3,3 @@ import requests,json
 
 import datetime
 
-
-
-print([].)
