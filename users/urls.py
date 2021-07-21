@@ -1,6 +1,7 @@
 from django.urls import path
 from users import views as user_views
 from raffleDraw import views as raffle_views
+import users
 
 urlpatterns = [
     
@@ -24,6 +25,7 @@ urlpatterns = [
     path('adminDashboard/Close_RaffleDraw/<int:pk>/',raffle_views.Close_RaffleDrawView,name='Close_RaffleDraw'),
     # link to create a new raffle Draw exclusive_to_the adminUser
     path('adminDashboard/Create_Raffle_Draw_game/',raffle_views.Create_RaffleDrawView,name='create_raffle_draw'),
+    path('adminDashboard/startCron/',user_views.StartCronJobView,name='start_cron_job'),
     # TEST URL DOWN HERE
     path('mywebhook/',user_views.payUserWebHook)
 ]

@@ -173,6 +173,27 @@ class FileForPayment(LoginRequiredMixin,UserPassesTestMixin,user_mixins.UserHelp
 
 
 'ADMIN USER DASHBOARD CODE START'
+def StartCronJobView(request):
+    "this function starts the Cron Jobs"
+    if request.user.is_staff == False:
+        messages.error(request,'unAuthorized Link!!')
+        return redirect('home')
+    else:
+        if request.method == 'POST':
+            try:
+                from users import signals
+                from users.cronjobs import cronjob
+                cronjob.start()
+                messages.success(request,"Cron Job Running Successfully")
+                # take me back to the admin user
+                return redirect('home')
+            except:
+                messages.error(request,'The Cron job Did Not Start try again')
+            
+
+    return render(request,'adminDashboard/StartCronJobs.html')
+
+
 class AdminDashhboardIndex(user_mixins.Allow_supeusersOnly,generic.TemplateView):
     template_name='adminDashboard/index.html'
     login_url =reverse_lazy(viewname='signin')

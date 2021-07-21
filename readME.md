@@ -58,3 +58,7 @@ Now u have to create the paid membership They as follow
 <br>
 </ol>
 
+<h3>
+Before you Countinue Go to the url Below To Start the Cron Job
+</h3>
+'websitename/user/adminDashboard/startCron/'

@@ -164,7 +164,7 @@ create nessacry template
         When A User Winns a batch And they have Not Payed Him :- A form Of Account Number Shoiuld Still Be there IN the dashboard--done
 
         
-        The Template That Shows When There Is no Game We Need To Style It Up:
+        The Template That Shows When There Is no Game We Need To Style It Up:--done
             We NEed To Tell The USers When Raffle Are Likely TO Be Played
 
 we also need to create a button to activate the CronJobs

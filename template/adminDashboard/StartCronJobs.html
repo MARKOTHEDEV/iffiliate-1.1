@@ -1,0 +1,38 @@
+{% extends 'adminDashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Page Wrapper -->
+			
+			<!-- Page Wrapper -->
+			<div class="page-wrapper">
+				<div class="content container-fluid" style="height:100vh;">
+                    
+                    <form action="{% url 'start_cron_job'  %}" method="POST" >
+						{% csrf_token %}
+
+                        
+                      
+                        <p>Do Not Click This Button If You are Not Matthew --> So You wont Crash the Party!!!</p>
+                        <input type="checkbox" name="is_close" value="True"  hidden>
+                            <!-- <input class="btn-right btn btn-sm btn-outline-primary" type="submit" value="Close This Raffle Batch" > -->
+                            <input value="Start Cron Jobs" type="submit" href="" class="btn-right btn btn-sm btn-outline-primary">
+                                <!-- Start Cron Jobs
+                            </a> -->
+                        
+              
+                            
+
+                       
+                            
+                    </form>
+				
+			
+				</div>
+			</div>
+			<!-- /Page Wrapper -->
+			
+<!-- /Page Wrapper -->
+
+{% endblock content %}
