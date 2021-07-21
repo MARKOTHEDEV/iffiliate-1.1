@@ -27,7 +27,7 @@ SECRET_KEY = '$!cckhd%+9+(^vxxksodhq!^pq4&kjcn=e*w0hipcpn(phe@ip'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fb6c2bbea102.ngrok.io','localhost']
+ALLOWED_HOSTS = ['689c17057ed5.ngrok.io','localhost']
 
 
 # Application definition
@@ -222,7 +222,7 @@ EMAIL_USE_TLS = True
 "ALL MY CALLBACK URL VARIBLES .. THIS ARE THE URL THAT GET CALLED AFTER A PERSON PAYS"
 "mainly paystack payment"
 RAFFLE_DRAW_PAYMENT_CALLBACK_URL = 'http://localhost:8000/raffle/raffleDraw-callback/'
-
+PAYMENT_FOR_MEMBERSHIP_CALLBACK = 'http://localhost:8000/membership_payment_callback/'
 
 
 

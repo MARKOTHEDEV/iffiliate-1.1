@@ -59,12 +59,15 @@
 
 
                     </h2>
+					<!-- this means show this only in the raffle callback -->
+				   {% if request.path == '/raffle/raffleDraw-callback/' %}
                     <p 
 					 style="text-align: center;">
-                        Check the Raffle Dashboard If your name is there That means You have are verified
-						and your payment was successful else wait...
-
-					</p>
+					 
+					Check the Raffle Dashboard If your name is there That means You have are verified
+					and your payment was successful else wait...
+				</p>
+				{% endif %}
 
 
 					

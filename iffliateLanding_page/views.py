@@ -1,5 +1,5 @@
-from django.shortcuts import render,get_object_or_404,redirect,resolve_url,redirect,HttpResponseRedirect
-from django.views.generic import ListView,DetailView, detail
+from django.shortcuts import (render,get_object_or_404,redirect,resolve_url,redirect,HttpResponseRedirect)
+from django.views.generic import (ListView,DetailView, detail)
 from django.contrib.auth.views import LoginView
 # Create your views here.
 from iffliateLanding_page import models
@@ -7,20 +7,17 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.views import APIView
 from users import serializers
 from users import models as userModels
-from django.contrib.auth import authenticate, get_user_model, login
+from django.contrib.auth import (authenticate, get_user_model, login)
 from django.conf import settings
 import datetime,requests,json
 from rest_framework.response import Response
-from datetime import datetime as dt
-from datetime import timedelta
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from rest_framework.decorators import api_view
 from django.contrib.auth import get_user_model
 "password rest import"
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator 
-from django.core.mail import BadHeaderError, send_mail
+from django.core.mail import (BadHeaderError, send_mail)
 from django.db.models import Q
 from django.http import HttpResponse
 from django.template.loader import render_to_string
@@ -290,7 +287,11 @@ def accept_paymentfor_anyplan(request):
         print(request)
         body = {
 			"email": request.user.email,
-			"amount": price
+			"amount": price,
+            "metadata":{
+                "custom_fields":{"paymentFor":'paid_membership'}
+            },
+            "callback_url":settings.PAYMENT_FOR_MEMBERSHIP_CALLBACK,
 			}
         'so we just push the data to the request url headers and data'
         x = requests.post(url, data=json.dumps(body), headers=headers)
@@ -322,71 +323,7 @@ def accept_paymentfor_anyplan(request):
     # return HttpResponseRedirect(link)   
     return JsonResponse({'link':link})
 
-
-# this  function get triggered when the payment has finish
 def mycallback(request):
-    'this funtion is triggered by paystack when the payment went true'
-    # in the basic term it the payment gete way call back funtion
-    reference = request.GET.get('reference')
-    print(reference)
-    '''
-        this referece is unique like an id 
-            so when a payment is payed in another app an a referece is generated
-            we will check if the referece is located in the PayHistory then that means 
-            the person payed for a sub
-            
-    '''
-    # if u remeber when we were handling paymnet we stored the refernce in the payment history
-    checkpay = userModels.PayHistory.objects.filter(paystack_charge_id=reference).exists()
-    if checkpay == False:
-        # if it false then payment had error  and did not get to stage of saving the refernce
-        'this means payment was not made'
-        raise ValueError('payment was not made')
-    else:
-        # this means the payment went true so we have to get the payhistory instance
-        payment = userModels.PayHistory.objects.get(paystack_charge_id=reference)
-        # we need to check if the payment was successfull
-        def verify_payment(request):
-            'so we got the paystack url for tranzaction'
-            # so we make a get request to the verify url that includes our refece  
-            url = 'https://api.paystack.co/transaction/verify/'+reference
-            'so now we just arangig requests parameter '
-            'the request must have a valid email and price'
-            headers = {
-			    'Authorization': 'Bearer '+settings.PAYSTACK_SECRET_KEY,
-			    'Content-Type' : 'application/json',
-			    'Accept': 'application/json',
-			    }
-            body = {
-			    "reference": payment.paystack_charge_id   
-			    }
-            'so we just push the data to the request url headers and data'
-            x = requests.get(url, data=json.dumps(body), headers=headers)
-            'so if it not a 200 response return the status code so we know'
-            if x.status_code != 200:
-                print('surely not 200')
-                return str(x.status_code)
-		    # else return  a json format 
-            results = x.json()
-            return results
-    # now we called init_payment(request) which we expecting a status code or json format
-    initialized = verify_payment(request)
-    print(initialized)
-    print(initialized['data']['status'])
-    # if the request return success 
-    if initialized['data']['status'] == 'success':
-        # then run some of the stuff
-        userModels.PayHistory.objects.filter(paystack_charge_id=initialized['data']['reference']).update(paid=True,who_is_getting_payed='Iffilate')
-        new_payment =userModels.PayHistory.objects.get(paystack_charge_id=initialized['data']['reference'])
-        instance =userModels.Membership.objects.get(id=new_payment.payment_for.id)
-        sub = userModels.UserMembership.objects.filter(reference_code=initialized['data']['reference']).update(membership=instance)
-        user_membership = userModels.UserMembership.objects.get(reference_code=initialized['data']['reference'])
-        subscription,created = userModels.Subscription.objects.get_or_create(user_membership=user_membership)   
-        subscription.expires_in =  expires_in=dt.now().date() + timedelta(days=user_membership.membership.duration)
-        subscription.save()
-        # userModels.Subscription.objects.get(user_membership=user_membership, expires_in=dt.now().date() + timedelta(days=user_membership.membership.duration))
-        print(instance)
-        return redirect('home')
-    # after we the person has subscribe and all models are set well redirect them to a
-    # sucseesful page telling them they have subscribed
-    return redirect('pricing')
+    'This will Tell the User That Thier Payment Is Being Process'
+    return render(request,'raffleDraw/paymentInfo.html')
+# this  function get triggered when the payment has finish

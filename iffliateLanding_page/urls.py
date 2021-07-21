@@ -30,7 +30,7 @@ urlpatterns = [
 
     # this path is a funtion based api view that takes care of payment
     path('accept-payment/', views.accept_paymentfor_anyplan),
-    path('mycallback/', views.mycallback),
+    path('membership_payment_callback/', views.mycallback),
 
     path('password_reset/',views.password_reset_request,name='custom_password_reset'),
     path('reset-password/reset/<uidb64>/<token>/',views.CustomPasswordResetConfirmView.as_view()),

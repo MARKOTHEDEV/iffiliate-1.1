@@ -167,10 +167,10 @@ create nessacry template
         The Template That Shows When There Is no Game We Need To Style It Up:--done
             We NEed To Tell The USers When Raffle Are Likely TO Be Played
 
-we also need to create a button to activate the CronJobs
+we also need to create a button to activate the CronJobs -- DONE
 
-Correct the Payment For A userMembership Dont USe callbacks Use WebHooks
-We Need To Create A Model FOr Sponsord Post -->
+1)Correct the Payment For A userMembership Dont USe callbacks Use WebHooks
+2)We Need To Create A Model FOr Sponsord Post -->
 
 IF U WANT TO UPLOAD TO HEROKU PLEASE UNCOMMENT UR CRON JOBS!!! -- I probaly Should Create A button To activate this Event
 make the callback more flexible

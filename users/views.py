@@ -19,7 +19,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.http import HttpResponse,HttpResponseServerError
 from raffleDraw import models as raffle_model
-
+from datetime import datetime as dt
+from datetime import timedelta
 
 
 
@@ -375,6 +376,47 @@ def payUserWebHook(request):
             player.isPayed =True
             player.save()
             return HttpResponse('User payment for raffle draw has been paid and confirmed')
-            
+        
+        if paystackResponse.get('event') == 'charge.success' and paystackResponse['data']['metadata']['custom_fields']['paymentFor'] == 'paid_membership':
+            'the function below will return value error or HttpResponse 200'
+            return HANDLE_MEMBERSHIPPAYMENT(paystackResponse)
             
     return HttpResponseServerError("something went wrong")
+
+
+def HANDLE_MEMBERSHIPPAYMENT(paystackResponse):
+    'this funtion is triggered by paystack when the payment went THROUGH'
+    # in the basic term it the payment gete way call back funtion
+    reference = paystackResponse['data']['reference']
+    # print(reference)
+    '''
+        this referece is unique like an id 
+            so when a payment is payed in another app an a referece is generated
+            we will check if the referece is located in the PayHistory then that means 
+            the person payed for a sub
+            
+    '''
+    # if u remeber when we were handling paymnet we stored the refernce in the payment history
+    checkpay = models.PayHistory.objects.filter(paystack_charge_id=reference).exists()
+    if checkpay == False:
+        # if it false then payment had error  and did not get to stage of saving the refernce
+        'this means payment was not made'
+        raise ValueError('payment was not made')
+    else:
+        # this means the payment went true so we have to get the payhistory instance
+        payment = models.PayHistory.objects.get(paystack_charge_id=reference)
+
+        models.PayHistory.objects.filter(paystack_charge_id=paystackResponse['data']['reference']).update(paid=True,who_is_getting_payed='Iffilate')
+        new_payment =models.PayHistory.objects.get(paystack_charge_id=paystackResponse['data']['reference'])
+        instance =models.Membership.objects.get(id=new_payment.payment_for.id)
+        sub = models.UserMembership.objects.filter(reference_code=paystackResponse['data']['reference']).update(membership=instance)
+        user_membership = models.UserMembership.objects.get(reference_code=paystackResponse['data']['reference'])
+        subscription,created = models.Subscription.objects.get_or_create(user_membership=user_membership)   
+        subscription.expires_in =  expires_in=dt.now().date() + timedelta(days=user_membership.membership.duration)
+        subscription.save()
+        # userModels.Subscription.objects.get(user_membership=user_membership, expires_in=dt.now().date() + timedelta(days=user_membership.membership.duration))
+        # print(instance)
+        return HttpResponse('User payment for Paid Membership  has been paid and confirmed')
+    # # after we the person has subscribe and all models are set well redirect them to a
+    # # sucseesful page telling them they have subscribed
+    # return redirect('pricing')
