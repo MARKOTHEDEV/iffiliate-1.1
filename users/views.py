@@ -58,6 +58,15 @@ user_mixins.UserHelperMixin,generic.ListView):
     # this attribute is comming from RetstictFreeUser
     redirect_url='pricing'
 
+class ListOfSponsoredPost(LoginRequiredMixin,user_mixins.RetstictFreeUser,user_mixins.UserHelperMixin,generic.ListView):
+    "this view is for Listing All the Spornsored Post"
+    model = models.SponsoredPost
+    context_object_name = 'sponsoredPost'
+    template_name='UserDashboardPage/sponsored-post.html'
+    login_url ='signin'
+    # this attribute is comming from RetstictFreeUser
+    redirect_url='pricing'
+
 class UserReadPostForMoneyPageDetailView(LoginRequiredMixin,user_mixins.RetstictFreeUser,
 user_mixins.UserHelperMixin,user_mixins.UserViewPage,generic.DetailView):
 

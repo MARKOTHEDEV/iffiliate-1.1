@@ -7,6 +7,8 @@ urlpatterns = [
     
     path('',user_views.UserDashboard.as_view(),name='user-dashboard'),
     path('readpost/',user_views.UserReadPostForMoneyPage.as_view(),name='read-post-for-money-page'),
+    path('read_sponsored_post/',user_views.ListOfSponsoredPost.as_view(),name='list-of-sponsored-post'),
+
     path('readpost-detail/<int:pk>/',user_views.UserReadPostForMoneyPageDetailView.as_view(),name='read-post-for-money-detail-page'),
     path('user-transactions/', user_views.UserTransactionPage.as_view(), name='user-transction'),
     # this is the first process to get payed u will have to file for a payment 

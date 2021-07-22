@@ -205,7 +205,14 @@ class SeenMoneyPost(models.Model):
     def __str__(self):
         return f'{self.user} has read {self.postSeen}'
 
+class SponsoredPost(models.Model):
+    "this is a Table that holds all the SponsoredPost"
+    sponsored_post_link = models.CharField(max_length=300)
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    sponsor_name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f'{self.sponsor_name} Post'
 
 
 
