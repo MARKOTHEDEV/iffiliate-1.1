@@ -215,6 +215,13 @@ class SponsoredPost(models.Model):
         return f'{self.sponsor_name} Post'
 
 
+class SeenSponsoredPost(models.Model):
+    'this model is for users that has copyied a Link so we use this model to determine who is getting paid'
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    Sponsored_postSeen = models.ForeignKey(SponsoredPost,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user} has read {self.Sponsored_postSeen}'
 
 
 

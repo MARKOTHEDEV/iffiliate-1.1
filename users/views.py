@@ -21,8 +21,15 @@ from django.http import HttpResponse,HttpResponseServerError
 from raffleDraw import models as raffle_model
 from datetime import datetime as dt
 from datetime import timedelta
+# rest framework imports
+from rest_framework.decorators import APIView
+from rest_framework import authentication as rest_api_auth 
+from rest_framework import permissions as rest_api_permissions
+from . import api_permissions
+from rest_framework import response as rest_api_view_response 
+from rest_framework import status as rest_api_status_codes
 
-
+import users
 
 # Create your views here.
 
@@ -66,6 +73,40 @@ class ListOfSponsoredPost(LoginRequiredMixin,user_mixins.RetstictFreeUser,user_m
     login_url ='signin'
     # this attribute is comming from RetstictFreeUser
     redirect_url='pricing'
+
+class SponsoredPostApi_View(APIView):
+    """This class Helps check 
+        if the user that clicks on a sponsored Post Haveclick it before
+        else Pay him 
+    """
+    
+    permission_classes = (rest_api_permissions.IsAuthenticated,api_permissions.AvoidFreeUsers)
+    # SessionAuthentication authentication follow the same way of the django authentication
+    authentication_classes = (rest_api_auth.SessionAuthentication,)
+
+    def _pay_user_for_copying_post(self,request):
+        "all we need to do is get the user instance and increase his Earnings "
+        user = get_user_model().objects.get(email=request.user.email)
+        user.userEarnings += 100
+        user.save()
+    def post(self, request, format=None):
+        "this activate once the copys the sponsored post link"
+        LINK = request.data.get("copied_link")
+            # "Now we will check if the coppied Link Actually Exits in the DataBase"
+        if models.SponsoredPost.objects.filter(sponsored_post_link=LINK).exists():
+            sponsored_post = models.SponsoredPost.objects.get(sponsored_post_link=LINK)
+            seen_sponsored_post,created = models.SeenSponsoredPost.objects.get_or_create(user=request.user,Sponsored_postSeen=sponsored_post)
+            "if created is false that means We need to pay the user Else We Need to tell the user He Has Already Clicked"
+            if created:
+                seen_sponsored_post.save()
+                "Pay the User He Is valid"
+                self._pay_user_for_copying_post(request)
+                return rest_api_view_response.Response(status=rest_api_status_codes.HTTP_200_OK,data="You Have Earn Some Money")
+            else:
+                return rest_api_view_response.Response(status=rest_api_status_codes.HTTP_226_IM_USED,data="You Have Already Used Me!!")
+
+        else:
+            return rest_api_view_response.Response(status=rest_api_status_codes.HTTP_404_NOT_FOUND,data="The sponsored Link is Not Valid")
 
 class UserReadPostForMoneyPageDetailView(LoginRequiredMixin,user_mixins.RetstictFreeUser,
 user_mixins.UserHelperMixin,user_mixins.UserViewPage,generic.DetailView):

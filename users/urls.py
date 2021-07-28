@@ -8,6 +8,9 @@ urlpatterns = [
     path('',user_views.UserDashboard.as_view(),name='user-dashboard'),
     path('readpost/',user_views.UserReadPostForMoneyPage.as_view(),name='read-post-for-money-page'),
     path('read_sponsored_post/',user_views.ListOfSponsoredPost.as_view(),name='list-of-sponsored-post'),
+   
+    path('proccess_sponsored_post_link_copied_by_auth_user/',
+    user_views.SponsoredPostApi_View.as_view(),name='proccess_sponsored_post_link_copied_by_auth_user'),
 
     path('readpost-detail/<int:pk>/',user_views.UserReadPostForMoneyPageDetailView.as_view(),name='read-post-for-money-detail-page'),
     path('user-transactions/', user_views.UserTransactionPage.as_view(), name='user-transction'),

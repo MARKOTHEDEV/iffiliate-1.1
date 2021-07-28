@@ -46,72 +46,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xl-4">
-      <div class="card">
-        <div class="card-body">
-        
-          <class="profile-blog mb-5">
-            <h5 class="text-primary d-inline">Today Highlights</h5>
-            <a href="javascript:void()" class="pull-right f-s-16">More</a> <img src="public/images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
-            <h4><a href="post-details.html" class="text-black">Darwin Creative Agency Theme</a></h4>
-            <p class="mb-0">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-          </class=>
-          <div class="profile-interest mb-5">
-            <h5 class="text-primary d-inline">Interest</h5>
-            <div class="row mt-4 sp4" id="lightgallery"> 
-              <a href="public/images/profile/2.jpg" data-exthumbimage="https://mophy.dexignzone.com/laravel/demo/images/profile/2.jpg" data-src="https://mophy.dexignzone.com/laravel/demo/images/profile/2.jpg" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
-                <img src="public/images/profile/2.jpg" alt="" class="img-fluid">
-              </a>
-              <a href="public/images/profile/3.jpg" data-exthumbimage="https://mophy.dexignzone.com/laravel/demo/images/profile/3.jpg" data-src="https://mophy.dexignzone.com/laravel/demo/images/profile/3.jpg" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
-                <img src="public/images/profile/3.jpg" alt="" class="img-fluid">
-              </a>
-              <a href="public/images/profile/4.jpg" data-exthumbimage="https://mophy.dexignzone.com/laravel/demo/images/profile/4.jpg" data-src="https://mophy.dexignzone.com/laravel/demo/images/profile/4.jpg" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
-                <img src="public/images/profile/4.jpg" alt="" class="img-fluid">
-              </a>
-              <a href="public/images/profile/3.jpg" data-exthumbimage="https://mophy.dexignzone.com/laravel/demo/images/profile/3.jpg" data-src="https://mophy.dexignzone.com/laravel/demo/images/profile/3.jpg" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6"> 
-                <img src="public/images/profile/3.jpg" alt="" class="img-fluid">
-              </a> 
-              <a href="public/images/profile/4.jpg" data-exthumbimage="https://mophy.dexignzone.com/laravel/demo/images/profile/4.jpg" data-src="https://mophy.dexignzone.com/laravel/demo/images/profile/4.jpg" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6"> 
-                <img src="public/images/profile/4.jpg" alt="" class="img-fluid">
-              </a>
-              <a href="public/images/profile/2.jpg" data-exthumbimage="https://mophy.dexignzone.com/laravel/demo/images/profile/2.jpg" data-src="https://mophy.dexignzone.com/laravel/demo/images/profile/2.jpg" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6"> <img src="public/images/profile/2.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-          <div class="profile-news">
-            <h5 class="text-primary d-inline">Our Latest News</h5>
-            <div class="media pt-3 pb-3"> <img src="public/images/profile/5.jpg" alt="image" class="mr-3 rounded" width="75">
-              <div class="media-body">
-                <h5 class="m-b-5"><a href="post-details.html" class="text-black">Collection of textile samples</a></h5>
-                <p class="mb-0">I shared this on my fb wall a few months back, and I thought.</p>
-              </div>
-           
-
-            </div>
-            <div class="media pt-3 pb-3"> <img src="public/images/profile/6.jpg" alt="image" class="mr-3 rounded" width="75">
-              <div class="media-body">
-                <h5 class="m-b-5"><a href="post-details.html" class="text-black">Collection of textile samples</a></h5>
-                <p class="mb-0">I shared this on my fb wall a few months back, and I thought.</p>
-              </div>
-            </div>
-            <div class="media pt-3 pb-3"> <img src="public/images/profile/7.jpg" alt="image" class="mr-3 rounded" width="75">
-              <div class="media-body">
-                <h5 class="m-b-5"><a href="post-details.html" class="text-black">Collection of textile samples</a></h5>
-                <p class="mb-0">I shared this on my fb wall a few months back, and I thought.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-8">
+ 
+    <div class="col-xl-12">
       <div class="card">
         <div class="card-body">
           <div class="profile-tab">
             <div class="custom-tab-1">
               <div class="tab-content">
                 <div id="my-posts" class="tab-pane fade active show">
-                  <div class="my-post-content pt-3">
+                  <div class="my-post-content pt-3" id="copy_post_event_box">
                     
 
 
@@ -123,13 +66,14 @@
                         
                         <div class="profile-uoloaded-post border-bottom-1 pb-5"> <img src="public/images/profile/9.jpg" alt="" class="img-fluid"> <a class="post-title" href="javascript:void()">
                           <a class="post-title" href="">
-                            <h3 class="text-black">{{ post.sponsored_post_link }}</h3>
+                            <h3 class="text-black"></h3>
+                            <input type="text" name="link" id="sponsored-link" class="sponsored-link" value="{{ post.sponsored_post_link }}" >
                           </a> </a>
-                          <button class="btn" style="background-color: #1eaae7;color:white;">Copy Link</button>
+                          <button class="btn" style="background-color: #1eaae7;color:white;" >Copy Link</button>
                           <p>{{ post.sponsor_name }}</p>
                           
-                          <!-- <button class="btn btn-primary mr-2"><span class="mr-2"><i class="fa fa-heart"></i></span>Like</button>
-                          <button class="btn btn-secondary"  data-toggle="modal" data-target="#replyModal"><span class="mr-2"><i class="fa fa-reply"></i></span>Reply</button> -->
+                           <!-- <button class="btn btn-primary mr-2"><span class="mr-2"><i class="fa fa-heart"></i></span>Like</button> -->
+                          <button class="btn btn-secondary " id="show_sponsored_modal_btn" style="visibility: hidden;"  data-toggle="modal" data-target="#replyModal"><span class="mr-2"><i class="fa fa-reply"></i></span>Reply</button> 
                         </div>
                         <!-- post for money end -->
                     {% endfor %}
@@ -143,7 +87,7 @@
               </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="replyModal">
+            <div class="modal fade show" id="replyModal" >
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -151,14 +95,9 @@
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                   </div>
                   <div class="modal-body">
-                    <form>
-                      <textarea class="form-control" rows="4">Message</textarea>
-                    </form>
+                    <!-- <p>Some Text My javascript</p> -->
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Reply</button>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -215,5 +154,86 @@
        
 {% block userpageExtraJS %}
 <script src="{% static 'UserDashboard/public/vendor/lightgallery/js/lightgallery-all.min.js' %}" type="text/javascript"></script>
-            
+      
+
+<script>
+  //code for csrftoken 
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+  const csrftoken = getCookie('csrftoken');
+
+</script>
+
+<script>
+const copy_post_event_box = document.querySelector('#copy_post_event_box');
+const show_sponsored_modal_btn = document.querySelector('#show_sponsored_modal_btn')
+const show_sponsored_modal_content = document.querySelector('#replyModal .modal-body')
+copy_post_event_box.addEventListener('click',e=>{
+  
+    "if the element click has the class name of btn that means the user has clicked the Copy button"
+    
+    if(e.target.className === 'btn'){
+      const sponsordLink = e.target.parentElement.querySelector('.sponsored-link');
+             /* Select the text field */
+             sponsordLink.select();
+        
+             sponsordLink.setSelectionRange(0, 99999); /* For mobile devices */
+           
+             /* Copy the text inside the text field */
+             document.execCommand("copy");
+             //console.log(copyText.value)
+
+      //when the user click send the link to the backend for veriffication
+
+      fetch("{% url 'proccess_sponsored_post_link_copied_by_auth_user' %}", {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken':csrftoken
+        },
+        body: JSON.stringify({"copied_link":sponsordLink.value}),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        show_sponsored_modal_content.innerHTML=`<p>${data}</p>`
+        show_sponsored_modal_btn.click()
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+})
+
+  const copytoClipBoard = ()=>{
+        /* Get the text field */
+        var copyText = document.getElementById("sponsored-link");
+          
+        /* Select the text field */
+        copyText.select();
+        
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+      
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+        //console.log(copyText.value)
+
+      
+      
+
+  }
+</script>
 {% endblock userpageExtraJS %}
