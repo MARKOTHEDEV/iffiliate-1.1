@@ -171,13 +171,16 @@ we also need to create a button to activate the CronJobs -- DONE
 
 1)Correct the Payment For A userMembership Dont USe callbacks Use WebHooks --done
 2)We Need To Create A Model FOr Sponsord Post --> just need some js to copy the link to the clipboard and pay the user
-    on click of a button 
-    copy the url
-    send a fecth request to the backend -
-    we we check a model that saves seen soponsored Post 
+    on click of a button  --done
+    copy the url --done
+    send a fecth request to the backend -done
+    we we check a model that saves seen soponsored Post  --done
                 if the user and the url exits and if there is an actuall Sponsord Post -- half done
-                if yes pay the user and send a feed back
+                if yes pay the user and send a feed back -- done
                 i need to pay them for reading
 
+
+need to add a form that create the actuall Sponsord Post
+        Create,list delete...
 IF U WANT TO UPLOAD TO HEROKU PLEASE UNCOMMENT UR CRON JOBS!!! -- I probaly Should Create A button To activate this Event
 make the callback more flexible
