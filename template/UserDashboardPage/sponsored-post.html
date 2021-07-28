@@ -65,7 +65,7 @@
                      
                         
                         <div class="profile-uoloaded-post border-bottom-1 pb-5"> <img src="public/images/profile/9.jpg" alt="" class="img-fluid"> <a class="post-title" href="javascript:void()">
-                          <a class="post-title" href="">
+                          <a class="post-title" href="#">
                             <h3 class="text-black"></h3>
                             <input type="text" name="link" id="sponsored-link" class="sponsored-link" value="{{ post.sponsored_post_link }}" >
                           </a> </a>
@@ -208,12 +208,15 @@ copy_post_event_box.addEventListener('click',e=>{
       })
       .then(response => response.json())
       .then(data => {
-        console.log('Success:', data);
-        show_sponsored_modal_content.innerHTML=`<p>${data}</p>`
+        console.log('Success:', data.status);
+        
+        show_sponsored_modal_content.innerHTML=`<p>${data.message}</p>`
         show_sponsored_modal_btn.click()
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error('Error:', error.message);
+        show_sponsored_modal_content.innerHTML=`<p>${error.message}.. Please Check Your Internet</p>`
+        show_sponsored_modal_btn.click()
       });
     }
 })

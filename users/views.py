@@ -101,12 +101,12 @@ class SponsoredPostApi_View(APIView):
                 seen_sponsored_post.save()
                 "Pay the User He Is valid"
                 self._pay_user_for_copying_post(request)
-                return rest_api_view_response.Response(status=rest_api_status_codes.HTTP_200_OK,data="You Have Earn Some Money")
+                return rest_api_view_response.Response(status=rest_api_status_codes.HTTP_200_OK,data={"message":"You Have Earn Some Money","status":rest_api_status_codes.HTTP_200_OK})
             else:
-                return rest_api_view_response.Response(status=rest_api_status_codes.HTTP_226_IM_USED,data="You Have Already Used Me!!")
+                return rest_api_view_response.Response(status=rest_api_status_codes.HTTP_226_IM_USED,data={"message":"You Have Already Used Me!!","status":rest_api_status_codes.HTTP_226_IM_USED})
 
         else:
-            return rest_api_view_response.Response(status=rest_api_status_codes.HTTP_404_NOT_FOUND,data="The sponsored Link is Not Valid")
+            return rest_api_view_response.Response(status=rest_api_status_codes.HTTP_404_NOT_FOUND,data={"message":"The sponsored Link is Not Valid","status":rest_api_status_codes.HTTP_404_NOT_FOUND})
 
 class UserReadPostForMoneyPageDetailView(LoginRequiredMixin,user_mixins.RetstictFreeUser,
 user_mixins.UserHelperMixin,user_mixins.UserViewPage,generic.DetailView):
