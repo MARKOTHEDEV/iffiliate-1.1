@@ -25,7 +25,14 @@
 				<h1 class="site-headline mb-3">IFFILIATE - The real destination of earning easily</h1>
 				<div class="site-tagline mb-4">Iffiliate is the perfect platform for earning and marketing it's also a platform where you can place advertisments.</div>
 				<div class="cta-btns mb-lg-3">
+					{% if user.is_authenticated %}
+					<a class="btn btn-gradient mr-2 mb-3" href="{% url 'user-dashboard' %}">My Dashboard</a>
+					
+					{% else %}
 					<a class="btn btn-gradient mr-2 mb-3" href="{% url 'signup' %}">Get Started</a>
+					{% endif %}
+						
+					
 				</div>
 				
 			</div><!--//hero-content-holder-->

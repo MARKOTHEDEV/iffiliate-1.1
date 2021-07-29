@@ -177,10 +177,14 @@ we also need to create a button to activate the CronJobs -- DONE
     we we check a model that saves seen soponsored Post  --done
                 if the user and the url exits and if there is an actuall Sponsord Post -- half done
                 if yes pay the user and send a feed back -- done
-                i need to pay them for reading
+                i need to pay them for copying the link -- done
 
+
+send message if it created
+use loader
+for each post send some message  
 
 need to add a form that create the actuall Sponsord Post
-        Create,list delete...
+        Create,list delete... -- use the admin that django has given
 IF U WANT TO UPLOAD TO HEROKU PLEASE UNCOMMENT UR CRON JOBS!!! -- I probaly Should Create A button To activate this Event
-make the callback more flexible
+make the callback more flexible -- done
