@@ -327,6 +327,9 @@
 
 
 		<script>
+		const loadingAnimation = document.getElementById("markothedev-preloader")
+
+
 			function startPaymentProcess(plan){
 				/*
 			fetch(`https://3bfa239efe08.ngrok.io/accept-payment/`)
@@ -369,9 +372,12 @@
 
 			document.querySelector('.box').addEventListener('click',(e)=>{
 				e.preventDefault()
+				loadingAnimation.className=""
+
 				console.log('clicked');
 				let plan;
 			// console.log(typeof e.target.dataset['basic'])
+			//any of the dataset that is not undefine get the value and send it to the backend
 				if(e.target.dataset['bronze']  !== undefined){
 					plan = e.target.dataset['bronze'];
 					startPaymentProcess(plan)
