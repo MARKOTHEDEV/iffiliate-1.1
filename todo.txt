@@ -180,9 +180,9 @@ we also need to create a button to activate the CronJobs -- DONE
                 i need to pay them for copying the link -- done
 
 
-send message if it created
-use loader
-for each post send some message  
+send message if it created --
+use loader -- done
+for each post that is read send some message  --> write a javascript that checks for when the page loads then tell them what up
 
 need to add a form that create the actuall Sponsord Post
         Create,list delete... -- use the admin that django has given
