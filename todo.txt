@@ -183,8 +183,15 @@ we also need to create a button to activate the CronJobs -- DONE
 send message if it created --
 use loader -- done
 for each post that is read send some message  --> write a javascript that checks for when the page loads then tell them what up
-
+create a message that shows if message is open
 need to add a form that create the actuall Sponsord Post
         Create,list delete... -- use the admin that django has given
-IF U WANT TO UPLOAD TO HEROKU PLEASE UNCOMMENT UR CRON JOBS!!! -- I probaly Should Create A button To activate this Event
+
+
+IF U WANT TO UPLOAD TO HEROKU PLEASE UNCOMMENT UR CRON JOBS!!! -- I probaly Should Create A button To activate this Event -- done
 make the callback more flexible -- done
+
+
+fill the environment vars on HEROKU
+install whitenoise and configure
+configure s3 bucket

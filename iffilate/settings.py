@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import django_heroku
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '$!cckhd%+9+(^vxxksodhq!^pq4&kjcn=e*w0hipcpn(phe@ip'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['23879b9074fe.ngrok.io','localhost']
 
@@ -65,6 +64,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -161,7 +161,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
     
 # ]
 
-STATIC_ROOT = Path(BASE_DIR,'static')
+STATIC_ROOT = Path(BASE_DIR,'staticfiles')
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
@@ -221,10 +221,51 @@ EMAIL_USE_TLS = True
 
 "ALL MY CALLBACK URL VARIBLES .. THIS ARE THE URL THAT GET CALLED AFTER A PERSON PAYS"
 "mainly paystack payment"
-RAFFLE_DRAW_PAYMENT_CALLBACK_URL = 'http://localhost:8000/raffle/raffleDraw-callback/'
-PAYMENT_FOR_MEMBERSHIP_CALLBACK = 'http://localhost:8000/membership_payment_callback/'
+"check your enviroment vars"
+RAFFLE_DRAW_PAYMENT_CALLBACK_URL = os.environ['PAYMENT_FOR_MEMBERSHIP_CALLBACK']
+PAYMENT_FOR_MEMBERSHIP_CALLBACK = os.environ['RAFFLE_DRAW_PAYMENT_CALLBACK_URL']
 
 
 
+"this is logging so we can find errors "
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
+                       'pathname=%(pathname)s lineno=%(lineno)s '
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    }
+}
 
-django_heroku.settings(locals())
+
+django_heroku.settings(config=locals(),staticfiles=False,logging=False)
