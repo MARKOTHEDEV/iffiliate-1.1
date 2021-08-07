@@ -7,7 +7,9 @@ This App is a very Large App in My opinion So i created A guid Below For You! to
 
 <h1>Steps To Before deployment</h1>
 
-    Check the cron jobs if the functions are commented ..(uncomment them)
+    Check the cron jobs if the functions are commented ..(you have to go to the admin admindashboard to start it)
+        go to this link to activate it 'websitename/user/adminDashboard/startCron/'(u must be an admin)
+
 
     check the setting down below for variables
     like(paystack key,RAFFLE_DRAW_PAYMENT_CALLBACK_URL,EMAIL_HOST_USER) see if they are correct
@@ -23,12 +25,7 @@ This App is a very Large App in My opinion So i created A guid Below For You! to
 
 A)Working On the RaffleBatch
     1)Create A super User if U have not
-
-    2) create a Raffle Draw Batch(if it already created Relax and follow the next line and open the Raffle Draw Batch instace)
-
-    3) You have to manually set the correct Date:
-        the raffle game holds every sunday so simply set the game to comming sunday that all
-        the app will take it from the ->Note Some are envirment variable some are not
+        any time u are ready log in to your admin dashboard and activate it
 <br>
 
 <p>b)</p>
