@@ -125,23 +125,23 @@
 						<div class="footer-col-sub col-6 col-sm-4 col-lg-4 mb-4">
 							<h4 class="col-heading">Product</h4>
 							<ul class="list-unstyled mb-0">
-								<li><a href="product.html">Demo</a></li>
-								<li><a href="pricing.html">Pricing</a></li>
-								<li><a href="support.html">FAQs</a></li>
-								<li><a href="support.html">Support</a></li>
+								<li><a href="{% url 'product' %}">Demo</a></li>
+								<li><a href="{% url 'pricing' %}">Pricing</a></li>
+								<li><a href="#">FAQs</a></li>
+								<li><a href="{%  url 'support' %}">Support</a></li>
 							</ul>
 						</div><!--//footer-col-->
 						<div class="footer-col-sub col-6 col-sm-4 col-lg-4 mb-4">
 							<h4 class="col-heading">Resources</h4>
 							<ul class="list-unstyled mb-0">
-								<li><a href="blog.html">Blog</a></li>
+								<li><a href="{% url 'blog-list-view' %}">Blog</a></li>
 							</ul>
 						</div><!--//footer-col-->
 						<div class="footer-col-sub col-6 col-sm-4 col-lg-4 mb-4">
 							<h4 class="col-heading">About</h4>
 							<ul class="list-unstyled mb-0">
-								<li><a href="team.html">Team</a></li>
-								<li><a href="contact.html">Contact Us</a></li>
+								<li><a href="{% url 'team' %}">Team</a></li>
+								<li><a href="{% url 'contact-us' %}">Contact Us</a></li>
 							</ul>
 						</div><!--//footer-col-->
 					</div><!--//row-->
@@ -151,7 +151,7 @@
 			<div class="footer-bottom">
 				<div class="row">
 					<div class="copyright col-12 col-md-6">
-						 Copyright &copy; <a href="index.html" target="_blank">IFFILIATE</a>
+						 Copyright &copy; <a href="{% url 'home' %}" target="_blank">IFFILIATE</a>
 					</div>
 					<div class="legal col-12 col-md-6 text-md-right">
 						<ul class="list-inline mb-0">

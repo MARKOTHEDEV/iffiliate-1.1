@@ -45,7 +45,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '$!cckhd%+9+(^vxxksodhq!^pq4&kjcn=e*w0hipcpn(phe@ip'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['23879b9074fe.ngrok.io','localhost']
 
