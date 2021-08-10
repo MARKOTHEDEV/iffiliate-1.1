@@ -194,7 +194,7 @@ make the callback more flexible -- done
 
 fill the environment vars on HEROKU -- done
 install whitenoise and configure -- done
-test other cron job funtionality
-configure s3 bucket
-work on contact form
+test other cron job funtionality -- 
+configure s3 bucket -- for uploading pitures
+work on contact form --
 

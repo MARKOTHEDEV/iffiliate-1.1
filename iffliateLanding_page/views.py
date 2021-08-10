@@ -39,6 +39,8 @@ def index(request):
     'shows us the landing page if u new to the qebsite'
     return render(request,'iffliateLanding_page/index.html')
 
+def terms_and_conditions(request):
+    return render(request,'iffliateLanding_page/terms and conditions.html')
 
 def product(request):
     
