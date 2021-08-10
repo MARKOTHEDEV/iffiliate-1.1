@@ -197,4 +197,6 @@ install whitenoise and configure -- done
 test other cron job funtionality -- 
 configure s3 bucket -- for uploading pitures
 work on contact form --
+configure google to iffilate --
+
 
