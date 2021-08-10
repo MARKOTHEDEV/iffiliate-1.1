@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en"> 
+	{% extends './base.html' %}
+	{% load static %}
+	
+	
+	{% block title %}
+		Terms and Conditions
+	{% endblock title %}
+		
+	
+	{% block content %}
+
+
+	<div class="hero-wrapper">
+		<div class="curve-container">
+			<div class="curve-top"></div>
+			<div class="curve-bottom"></div>
+		</div><!--//curve-container-->
+
+		{% include './partials/nav.html' %}
+
+		
+		<section class="blog-post-header page-header py-3 py-md-5 over-curve">
+			<div class="container pt-md-3">	 
+				<div class="single-col-max mx-auto">
+					<h1 class="post-title text-center mb-3">{{ news }}</h1>
+					<div class="post-meta text-center mb-4">
+						<span class="post-time">{{ news.date_created }}</span>
+						<!-- <span class="px-2">|</span> -->
+						<span class="post-length">10 min read</span>
+						<span class="px-2">|</span>
+						<span class="post-type"><a href="{% url 'home' %}">IFFILIATE</a></span>
+					</div><!--//post-meta-->
+					
+					<div class="post-banner-holder">
+						<img class="img-fluid shadow rounded" src="{{ news.contentImage.url }}" alt="">
+					</div><!--//post-banner-->
+				</div><!--//single-col-max-->
+			</div><!--//container-->
+		</section><!--//blog-post-header-->
+	</div><!--//hero-wrapper-->
+	
+	<div class="blog-post-content py-5">
+		<div class="container">
+			<div class="single-col-max mx-auto">
+				<h3 class="py-3">
+					1.0 Terms & Conditions for iffiliate income programme.
+				</h3>
+				<p>The terms and conditions (the T&C's) contained herein, would govern a Subscriber's embership, subscription and the use of iffiliate income programme (IIP). The 
+					T&C's would apply in full force and by becoming to any of the preffered packages or services offered by IIP, you hereby accept all the T&C's contained herein in full.
+					It is a rule that you should not subscribe to the services or the packages of IIP if you have any objection or you disagree with any provision of the T&C's.
+				</p>
+				
+					<h3 class="py-3">
+						2.0 Review and Modification of the T&C's
+				    </h3>
+					<p>By accepting this T&C's as a subscrber, you hereby accept that IIP or any of its Administration shall reserve the rights to Modify the T&C's at any time without 
+						further notice to the subscriber. Every subscriber shall be responsible for regularly reviewing the T&C's as the subscriber's continued participation in IIP after such 
+						modification shall be deemed to be his/her acceptance of such modification. If need be IIP may provide a 5 days notice prior to such material terms taking effect and
+						this notice may be given via eithers IIP whatsapp, Telegram, Facebook or Instagram's platform. Whatever may be considered as a material modification would be 
+						determined at the sole discretion of IIP.
+						
+					</p>
+				
+						<h3 class="py-3">
+							Terms of Participation
+						</h3>
+
+				<blockquote class="theme-blockquote p-5 m-lg-5">
+					<div class="quote-icon-holder mb-2"><img src="assets/images/quote-icon.svg" alt=""></div>
+					<p class="mb-0 font-italic">By accepting to be a subscriber of IIP, you are required that you provide IIP with an accurate, complete and an updated registration information, including but 
+						not limited to an accurate name, bank account number and email address.
+						3.2 As a subscriber, you hereby represent not to:</p>
+					<footer class="blockquote-footer">Signed by <cite title="Source Title">IFFILIATE</cite></footer>
+				</blockquote>
+				
+				<ol class="my-5">
+					<li class="mb-2">Select or use an Email address of an another person without the owner's express permission.</li>
+					<li class="mb-2">Use a name subjects to rights of another person without authorization from that person</li>
+					<li class="mb-2">Use a false or misleading name or Email Address to activate a subscriber's account.</li>
+					<li class="mb-2">Activate or use more than one membership account</li>
+
+				</ol>
+
+				<h3 class="py-3">Fraud</h3>
+				
+				<p class="mb-5">Each subscriber agrees not to participate in any kind of fraudulent behaviour of any kind. Spamming is highly prohibted. Any spamming done to advertise IIP
+					will result in immediate termination of a Subscriber's account and a forefeiture of one's earned account balance.
+				</p>
+				
+				<h3 class="py-3">No-Refund Policy</h3>
+				
+				<p class="mb-5">IIP offers non tangible virtual digital services in form of registration fee and shall not issue a refund to any of its subscribers after a purchase of any of it's 
+					subscription pacakages has been made. Please not that by purchasing any of our IIP subscription pacakages, you agree to its no refund policy.
+					</p>
+				
+				<h3 class="py-3">Subscriber's Duty on Sponsored Posts</h3>
+				
+				<p class="mb-5">Note that the sponsored post sharing must correspond with the post date and must be shared as recommended. Subscribers may only earn from current sponsored
+					posts and not from old sponsored post and not compliance with this requirements may lead to the account of the subscribers to be suspended.
+					</p>
+				
+				<h3 class="py-3">Mode of Payment of Earned Income</h3>
+				
+				<p class="mb-5">A subscriber who has complied with our sponsored posts sharing policy and the provisions of this T&C's is entitled to plave a withdrawal order of the payment
+					of his/her income from the 30th day of his/her subscription of any of our packages. Once a withdrawal order has been placed by a Subscriber, he/she would be paid
+					under the 72 hour time. A Subscriber's registration/membership expires after 30 days, but can be renewed by the subscriper upon expiration.</p>
+				
+				<p class="mb-5">	Please note that as a subscriber, you might not get paid at the end of the whole session. Iffiliate will not be held liable for non payments of specific subscribers
+					as it can only keep sharng available revenues to subscribers across, and when the available revenue from registrations, sponsorships, additional funds,
+					advert placements and Google Adsense are exhausted, it can only wait till more revenue comes in before payments can be apportioned to other subscribers.</p>
+				
+				<p class="mb-5"> A Subcriber's discontinued participation in IIP or failure to notify Iffiliate of any address mailing or email changes may result in termination of the Subscriber's 
+					membership and forefeiture of the Subscriber's undeemed earnings.</p>
+				
+				<p class="mb-5">If Subscriber's objects to any of the provision of the T&C's or any subsequent modifications to this T&C's, or becomes dissatisfied with the program, the susbcriber's
+					only recourse is to immediately discontinue participation in IIP and properly terminate his or her membership.</p>
+				
+				<h3 class="py-3">Disclaimers and Miscellaneous Provisions</h3>
+				
+				<p class="mb-5">Each subscriber expressively agrees that the use of this service is at subscriber's risk. The service is provided on an"AS IS" and "AS AVAILABLE" basis. IIP disclaims
+					any warranties of any kind, express or implied by the law, customor otherwise. IIP makes no warranty regarding any services purchased or obtained through the 
+					program or any transactions entered into through the program. Neither Iffiliate nor any of its members, subsidairies, licensors, directors or employee shall be liable
+					for any direct, indirect, incidental, special or consequential damages arsing out of or relating to IIP or resulsting from the use or the inability to use the service or 
+					messages recieved or transactions entered into through the IIP or resulting from unauthorized access of subscriber's transmisions or data includng but not limited
+					to, damages for loss of profits or capital, data or other intangible, even if such party has been advised of the possibility of such damages or not.</p>
+				
+
+				<p class="mb-5">To prevent unauthorized access, maintain data accuracy, and ensure the correct use of information, IFFILIATE uses appropriate industry standard procedures
+						to safeguard the confidentiality of the subscriber's personal information such as Firewall, encryption, SSL, apllication proxies, adapatative analysis, token authentication
+						and monitoring technology of the website traffic to track abuse of the IFFilIATE website and it's data. Also note that no data transmitted over the internet can be 
+						100% secure. As a result IIP strives to protect its subscribers personal information but IIFILIATE cannot guarantee the security of any information that subscribers
+						transmit to or from participating in IIP.</p>
+
+				<p class="mb-5">Failure of either party to excerise or enforce any of it's rights or claims under this T&C's within three(3) weeks from the date the right, claim or cause arose,
+					shall act as a waiver of such rights, claims or cause.</p>
+
+				<p class="mb-5">In the event of any dispute or need for interpretation or enforcement of the provsion of this T&C's parties shall refer the matter to arbitration before resorting to
+					litigation. However arbitration shall only be resorted to where both parties have failed to resolve the matter through internal negotiation.
+					</p>
+
+
+				<h3 class="py-3">Definition of Terms</h3>
+				
+				<p class="mb-5">For the purpose of this T&C's, the following words would have the meaning as stated below:</p>
+
+				<p class="mb-5">Subscriber : means a member or user who has subscribed to any of the packages of IIP or any user of the services provided by IIP.<br>
+					IIP : Iffiliate Income Programme<br>
+					T&C's : Terms and Conditions. </p>
+				
+				
+				<div class="post-author-block text-center text-lg-left mt-5 pt-5">
+					<hr class="pt-3">
+					<div class="row">
+						
+						<div id="privacy-policy" class="col-12 col-lg-10">
+							<div class="post-author-info">
+								<h5 class="author-name">Privacy Policy</h5>
+								<p class="author-bio">Iffiliate is an affiliate platform that is secured with end to end encryption, therefore your funds are safely secure with us. Invest with the safest affiliate platform in the world as your funds are safely secured. Thank you!</p>
+								
+							</div>
+						</div><!--//col-->
+					</div><!--//row-->
+				</div><!--//post-author-block-->
+				
+			</div><!--//single-col-max-->
+		</div><!--//container-->
+	</div><!--//blog-post-content-->
+	
+	
+	
+	<section class="cta-section text-center">
+		<div class="py-5 theme-bg-gradient position-relative">
+			<div class="curve-container">
+				<div class="curve-top curve-top-sm"></div>
+				<div class="curve-bottom curve-bottom-sm"></div>
+			</div><!--//curve-container-->
+			<div class="theme-bg-shapes-right"></div>
+			<div class="theme-bg-shapes-left"></div>
+			<div class="container">
+				<h3 class="mb-2 text-white mb-3">Ready To Launch Your Business?</h3>
+				<div class="section-intro text-white mb-3 single-col-max mx-auto">Intro goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sapien leo, cursus quis feugiat eget, malesuada non ipsum.ss</div>
+				<div class="pt-3 text-center">
+					<a class="btn btn-inverse mr-lg-2 mb-3" href="{% url 'signup' %}">Get started</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+
+{% endblock content %}
+
+
+
+
+
+{% block Javascript %}
+	<!-- Javascript -->          
+
+	<!-- Javascript -->          
+	<script src="assets/plugins/jquery-3.4.1.min.js"></script>
+	<script src="assets/plugins/popper.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+
+
+{% endblock Javascript %}
