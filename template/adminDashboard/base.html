@@ -148,6 +148,17 @@
 							</li>
 							l
 
+
+							<li
+							
+							{% if  request.path ==  '/user/adminDashboard/create_blog/' %}
+									class="active" 
+								{% endif %}
+							>
+								<a href="{% url 'admin_create_blog_post' %}"><i data-feather="users"></i> <span>Create Blog Post</span></a>
+							</li>
+
+
 							<!-- <li>
 								<a href="settings.html"><i data-feather="settings"></i> <span>Settings</span></a>
 							</li> -->

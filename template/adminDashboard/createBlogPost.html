@@ -1,0 +1,62 @@
+{% extends 'adminDashboard/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Page Wrapper -->
+
+			<!-- Page Wrapper -->
+			<div class="page-wrapper">
+				<div class="content container-fluid" style="height:100vh;">
+                        <h4 style="text-align: center;">Hello Fill This form to create a new Blog Post</h4>
+                        <br>
+                    <form action="" enctype="multipart/form-data"  method="POST" style="height:100%;width:60%;margin:0 auto;">
+						{% csrf_token %}
+
+
+
+                        {% if messages %}
+                        <ul class="messages" >
+                          {% for message in messages %}
+                            <p class="{{ message.tags }}" style="color: #e4615d;list-style-type:none;text-align:center;">{{ message }}</p>
+                          {% endfor %}
+                        </ul>
+                        {% endif %}
+
+                            
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" class="form-control" id="title" placeholder="Enter title">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="author">Author</label>
+                            <input type="text" name="author" class="form-control" id="" value="{{ user }}" disabled>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contentImage">Blog Image</label>
+                            <input type="file" name="contentImage" class="form-control" id="contentImage" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="content">Main content</label><br>
+                            <span>Please Leave Reasonable spaces dont write everything Jampack together</span>
+
+                            <textarea class="form-control" name="content" id="" cols="30" rows="10"></textarea>
+                        </div>
+                            
+                        <input type="submit" value="Submit" class="btn  btn-primary" >
+                        <!-- <button type="submit">Ss</button> -->
+                    </form>
+                    <br>
+				
+			
+				</div>
+			</div>
+			<!-- /Page Wrapper -->
+			
+<!-- /Page Wrapper -->
+
+{% endblock content %}

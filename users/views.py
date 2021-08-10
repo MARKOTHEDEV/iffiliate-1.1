@@ -4,7 +4,7 @@ from django.http.response import HttpResponseBadRequest
 from django.shortcuts import render,redirect,HttpResponse
 from django.views import generic
 import requests,json
-from users import models
+from users import mixins, models
 from users import mixins as user_mixins
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse,reverse_lazy
@@ -25,10 +25,10 @@ from datetime import timedelta
 from rest_framework.decorators import APIView
 from rest_framework import authentication as rest_api_auth 
 from rest_framework import permissions as rest_api_permissions
-from . import api_permissions
+from . import (api_permissions,form)
 from rest_framework import response as rest_api_view_response 
 from rest_framework import status as rest_api_status_codes
-
+from iffliateLanding_page import models as landing_page_Models
 import users
 
 # Create your views here.
@@ -391,6 +391,31 @@ class PayUser(SingleObjectMixin,View):
         except:
             return {'status':False,"message":"some error Occured Refresh the page and try Again!!"}
 
+class CreateBlogPost(LoginRequiredMixin,user_mixins.Allow_supeusersOnly,generic.FormView):
+    form_class =form.BlogForm
+    model =landing_page_Models.Blog
+    template_name = 'adminDashboard/createBlogPost.html'
+    success_url =reverse_lazy('blog-list-view')
+    def form_invalid(self, form):
+        messages.error(self.request,form.errors)
+        return super().form_invalid(form)
+    
+
+
+
+    def form_valid(self, form):
+        "Once the the data is valid we save it to the database" 
+        formData = form.cleaned_data
+        blog = self.model.objects.create(
+            author=self.request.user,
+            title = formData.get('title'),
+            content = formData.get('content'),
+            contentImage = formData.get('contentImage'),
+        )
+        blog.save()
+        return super().form_valid(form)
+    
+    
 
 @csrf_exempt
 def payUserWebHook(request):
