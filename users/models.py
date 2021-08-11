@@ -185,8 +185,8 @@ class UserRequestPayment(models.Model):
 
 class MoneyPost(models.Model):
     'This model store all the scrapped post and  feed it to users to read for money'
-    title=  models.CharField(max_length=300)
-    content = models.TextField()
+    title=  models.CharField(max_length=300,unique=False)
+    content = models.TextField(unique=False)
 
     @property
     def get_someText(self):

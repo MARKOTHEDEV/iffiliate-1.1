@@ -61,9 +61,16 @@ class NewsApi:
 
     def save_to_db(self,clean_data):
         'save arranged data to db'
+        print(len(clean_data),"Going into database")
+        print(clean_data,"Going into database")
+        count = 0
         for news in clean_data:
-            moneypost =models.MoneyPost.objects.create(title=news.get('title'),content=news.get('content'))
-            moneypost.save()
+           print(news)
+           print('-----')
+           print('-----')
+           moneypost = models.MoneyPost.objects.create(title=news.get('title'),content=news.get('content')+str(count))
+           moneypost.save() 
+           count+=1
     
     def run(self):
         """ 
@@ -85,4 +92,4 @@ url2 = f'https://newsapi.org/v2/top-headlines?country=br&apiKey={api_key}'
 
 
 NEWS = NewsApi(url,url,10)
-NEWS.run()
+# NEWS.run()

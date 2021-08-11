@@ -20,6 +20,7 @@ def start():
         paidUsers conatians a list of  all users that belongs to a 
         1)Paid plan
         2)a dictonary of the user last_login whichis a datetime object and the user Current membership
+        ~Q(membership=free_membership) -- means ~ nOt
     """
     paidUsers = list(UserMembership.objects.filter(~Q(membership=free_membership)).values('user','user__last_login','membership__slug'))
   
