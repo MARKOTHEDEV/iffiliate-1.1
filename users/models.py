@@ -263,6 +263,10 @@ def object_viewed_reciver(sender,instance,request,*args,**kwargs):
     # it will record that the user has read the post 
     'instance in this case actually contains the post that was opened data'
     userHasReadThePost,create = SeenMoneyPost.objects.get_or_create(user=request.user,postSeen=instance)
+    "after the user has seen the post just add Seen to the title "
+    "The Instance Here Represent MoneyPost Model"
+    instance.title+="(Seen)"
+    instance.save()
 
     if create == True:
         'check if created is false then we can pay users'
