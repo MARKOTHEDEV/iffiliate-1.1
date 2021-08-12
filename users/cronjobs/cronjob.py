@@ -15,9 +15,9 @@ def start():
     print("Loading Scheduler.....")
     # scheduler.add_job(runScraper,"interval",hours=24,id="MoneyPost_001",replace_existing=True)
     # scheduler.add_job(userChecker.start,"interval",hours=23,id="checkExpiredSub_001",replace_existing=True)
-    scheduler.add_job(payUser_onlogin.start,"interval",minutes=10,id="payUser_onlogin_001",replace_existing=True)
+    # scheduler.add_job(payUser_onlogin.start,"interval",minutes=3,id="payUser_onlogin_001",replace_existing=True)
 
-    scheduler.add_job(NEWS.run,"interval",minutes=5,id="get_money_post_002",replace_existing=True)
+    scheduler.add_job(NEWS.run,"interval",minutes=2,id="get_money_post_002",replace_existing=True)
     
     
     scheduler.start()

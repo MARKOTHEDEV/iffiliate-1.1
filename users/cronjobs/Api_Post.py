@@ -3,7 +3,7 @@ import requests,json
 from requests.api import post
 from users import models
 
-
+import time
 
 
 
@@ -33,8 +33,11 @@ class NewsApi:
             else:
                 # this means we did not get enough post the we have to re fecth
                 self.url = self.url2
+                time.sleep(30)
                 self.get_api_data()
         except requests.exceptions.ConnectionError:
+            "We wait for 30s Before We start Try again"
+            time.sleep(30)
             print("trying again Because of Network Error")
             self.get_api_data()
             
@@ -68,7 +71,8 @@ class NewsApi:
            print(news)
            print('-----')
            print('-----')
-           moneypost = models.MoneyPost.objects.create(title=news.get('title'),content=news.get('content')+str(count))
+           
+           moneypost = models.MoneyPost.objects.create(title=f"{news.get('title')}",content=f"{news.get('content','Failed To Load Content')}"+str(count))
            moneypost.save() 
            count+=1
     
