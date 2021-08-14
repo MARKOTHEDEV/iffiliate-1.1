@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 "password rest import"
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator 
@@ -75,6 +76,22 @@ def support(request):
     return render(request,'iffliateLanding_page/support.html')
 
 def contactUs(request):
+    "this will render the template Also Recive Contact info saving it in the database"
+    # messages.success(request,'dkfjdfjjfijrijiherhgerghiohh')
+    if request.method == 'POST':
+        message = request.POST['message']
+        """
+            Here WEe get the Contact And save 
+            if he not logged in we will ask for his email
+            if he is already logged in we will just take his Email from the Request
+        """
+        
+        contact_model = models.Contact.objects.create(message=message)
+        contact_model.email =request.POST.get('email') or request.user.email
+        contact_model.save()
+        messages.success(request,f'Thank you we will get back to you soon!!')
+
+        
     return render(request,'iffliateLanding_page/contact.html')
     
 

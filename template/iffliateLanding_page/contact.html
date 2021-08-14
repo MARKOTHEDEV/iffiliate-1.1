@@ -91,19 +91,21 @@
 					</div><!--//row-->
 					
 					<div class="contact-form-box shadow rounded p-5 mb-5">
-						<form id="contact-form" class="contact-form">
+						<form action="{%  url 'contact-us' %}" id="contact-form" class="contact-form" method="POST" >
 							<h3 class="text-center">How Can We Help?</h3>
 							<div class="mb-3 text-center">For enquiry and general questions, please use the form below.</div>
 							<div class="form-row">                                                           
-								<div class="form-group col-12 col-xl-6">
-									<label class="sr-only" for="cname">Name</label>
-									<input type="text" class="form-control" id="cname" name="name" placeholder="Name" minlength="2" required="" >
-								</div>                    
-								<div class="form-group col-12 col-xl-6">
-									<label class="sr-only" for="cemail">Email</label>
-									<input type="email" class="form-control" id="cemail" name="email" placeholder="Email" required="" >
-								</div>
-								
+							        
+								{% csrf_token %}
+								{% if not user.is_authenticated %}
+							
+
+									<div class="form-group col-12 col-xl-6">
+										<label class="sr-only" for="cemail">Email</label>
+										<input type="email" class="form-control" id="cemail" name="email" placeholder="Email" required >
+									</div>
+								{% endif %}
+									           
 								<div class="form-group col-12">
 									<label class="sr-only" for="cmessage">Your message</label>
 									<textarea class="form-control" id="cmessage" name="message" placeholder="Enter your message" rows="10" required=""></textarea>
