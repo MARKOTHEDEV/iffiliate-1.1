@@ -69,13 +69,7 @@ class UserStatusChecker:
                 """
                 this function get and check the expiring date if it expired it 
                 calls the self.setUser_To_Free_Mode(self,user_membership) and set the current user membershipt to free"""
-                print('CronTab Started:')
+                print('Checking the Paid User Date')
                 self.get_user_expiring_date(user)#this funtion get the  
 
 
-
-if __name__ == '__main__':
-    django.setup()
-    # import AFTER setup
-
-    # from now I can access WorldBorder!!
