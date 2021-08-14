@@ -37,10 +37,13 @@ class UserStatusChecker:
 
         if userSubExpireDate >= todayDate:
             'then his sub is log over due make him a free user'
+            print("the User Sub Has Expired")
             self.setUser_To_Free_Mode(currentUserMembership)
 
             return True
         else:
+            print("the User Sub Has Not Expired")
+
             return False
 
     def setUser_To_Free_Mode(self,user_membership):
@@ -71,5 +74,8 @@ class UserStatusChecker:
                 calls the self.setUser_To_Free_Mode(self,user_membership) and set the current user membershipt to free"""
                 print('Checking the Paid User Date')
                 self.get_user_expiring_date(user)#this funtion get the  
+            else:
+                print("the User Sub Is a free user")
+                
 
 
