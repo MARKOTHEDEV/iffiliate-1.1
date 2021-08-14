@@ -59,3 +59,13 @@ Now u have to create the paid membership They as follow
 Before you Countinue Go to the url Below To Start the Cron Job
 </h3>
 'websitename/user/adminDashboard/startCron/'
+
+<p>The Cron Job Task consist of</p>
+
+    
+    "every 19 hours  Check if the user Sub Has Expired"
+
+    "every 23 hours  if user has logged in for that day and pay them"
+
+    "every 24 hours  Get News Articles So Users can Earn"
+
