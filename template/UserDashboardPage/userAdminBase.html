@@ -163,7 +163,7 @@
       ***********************************-->
 
 {% if messages %}
-<ul class="messages" style="position: absolute;top:0;left:0;width:100%;z-index:100;background-color:white;text-align:center;padding:1.2rem;font-size:3rem ;text-align:center;">
+<ul class="messages" id="django-messages1" style="position: absolute;top:0;left:0;width:100%;z-index:100;background-color:white;text-align:center;padding:1.2rem;font-size:3rem ;text-align:center;">
   {% for message in messages %}
     <li class="{{ message.tags }}" style="color: #42c6ff;list-style-type:none;">{{ message }}</li>
   {% endfor %}
@@ -225,11 +225,13 @@
     <script src="{% static 'UserDashboard/public/js/custom.js' %}" type="text/javascript"></script>
     <script src="{% static 'UserDashboard/public/js/deznav-init.js' %}" type="text/javascript"></script>
 
+
         
         {% block userpageExtraJS %}
             
         {% endblock userpageExtraJS %}
             
+
 </body>
   
   
