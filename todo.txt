@@ -195,8 +195,9 @@ make the callback more flexible -- done
 fill the environment vars on HEROKU -- done
 install whitenoise and configure -- done
 test other cron job funtionality -- done
-configure s3 bucket -- for uploading pitures
-work on contact form --
-configure google to iffilate --
+configure s3 bucket for uploading pitures -- 
+work on contact form --done
+configure google to iffilate -- done
+create aB settime out so the messageing system deletes it self wafter some secconds --done for only iffilate_landing page
 
 
