@@ -1,6 +1,6 @@
 import requests,json
 
-from requests.api import post
+from requests.api import delete, post
 from users import models
 
 import time
@@ -83,12 +83,15 @@ class NewsApi:
             arrange  the data for the database -- using self.format_api_data()
             then we save that data = using self.save_to_db()
         """
+        self.delete_previous_posts()
         unFormated_data =  self.get_api_data()
         cleaned_data = self.format_api_data(unFormated_data)
         print('leght finall data',len(cleaned_data))
         self.save_to_db(cleaned_data)
 
-
+    def delete_previous_posts(self):
+        for formal_post in models.MoneyPost.objects.all():
+            formal_post.delete()
 
 api_key ='24b5744b7c444e4aabc4d26213ee15e7'
 url = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={api_key}'
