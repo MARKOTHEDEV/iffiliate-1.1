@@ -265,7 +265,8 @@ def object_viewed_reciver(sender,instance,request,*args,**kwargs):
     userHasReadThePost,create = SeenMoneyPost.objects.get_or_create(user=request.user,postSeen=instance)
     "after the user has seen the post just add Seen to the title "
     "The Instance Here Represent MoneyPost Model"
-    instance.title+="(Seen)"
+    if '(Seen)' not in instance.title:
+        instance.title+="(Seen)"
     instance.save()
 
     if create == True:
