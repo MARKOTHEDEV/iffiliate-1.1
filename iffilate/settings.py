@@ -194,8 +194,8 @@ AUTH_USER_MODEL = 'users.User'
 
 
 "this Keys Is What Paystack Needs For i the Request To Authenticate"
-PAYSTACK_SECRET_KEY   =  'sk_test_38a62cfc2939b3665f400a7c57bd61b7ab19f3fa'
-PAYSTACK_PUBLIC_KEY  = 'pk_test_17925fc67c5b6da3dbef32feab9afccb0d175729'
+PAYSTACK_SECRET_KEY   =  os.environ['PAYSTACK_SECRET_KEY']
+PAYSTACK_PUBLIC_KEY  = os.environ['PAYSTACK_PUBLIC_KEY']
 
 
 
