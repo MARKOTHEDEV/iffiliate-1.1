@@ -196,7 +196,8 @@ AUTH_USER_MODEL = 'users.User'
 "this Keys Is What Paystack Needs For i the Request To Authenticate"
 PAYSTACK_SECRET_KEY   =  os.environ['PAYSTACK_SECRET_KEY']
 PAYSTACK_PUBLIC_KEY  = os.environ['PAYSTACK_PUBLIC_KEY']
-
+"mediastack.com keys where i get the posts from"
+MEDIASTACK_APIKEY = os.environ['MEDIASTACK_APIKEY']
 
 
 
