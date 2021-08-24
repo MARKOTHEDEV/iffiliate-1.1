@@ -187,6 +187,7 @@ class MoneyPost(models.Model):
     'This model store all the scrapped post and  feed it to users to read for money'
     title=  models.CharField(max_length=300,unique=False)
     content = models.TextField(unique=False)
+    image_link = models.CharField(default='none',max_length=1000,null=True)
 
     @property
     def get_someText(self):
