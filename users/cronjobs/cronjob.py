@@ -19,7 +19,7 @@ def start():
     "every 23 hours  if user has logged in for that day and pay them"
     scheduler.add_job(payUser_onlogin.start,"interval",hours=23,id="payUser_onlogin_001",replace_existing=True)
     "every 24 hours  Get News Articles So USers can Earn"
-    scheduler.add_job(NEWS.run,"interval",hours=24,id="get_money_post_002",replace_existing=True)
+    scheduler.add_job(NEWS.run,"interval",hours=1,id="get_money_post_002",replace_existing=True)
     
     
     scheduler.start()
